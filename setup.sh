@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=( .zsh .zshrc )
+DOT_FILES=( .zshrc .config/nvim .zplug )
 
 for file in ${DOT_FILES[@]}
 do
