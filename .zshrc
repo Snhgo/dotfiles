@@ -99,3 +99,7 @@ PROMPT='
 
 ## エイリアス
 alias v='nvim'
+alias ll='ls -la'
+alias grep='grep --color'
+alias df='df -h'
+alias ps='ps --sort=start_time'
