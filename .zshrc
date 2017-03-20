@@ -124,3 +124,7 @@ if [ -e "${HOME}/.zplug" ]; then
 
 
 fi
+
+## nvim
+export XDG_CONFIG_HOME=$HOME/.config
+
