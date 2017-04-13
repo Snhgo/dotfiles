@@ -19,6 +19,14 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 
+" フォーマット呼び出し
+function! s:format_file()
+  let view = winsaveview()
+  normal gg=G
+  silent call winrestview(view)
+endfunction
+nnoremap <Space>f :call <SID>format_file()<CR>
+
 " NERDTreeTabsをnvim起動時に同時に起動
 let g:nerdtree_tabs_open_on_console_startup=1
 
