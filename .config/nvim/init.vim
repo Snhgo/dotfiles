@@ -3,6 +3,8 @@ set noswapfile
 
 inoremap <silent> @@ <ESC>
 nnoremap <silent> <C-e> :NERDTreeTabsToggle<CR>
+" 改行
+"nnoremap O :<C-u>call append(expand('.'), '')<Cr>j
 
 " インサートモード時の移動
 inoremap <C-j> <Down>
@@ -11,7 +13,7 @@ inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 
 " タブ移動
-nnoremap <C-n> gt
+"nnoremap <C-n> gt
 nnoremap <C-p> gT
 
 filetype indent on
@@ -34,6 +36,11 @@ let g:nerdtree_tabs_open_on_console_startup=1
 if has('nvim')
   tnoremap <silent> <ESC> <C-\><C-n>
 endif
+
+" 新規ファイルテンプレート
+" html
+"autocmd BufNewFile *.html 0r $HOME/.vim/template/html.txt
+
 
 " python3
 let g:python3_host_prog = $PYENV_ROOT.'/shims/python3'
