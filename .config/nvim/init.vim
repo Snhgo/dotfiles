@@ -13,7 +13,7 @@ inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 
 " タブ移動
-"nnoremap <C-n> gt
+nnoremap <C-n> gt
 nnoremap <C-p> gT
 
 filetype indent on
