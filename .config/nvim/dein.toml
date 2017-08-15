@@ -74,12 +74,10 @@ repo = 'cespare/vim-toml'
 repo = 'kassio/neoterm'
 if = "has('nvim')"
 hook_add = '''
-nnoremap <silent> ,rc :TREPLSendFile<cr>
-nnoremap <silent> ,rl :TREPLSendLine<cr>
-vnoremap <silent> ,rl :TREPLSendSelection<cr>
-nnoremap <silent> vt :Ttoggle<cr>
-nnoremap <silent> vs :terminal<cr>
 '''
+
+[[plugins]]
+repo = 'tyru/caw.vim'
 
 [[plugins]]
 repo='evidens/vim-twig'
