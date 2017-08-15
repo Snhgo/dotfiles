@@ -13,6 +13,9 @@ inoremap <C-l> <Right>
 nnoremap <C-n> gt
 nnoremap <C-p> gT
 
+nnoremap ; :
+nnoremap ; :
+
 " neoterm
 nnoremap <silent> ,rc :TREPLSendFile<cr>
 nnoremap <silent> ,rl :TREPLSendLine<cr>
