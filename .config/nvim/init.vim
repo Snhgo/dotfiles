@@ -1,6 +1,10 @@
 set number
 set noswapfile
 set fixeol
+set spelllang+=cjk
+set spell
+hi clear SpellBad
+hi SpellBad cterm=underline
 
 filetype indent on
 set tabstop=2
