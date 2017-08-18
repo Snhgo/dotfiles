@@ -3,6 +3,7 @@ set noswapfile
 set fixeol
 set spelllang+=cjk
 set spell
+set clipboard=unnamed
 hi clear SpellBad
 hi SpellBad cterm=underline
 
