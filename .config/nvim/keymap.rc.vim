@@ -25,9 +25,9 @@ nnoremap <silent> vs :terminal<cr>
 
 " コメント
 " 行の最初の文字の前にコメント文字をトグル
-nnoremap <Leader>c <Plug>(caw:hatpos:toggle)
-vnoremap <Leader>c <Plug>(caw:hatpos:toggle)
+nmap <Leader>c <Plug>(caw:hatpos:toggle)
+vmap <Leader>c <Plug>(caw:hatpos:toggle)
 " 行頭にコメントをトグル
-nnoremap <Leader>, <Plug>(caw:zeropos:toggle)
-vnoremap <Leader>, <Plug>(caw:zeropos:toggle)
+nmap <Leader>, <Plug>(caw:zeropos:toggle)
+vmap <Leader>, <Plug>(caw:zeropos:toggle)
 
