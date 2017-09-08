@@ -2,11 +2,6 @@
 repo  = 'Quramy/tsuquyomi'
 on_ft = ['typescript']
 
-# インサートモードに入ったら読み込む
-[[plugins]]
-repo = 'Shougo/neocomplete.vim'
-on_i = 1
-
 # 特定のコマンドを打ったら読み込む
 [[plugins]]
 repo      = 'thinca/vim-prettyprint'

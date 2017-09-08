@@ -81,3 +81,8 @@ repo = 'tyru/caw.vim'
 
 [[plugins]]
 repo='evidens/vim-twig'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+hook_add = '''
+''' 

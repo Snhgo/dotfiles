@@ -22,12 +22,24 @@ nnoremap <silent> ,rl :TREPLSendLine<cr>
 vnoremap <silent> ,rl :TREPLSendSelection<cr>
 nnoremap <silent> vt :Ttoggle<cr>
 nnoremap <silent> vs :terminal<cr>
+tnoremap <silent> <ESC> <C-\><C-n>
 
 " コメント
 " 行の最初の文字の前にコメント文字をトグル
-nmap <Leader>c <Plug>(caw:hatpos:toggle)
-vmap <Leader>c <Plug>(caw:hatpos:toggle)
+nmap <Space>c <Plug>(caw:hatpos:toggle)
+vmap <Space>c <Plug>(caw:hatpos:toggle)
 " 行頭にコメントをトグル
-nmap <Leader>, <Plug>(caw:zeropos:toggle)
-vmap <Leader>, <Plug>(caw:zeropos:toggle)
+nmap <Space>, <Plug>(caw:zeropos:toggle)
+vmap <Space>, <Plug>(caw:zeropos:toggle)
 
+nnoremap [nerdtree]    <Nop>                                                                                                                  
+nmap     <Space>n [nerdtree]
+nnoremap <silent>[nerdtree]n :NERDTreeToggle<CR>
+nnoremap <silent>[nerdtree]f :NERDTreeFind<CR>
+
+" git
+nnoremap [fugitive] <Nop>
+nmap <Space>g [fugitive]
+nnoremap <silent> [fugitive]s :<C-u>Gstatus<CR>
+nnoremap <silent> [fugitive]d :<C-u>Gdiff<CR>
+nnoremap <silent> [fugitive]b :<C-u>Gblame<CR>

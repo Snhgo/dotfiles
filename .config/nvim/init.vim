@@ -6,7 +6,6 @@ set spell
 set clipboard=unnamed
 hi clear SpellBad
 hi SpellBad cterm=underline
-let mapleader = "\<Space>"
 
 filetype indent on
 set tabstop=2
