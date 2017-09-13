@@ -8,6 +8,7 @@
 `:map <C-a> <C-x>`  
 ↓  
 `10 → 9`
+
 ![alt text](https://raw.githubusercontent.com/Snhgo/img/master/nvim/map_ax.png)
 
 
@@ -15,6 +16,7 @@
 `:map <C-a> <C-x>`  
 ↓  
 `10 → 9`
+
 ![alt text](https://raw.githubusercontent.com/Snhgo/img/master/nvim/map_tax.png)
 
 
