@@ -1,5 +1,6 @@
 # nvim_setting
 
+neovimのメモ
 
 
 ## mapとnoremap
@@ -33,3 +34,4 @@
 
 ![alt text](https://raw.githubusercontent.com/Snhgo/img/master/nvim/noremap_ta.png)
 
+***
