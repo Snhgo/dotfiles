@@ -42,3 +42,22 @@ neovimのメモ
 
 ## fugitive
 gitラッパープラグイン
+参考
+<http://blog.yuku-t.com/entry/20110427/1303868482>
+
+*：Gstatus*
+新しい窓を作ってgit statusを表示
+：Gwrite
+現在開いているソースをgit add
+：Gread
+現在開いているソースの直前のコミット時のソースを表示
+：Gmove destination/path
+現在開いているソースをgit mvする
+：Gremove
+現在開いているソースをgit rmする
+：Gcommit
+git commit
+：Gblame
+現在のソースをgit blame。vimが色づけしてくれる
+：Gdiff
+現在のソースの変更点をvimdiffで表示
