@@ -5,6 +5,8 @@ neovimのメモ
   
 
 ## mapとnoremap
+<details>
+  <summary>mapとnoremapの違いメモ</summary>
 
 参考
 <http://cocopotn.me/blog/?p=3871>
@@ -25,7 +27,6 @@ neovimのメモ
 
 ![alt text](https://raw.githubusercontent.com/Snhgo/img/master/nvim/map_tax.png)
 
----
 
 ### noremapの例
 `:map <C-a> <C-x>`  
@@ -35,8 +36,7 @@ neovimのメモ
 
 ![alt text](https://raw.githubusercontent.com/Snhgo/img/master/nvim/noremap_ta.png)
 
----
-  
+</details>
   
   
 
