@@ -45,19 +45,19 @@ gitラッパープラグイン
 参考
 <http://blog.yuku-t.com/entry/20110427/1303868482>
 
-*：Gstatus*
+####：Gstatus
 新しい窓を作ってgit statusを表示
-：Gwrite
+####：Gwrite
 現在開いているソースをgit add
-：Gread
+####：Gread
 現在開いているソースの直前のコミット時のソースを表示
-：Gmove destination/path
+####：Gmove destination/path
 現在開いているソースをgit mvする
-：Gremove
+####：Gremove
 現在開いているソースをgit rmする
-：Gcommit
+####：Gcommit
 git commit
-：Gblame
+####：Gblame
 現在のソースをgit blame。vimが色づけしてくれる
-：Gdiff
+####：Gdiff
 現在のソースの変更点をvimdiffで表示
