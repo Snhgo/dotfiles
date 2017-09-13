@@ -42,12 +42,9 @@ neovimのメモ
 
 ## fugitive
 <details>
-  <summary>
-    gitラッパープラグイン
-
-    参考
+  <summary>gitラッパープラグイン</summary>
+  参考
     <http://blog.yuku-t.com/entry/20110427/1303868482>
-  </summary>
 
 #### ：Gstatus
 新しい窓を作ってgit statusを表示
