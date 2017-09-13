@@ -35,3 +35,7 @@ neovimのメモ
 ![alt text](https://raw.githubusercontent.com/Snhgo/img/master/nvim/noremap_ta.png)
 
 ***
+
+
+## fugitive
+gitラッパープラグイン
