@@ -24,9 +24,13 @@ vnoremap <C-l> $
 nnoremap <silent> ,rc :TREPLSendFile<cr>
 nnoremap <silent> ,rl :TREPLSendLine<cr>
 vnoremap <silent> ,rl :TREPLSendSelection<cr>
-nnoremap <silent> vt :Ttoggle<cr>
-nnoremap <silent> vs :terminal<cr>
+nnoremap <silent> vs :Ttoggle<cr><C-w>ji
+" nnoremap <silent> vs :terminal<cr>
 tnoremap <silent> <ESC> <C-\><C-n>
+tnoremap <silent> <C-q> <C-\><C-n>:q<cr>
+" pythonを実行
+nnoremap @p :T python %<CR><C-w>j
+
 
 " コメント
 " 行の最初の文字の前にコメント文字をトグル
