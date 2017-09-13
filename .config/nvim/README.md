@@ -1,6 +1,7 @@
 # nvim_setting
 
 
+
 ## mapとnoremap
 
 参考
@@ -22,6 +23,7 @@
 
 ![alt text](https://raw.githubusercontent.com/Snhgo/img/master/nvim/map_tax.png)
 
+***
 
 ### noremapの例
 `:map <C-a> <C-x>`  
