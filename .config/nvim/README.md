@@ -65,3 +65,15 @@ git commit
 #### ：Gdiff
 現在のソースの変更点をvimdiffで表示
 </details>
+
+## NERDTree
+<details>
+  <summary>使い方メモ</summary>
+  
+参考
+<https://altarf.net/computer/mac%E3%81%A7%E3%81%AE%E3%82%A8%E3%83%B3%E3%82%B8%E3%83%8B%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0%E7%9A%84%E3%81%AA%E4%BD%95%E3%81%8B/2829>
+
+### Treeの中を操作する
+
+*タブで開く* t
+</details>
