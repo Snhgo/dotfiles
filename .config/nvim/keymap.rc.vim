@@ -15,6 +15,10 @@ nnoremap <C-p> gT
 
 nnoremap ; :
 nnoremap ; :
+nnoremap <C-h> ^
+nnoremap <C-l> $
+vnoremap <C-h> ^
+vnoremap <C-l> $
 
 " neoterm
 nnoremap <silent> ,rc :TREPLSendFile<cr>
