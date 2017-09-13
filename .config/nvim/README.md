@@ -1,3 +1,5 @@
 # nvim_setting
 
-<http://cocopon.me/blog/?p=3871>
+
+## mapとnoremap
+<http://cocopotn.me/blog/?p=3871>
