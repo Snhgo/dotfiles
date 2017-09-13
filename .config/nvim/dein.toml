@@ -20,6 +20,12 @@ hook_post_update = '''
 repo = 'delphinus35/typescript-vim'
 rev  = 'colorize-template-strings'
 
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+hook_add = '''
+ source ~/.config/nvim/plugins/iceberg.rc.vim
+'''
+
 # 特定の条件で読み込みたいとき
 [[plugins]]
 repo = 'elzr/vim-json'

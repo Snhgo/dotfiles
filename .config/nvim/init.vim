@@ -8,9 +8,14 @@ hi clear SpellBad
 hi SpellBad cterm=underline
 
 filetype indent on
+filetype plugin indent on
 set tabstop=2
 set shiftwidth=2
 set expandtab
+
+augroup MyAutoCmd
+  autocmd!
+augroup END
 
 " フォーマット呼び出し
 function! s:format_file()
@@ -30,8 +35,14 @@ let g:nerdtree_tabs_open_on_console_startup=1
 " python3
 let g:python3_host_prog = $PYENV_ROOT.'/shims/python3'
 
+
 " プラグインがインストールされるディレクトリ
-let s:dein_dir = expand('~/.cache/dein')
+if exists('g:nyaovim_version')
+  let s:dein_dir = expand('~/.cache/nyaovim/dein')
+else
+  let s:dein_dir = expand('~/.cache/dein')
+endif
+
 " dein.vim 本体
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
@@ -56,6 +67,12 @@ if dein#load_state(s:dein_dir)
   " TOML を読み込み、キャッシュしておく
   call dein#load_toml(s:toml,      {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
+
+  if exists('g:nyaovim_version')
+    call dein#add('rhysd/nyaovim-popup-tooltip')
+    call dein#add('rhysd/nyaovim-markdown-preview')
+    call dein#add('rhysd/nyaovim-mini-browser')
+  endif
 
   " 設定終了
   call dein#end()
