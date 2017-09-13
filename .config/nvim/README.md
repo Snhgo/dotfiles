@@ -41,7 +41,7 @@ neovimのメモ
   
 
 ## fugitive
-gitラッパープラグイン
+<details>gitラッパープラグイン
 
 参考
 <http://blog.yuku-t.com/entry/20110427/1303868482>
@@ -63,3 +63,4 @@ git commit
 現在のソースをgit blame。vimが色づけしてくれる
 #### ：Gdiff
 現在のソースの変更点をvimdiffで表示
+</details>
