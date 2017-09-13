@@ -44,7 +44,7 @@ neovimのメモ
 <details>
   <summary>gitラッパープラグイン</summary>
   参考
-    <http://blog.yuku-t.com/entry/20110427/1303868482>
+  <http://blog.yuku-t.com/entry/20110427/1303868482>
 
 #### ：Gstatus
 新しい窓を作ってgit statusを表示
