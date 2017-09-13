@@ -37,5 +37,8 @@ neovimのメモ
 ---
 
 
+
+
+
 ## fugitive
 gitラッパープラグイン
