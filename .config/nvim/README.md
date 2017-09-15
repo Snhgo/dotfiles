@@ -1,8 +1,27 @@
 # nvim_setting
 
 neovimのメモ
+
+## python周りの設定
+<details>
   
+  * pyenvのインストール  
+  `brew install pyenv`
   
+  * pyenv-virtualenvのインストール  
+  `brew install pyenv-virtualenv`
+  
+  * pipのインストール  
+  `sudo easy_install pip`
+  
+  * neovim用のvirtualenvを作成  
+  `pyenv virtualenv 3.6.0 neovim3`  
+  `pyenv activate neovim3`  
+  `pip install neovim`  
+  
+  
+</details>
+  
 
 ## mapとnoremap
 <details>
