@@ -24,7 +24,7 @@ vnoremap <C-l> $
 nnoremap <silent> ,rc :TREPLSendFile<cr>
 nnoremap <silent> ,rl :TREPLSendLine<cr>
 vnoremap <silent> ,rl :TREPLSendSelection<cr>
-nnoremap <silent> vs :Ttoggle<cr><C-w>ji
+nnoremap <silent> <C-t> :Ttoggle<cr><C-w>ji
 " nnoremap <silent> vs :terminal<cr>
 tnoremap <silent> <ESC> <C-\><C-n>
 tnoremap <silent> <C-q> <C-\><C-n>:q<cr>
