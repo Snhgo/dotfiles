@@ -51,3 +51,8 @@ nmap <Space>g [fugitive]
 nnoremap <silent> [fugitive]s :<C-u>Gstatus<CR>
 nnoremap <silent> [fugitive]d :<C-u>Gdiff<CR>
 nnoremap <silent> [fugitive]b :<C-u>Gblame<CR>
+
+" 補完周り
+imap <expr><TAB> pumvisible() ? "\<C-N>" : neosnippet#jumpable() ?  "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#jumpable() ?  "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
