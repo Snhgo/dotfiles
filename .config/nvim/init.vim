@@ -11,10 +11,12 @@ filetype indent off
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set undofile
 
 augroup MyAutoCmd
   autocmd!
 augroup END
+autocmd BufWritePre * :%s/\s\+$//ge
 
 " フォーマット呼び出し
 function! s:format_file()

@@ -57,11 +57,11 @@ nmap [denite] <Nop>
 map <Space>d [denite]
 nmap <silent> [denite]t :<C-u>Denite filetype<CR>
 nmap <silent> [denite]f :<C-u>Denite -auto_preview file_rec<CR>
-nmap <silent> [denite]fw :<C-u>DeniteCursorWord -auto_preview file_rec<CR>
+nmap <silent> [denite]wf :<C-u>DeniteCursorWord -auto_preview file_rec<CR>
 nmap <silent> [denite]l :<C-u>Denite -auto_preview line<CR>
-nmap <silent> [denite]lw :<C-u>DeniteCursorWord -auto_preview line<CR>
+nmap <silent> [denite]wl :<C-u>DeniteCursorWord -auto_preview line<CR>
 nmap <silent> [denite]g :<C-u>Denite -auto_preview grep<CR>
-nmap <silent> [denite]gw :<C-u>DeniteCursorWord -auto_preview grep<CR>
+nmap <silent> [denite]wg :<C-u>DeniteCursorWord -auto_preview grep<CR>
 nmap <silent> [denite]u :<C-u>Denite -auto_preview file_mru<CR>
 nmap <silent> [denite]y :<C-u>Denite neoyank<CR>
 nmap <silent> [denite]r :<C-u>Denite -resume<CR>
