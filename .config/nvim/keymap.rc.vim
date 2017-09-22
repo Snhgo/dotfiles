@@ -40,7 +40,7 @@ vmap <Space>c <Plug>(caw:hatpos:toggle)
 nmap <Space>, <Plug>(caw:zeropos:toggle)
 vmap <Space>, <Plug>(caw:zeropos:toggle)
 
-nnoremap [nerdtree]    <Nop>                                                                                                                  
+nnoremap [nerdtree] <Nop>
 nmap <Space>n [nerdtree]
 nnoremap <silent>[nerdtree]n :NERDTreeToggle<CR>
 nnoremap <silent>[nerdtree]f :NERDTreeFind<CR>
@@ -51,6 +51,7 @@ nmap <Space>g [fugitive]
 nnoremap <silent> [fugitive]s :<C-u>Gstatus<CR>
 nnoremap <silent> [fugitive]d :<C-u>Gdiff<CR>
 nnoremap <silent> [fugitive]b :<C-u>Gblame<CR>
+nnoremap <silent> [figitive]l :<C-u>Glog<CR>
 
 " denite
 nmap [denite] <Nop>

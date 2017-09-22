@@ -35,6 +35,12 @@ if   = '''! has('kaoriya')'''
 [[plugins]]
 repo    = 'vim-airline/vim-airline'
 depends = ['vim-airline-themes']
+hook_add = '''
+set laststatus=2
+let g:airline_theme = 'badwolf'
+let g:airline#extensions#virtualenv#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+'''
 
 # 依存関係を指定したからと言って、自動でインストールはされない（ここは NeoBundle と違う）
 [[plugins]]
@@ -74,17 +80,11 @@ repo='evidens/vim-twig'
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 hook_add = '''
-''' 
+'''
 
 [[plugins]]
 repo = 'Xuyuanp/nerdtree-git-plugin'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
-
-[[plugins]]
-repo = 'vim-scripts/vim-auto-save'
-hook_add = '''
-let g:auto_save = 1
-''' 
 

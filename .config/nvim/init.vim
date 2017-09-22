@@ -87,4 +87,5 @@ filetype plugin indent on
 
 runtime! keymap.rc.vim
 runtime! macscript.rc.vim
+runtime! auto_save.rc.vim
 
