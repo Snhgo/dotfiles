@@ -24,7 +24,7 @@ vnoremap <C-l> $
 nnoremap <silent> ,rc :TREPLSendFile<cr>
 nnoremap <silent> ,rl :TREPLSendLine<cr>
 vnoremap <silent> ,rl :TREPLSendSelection<cr>
-nnoremap <silent> <C-t> :Ttoggle<cr><C-w>ji
+nnoremap <silent> <Space>t :Ttoggle<cr><C-w>ji
 " nnoremap <silent> vs :terminal<cr>
 tnoremap <silent> <ESC> <C-\><C-n>
 tnoremap <silent> <C-q> <C-\><C-n>:q<cr>
@@ -41,7 +41,7 @@ nmap <Space>, <Plug>(caw:zeropos:toggle)
 vmap <Space>, <Plug>(caw:zeropos:toggle)
 
 nnoremap [nerdtree]    <Nop>                                                                                                                  
-nmap     <Space>n [nerdtree]
+nmap <Space>n [nerdtree]
 nnoremap <silent>[nerdtree]n :NERDTreeToggle<CR>
 nnoremap <silent>[nerdtree]f :NERDTreeFind<CR>
 
@@ -51,6 +51,20 @@ nmap <Space>g [fugitive]
 nnoremap <silent> [fugitive]s :<C-u>Gstatus<CR>
 nnoremap <silent> [fugitive]d :<C-u>Gdiff<CR>
 nnoremap <silent> [fugitive]b :<C-u>Gblame<CR>
+
+" denite
+nmap [denite] <Nop>
+map <Space>d [denite]
+nmap <silent> [denite]t :<C-u>Denite filetype<CR>
+nmap <silent> [denite]f :<C-u>Denite -auto_preview file_rec<CR>
+nmap <silent> [denite]fw :<C-u>DeniteCursorWord -auto_preview file_rec<CR>
+nmap <silent> [denite]l :<C-u>Denite -auto_preview line<CR>
+nmap <silent> [denite]lw :<C-u>DeniteCursorWord -auto_preview line<CR>
+nmap <silent> [denite]g :<C-u>Denite -auto_preview grep<CR>
+nmap <silent> [denite]gw :<C-u>DeniteCursorWord -auto_preview grep<CR>
+nmap <silent> [denite]u :<C-u>Denite -auto_preview file_mru<CR>
+nmap <silent> [denite]y :<C-u>Denite neoyank<CR>
+nmap <silent> [denite]r :<C-u>Denite -resume<CR>
 
 " 補完周り
 imap <expr><TAB> pumvisible() ? "\<C-N>" : neosnippet#jumpable() ?  "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"

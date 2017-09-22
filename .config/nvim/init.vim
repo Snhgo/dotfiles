@@ -7,8 +7,7 @@ set clipboard=unnamed
 hi clear SpellBad
 hi SpellBad cterm=underline
 
-filetype indent on
-filetype plugin indent on
+filetype indent off
 set tabstop=2
 set shiftwidth=2
 set expandtab
@@ -24,9 +23,6 @@ function! s:format_file()
   silent call winrestview(view)
 endfunction
 nnoremap <Space>f :call <SID>format_file()<CR>
-
-" NERDTreeTabsをnvim起動時に同時に起動
-let g:nerdtree_tabs_open_on_console_startup=1
 
 " 新規ファイルテンプレート
 " html
@@ -84,6 +80,8 @@ endif
 if dein#check_install()
   call dein#install()
 endif
+
+filetype plugin indent on
 
 runtime! keymap.rc.vim
 runtime! macscript.rc.vim
