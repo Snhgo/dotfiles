@@ -19,6 +19,8 @@ nnoremap <C-h> ^
 nnoremap <C-l> $
 vnoremap <C-h> ^
 vnoremap <C-l> $
+noremap <C-j> 3<Down>
+noremap <C-k> 3<Up>
 
 " neoterm
 nnoremap <silent> ,rc :TREPLSendFile<cr>

@@ -91,6 +91,6 @@ repo = 'airblade/vim-gitgutter'
 [[plugins]]
 repo = 'vim-scripts/vim-auto-save'
 hook_add = '''
-let g:auto_save = 0
+let g:auto_save = 1
 '''
 
