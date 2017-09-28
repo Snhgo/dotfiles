@@ -14,6 +14,9 @@ neovimのメモ
   * pipのインストール  
   `sudo easy_install pip`
   
+  * python3.6.0のインストール  
+  `pyenv install 3.6.0`
+  
   * neovim用のvirtualenvを作成  
   `pyenv virtualenv 3.6.0 neovim3`  
   `pyenv activate neovim3`  
