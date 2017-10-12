@@ -80,3 +80,11 @@ endif
 repo = 'Shougo/neoyank.vim'
 on_path = '.*'
 on_i = 1
+
+[[plugins]]
+repo = 'jsfaint/gen_tags.vim'
+hook_add = '''
+let g:gen_tags#ctags_auto_gen = 1
+let g:gen_tags#gtags_auto_gen = 1
+'''
+

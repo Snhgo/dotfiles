@@ -6,6 +6,7 @@ set spell
 set clipboard=unnamed
 hi clear SpellBad
 hi SpellBad cterm=underline
+autocmd InsertLeave * set nopaste
 
 filetype indent off
 set tabstop=2
