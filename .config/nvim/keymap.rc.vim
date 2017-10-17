@@ -15,9 +15,9 @@ nnoremap <C-p> gT
 
 nnoremap ; :
 nnoremap ; :
-nnoremap <C-h> ^
+nnoremap <C-h> 0
 nnoremap <C-l> $
-vnoremap <C-h> ^
+vnoremap <C-h> 0
 vnoremap <C-l> $
 noremap <C-j> 3<Down>
 noremap <C-k> 3<Up>
