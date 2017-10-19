@@ -9,9 +9,6 @@ vimの操作に関するメモ
 
 ## 移動
 
-  
-### カーソル操作
-
 <details>
   <summary>詳細</summary>
 
@@ -172,8 +169,68 @@ vimの操作に関するメモ
     
   </details>
 </details>
-  
 
+## 画面
+<details>
+  <summary>詳細</summary>
+  
+  ### 画面分割
+  <details>
+    <summary>詳細</summary>
+  
+|操作|コマンド|
+|:-|:-|
+|*:sp*|上下分割|
+|*:vs*|左右分割|
+|*CTRL+w CTRL+w(CTRL+wを2回押す)*|次の画面へ|
+|*CTRL+w ↑（矢印）*|カーソルを上のウィンドウへ|
+|*CTRL+w _*|選択中のウィンドウを最大化|
+|*CTRL+w =*|分割したすべてのウィンドウを同じ大きさに|
+|*10 CTRL+w +*|選択中のウィンドウを10行大きくする|
+|*:close*|画面を閉じる|
+|*:hide*|現在のウィンドウを閉じる|
+|*:only*|現在のウィンドウ以外を閉じる|
+|*:b 2*|バッファの2番目を開く|
+
+  </details>
+  
+  ### タブ
+  <details>
+    <summary>詳細</summary>
+  
+|操作|コマンド|
+|:-|:-|
+|*:tabnew*|新しいタブ作成|
+|*:tabe filename*|filenameをタブで開く|
+|*:tabclose*|タブを閉じる|
+|*gt*|次のタブへ|
+|*g shift+t*|前のタブへ|
+|*{i}gt*|i番目のタブへ|
+|*:tabdo %s/before/after/g*|すべてのタブに対して、一括置換|
+|*:tabs*|開いているタブをリスト表示|
+|*:tabo*|今使っているタブ以外を閉じる|
+|*:tabfirst*|最初のタブを表示|
+|*:tablast*|最後のタブを表示|
+|*:tabm n*|現在のタブをn番目へ|
+|*:tab ball*|バッファをすべてタブで開く|
+
+  </details>
+
+</details>
+
+## Visualモード
+<details>
+  <summary>詳細</summary>
+  
+|操作|コマンド|
+|:-|:-|
+|*v*|ヴィジュアルモードに入って一文字選択|
+|*shift+v*|ヴィジュアルモードに入って一行選択|
+|*CTRL+v*|矩形（くけい）選択 （複数行選択）|
+|*v, gg, shift+g*|全選択|
+|*CTRL + v, I(shift + i), input words or delete, esc*|矩形選択後、選択範囲の編集|
+  
+</details>
 
 ## その他
 <details>
