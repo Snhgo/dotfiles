@@ -1,13 +1,18 @@
 # vimの操作
 
 vimの操作に関するメモ  
-参考
-<https://qiita.com/colorrabbit/items/755cfbb0e97d48280775>
-<https://qiita.com/iwaseasahi/items/f536bb3772d2fad5e03c>
-<https://qiita.com/nesheep5/items/d072d960639eef87c3e0>
+参考  
+<https://qiita.com/colorrabbit/items/755cfbb0e97d48280775>  
+<https://qiita.com/iwaseasahi/items/f536bb3772d2fad5e03c>  
+<https://qiita.com/nesheep5/items/d072d960639eef87c3e0>  
 
 
-## 移動
+## コマンド集
+
+<details>
+  <summary>詳細</summary>
+
+### 移動
 
 <details>
   <summary>詳細</summary>
@@ -35,12 +40,12 @@ vimの操作に関するメモ
 
 </details>
 
-## 編集(削除・コピー・挿入)
+### 編集(削除・コピー・挿入)
 
 <details>
   <summary>詳細</summary>
   
-### 削除
+#### 削除
 <details>
   <summary>詳細</summary>
 
@@ -60,7 +65,7 @@ vimの操作に関するメモ
 |*C*|カーソル位置から行末まで削除して, インサートモード|
 </details>
 
-### コピー
+#### コピー
 <details>
   <summary>詳細</summary>
 
@@ -73,7 +78,7 @@ vimの操作に関するメモ
 |*yit*|HTMLタグの内部をコピー|
 </details>
 
-### 挿入
+#### 挿入
 <details>
   <summary>詳細</summary>
 
@@ -86,7 +91,7 @@ vimの操作に関するメモ
 |*A*|行末に移動し、インサートモード|
 </details>
 
-### インデント
+#### インデント
 <details>
   <summary>詳細</summary>
 
@@ -104,11 +109,11 @@ vimの操作に関するメモ
 
 </details>
 
-## 検索・置換
+### 検索・置換
 <details>
   <summary>詳細</summary>
   
-  ### 検索
+  #### 検索
   <details>
     <summary>詳細</summary>
 
@@ -138,7 +143,7 @@ vimの操作に関するメモ
   
   </details>
   
-  ### 置換
+  #### 置換
   <details>
     <summary>詳細</summary>
 
@@ -170,11 +175,11 @@ vimの操作に関するメモ
   </details>
 </details>
 
-## 画面
+### 画面
 <details>
   <summary>詳細</summary>
   
-  ### 画面分割
+  #### 画面分割
   <details>
     <summary>詳細</summary>
   
@@ -194,7 +199,7 @@ vimの操作に関するメモ
 
   </details>
   
-  ### タブ
+  #### タブ
   <details>
     <summary>詳細</summary>
   
@@ -218,7 +223,7 @@ vimの操作に関するメモ
 
 </details>
 
-## Visualモード
+### Visualモード
 <details>
   <summary>詳細</summary>
   
@@ -232,7 +237,7 @@ vimの操作に関するメモ
   
 </details>
 
-## その他
+### その他
 <details>
   <summary>詳細</summary>
 
@@ -245,6 +250,6 @@ vimの操作に関するメモ
 |*qa*|レコーディングを開始|
 |*q*|レコーディングを終了|
 
-
 </details>
 
+</details>
