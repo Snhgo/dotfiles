@@ -109,3 +109,8 @@ git commit
 |*他の画面に移動する*|Ctrl+wの後にhjkl|
 
 </details>
+
+## GNU Globalの設定
+<details>
+brew install global --with-exuberant-ctags --with-pygments
+</details>
