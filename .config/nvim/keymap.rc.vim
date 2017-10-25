@@ -19,8 +19,6 @@ nnoremap <C-h> 0
 nnoremap <C-l> $
 vnoremap <C-h> 0
 vnoremap <C-l> $
-noremap <C-j> 3<Down>
-noremap <C-k> 3<Up>
 
 " neoterm
 nnoremap <silent> ,rc :TREPLSendFile<cr>
@@ -73,3 +71,21 @@ nmap <silent> [denite]r :<C-u>Denite -resume<CR>
 imap <expr><TAB> pumvisible() ? "\<C-N>" : neosnippet#jumpable() ?  "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#jumpable() ?  "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+
+" tagbar
+nnoremap <silent> <C-m> :TagbarToggle<CR>
+vnoremap <silent> <C-m> :TagbarToggle<CR>
+
+" GNU Global
+nmap [Gtags] <Nop>
+map <Space>b [Gtags]
+nmap <silent> [Gtags]b :<C-u>exe("Gtags ".expand('<cword>'))<CR>
+nmap <silent> [Gtags]r :<C-u>exe("Gtags -r ".expand('<cword>'))<CR>
+nmap <silent> [Gtags]f :<C-u>exe("Gtags -f "expand('<cword>'))<CR>
+nmap <silent> [Gtags]l :<C-u>Gtags -f %<CR>
+nmap <silent> [Gtags]c :<C-u>GtagsCursor<CR>
+nmap <silent> [Gtags]g :<C-u>Gtags -g<CR>
+noremap <C-j> :<C-u>cn<CR>
+noremap <C-k> :<C-u>cp<CR>
+noremap <C-c> :<C-u>cclose<CR>
+
