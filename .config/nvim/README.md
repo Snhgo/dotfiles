@@ -113,15 +113,15 @@ git commit
 ## GNU Globalの設定
 <details>
   
-  * GNU Globalのインストール
-  `brew install global --with-exuberant-ctags --with-pygments`
+  * GNU Globalのインストール  
+  `brew install global --with-exuberant-ctags --with-pygments`  
   
-  * プロジェクトへの適用[プロジェクトルートにて下記コマンド実行]
-  `gtags -v`
+  * プロジェクトへの適用[プロジェクトルートにて下記コマンド実行]  
+  `gtags -v`  
   
-  * Gtags関連をgitから除外(.gitignoreではなくローカルのみ適用)
-  `echo GTAGS >> .git/info/exclude`
-  `echo GRTAGS >> .git/info/exclude`
-  `echo GPATH >> .git/info/exclude`
+  * Gtags関連をgitから除外(.gitignoreではなくローカルのみ適用)  
+  `echo GTAGS >> .git/info/exclude`  
+  `echo GRTAGS >> .git/info/exclude`  
+  `echo GPATH >> .git/info/exclude`  
 
 </details>
