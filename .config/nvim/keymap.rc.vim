@@ -20,6 +20,15 @@ nnoremap <C-l> $
 vnoremap <C-h> 0
 vnoremap <C-l> $
 
+" バッファ
+nnoremap <silent>bp :bprevious<CR>
+nnoremap <silent>bn :bnext<CR>
+nnoremap <silent>bb :b#<CR>
+nnoremap <silent>bf :bf<CR>
+nnoremap <silent>bl :bl<CR>
+nnoremap <silent>bm :bm<CR>
+nnoremap <silent>bd :bdelete<CR>
+
 " neoterm
 nnoremap <silent> ,rc :TREPLSendFile<cr>
 nnoremap <silent> ,rl :TREPLSendLine<cr>
