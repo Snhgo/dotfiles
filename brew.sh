@@ -40,3 +40,12 @@ for formula in "${formulas[@]}"; do
     brew install $formula || brew upgrade $formula
 done
 
+brew cleanup
+
+cat << END
+
+**************************************************
+HOMEBREW INSTALLED! bye.
+**************************************************
+
+END
