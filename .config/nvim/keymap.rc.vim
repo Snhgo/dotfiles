@@ -1,5 +1,4 @@
 inoremap <silent> <C-q> <ESC>
-nnoremap <silent> <C-e> :NERDTreeTabsToggle<CR>
 " 改行
 nnoremap 0 :<C-u>call append(expand('.'), '')<Cr>j
 
@@ -21,13 +20,8 @@ vnoremap <C-h> 0
 vnoremap <C-l> $
 
 " バッファ
-nnoremap <silent>bp :bprevious<CR>
-nnoremap <silent>bn :bnext<CR>
-nnoremap <silent>bb :b#<CR>
-nnoremap <silent>bf :bf<CR>
-nnoremap <silent>bl :bl<CR>
-nnoremap <silent>bm :bm<CR>
-nnoremap <silent>bd :bdelete<CR>
+nnoremap <silent><C-j> :bp<CR>
+nnoremap <silent><C-k> :bn<CR>
 
 " neoterm
 nnoremap <silent> ,rc :TREPLSendFile<cr>
@@ -49,6 +43,8 @@ vmap <Space>c <Plug>(caw:hatpos:toggle)
 nmap <Space>, <Plug>(caw:zeropos:toggle)
 vmap <Space>, <Plug>(caw:zeropos:toggle)
 
+" NERDTREE
+nnoremap <silent> <C-e> :NERDTreeTabsToggle<CR>
 nnoremap [nerdtree] <Nop>
 nmap <Space>n [nerdtree]
 nnoremap <silent>[nerdtree]n :NERDTreeToggle<CR>

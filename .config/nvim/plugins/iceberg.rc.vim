@@ -10,3 +10,8 @@
 " endif
 " " Visual mode
 " au MyAutoCmd VimEnter * highlight Visual ctermbg=216
+"
+au MyAutoCmd VimEnter * nested colorscheme iceberg
+colorscheme iceberg
+
+let g:lightline_color = 'iceberg'

@@ -3,7 +3,7 @@ set noswapfile
 set fixeol
 set spelllang+=cjk
 set spell
-set clipboard=unnamed
+set clipboard+=unnamed
 hi clear SpellBad
 hi SpellBad cterm=underline
 autocmd InsertLeave * set nopaste
@@ -18,6 +18,19 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 autocmd BufWritePre * :%s/\s\+$//ge
+
+" True Color対応
+if has('nvim')
+  " For Neovim 0.1.3 and 0.1.4
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+  " Or if you have Neovim >= 0.1.5
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+elseif has('patch-7.4.1778')
+  set guicolors
+endif
 
 " フォーマット呼び出し
 function! s:format_file()
