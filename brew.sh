@@ -26,6 +26,7 @@ formulas=(
     markdown
     gtags
     yarn
+    neovim
 )
 
 "brew tap..."
