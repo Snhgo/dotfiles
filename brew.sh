@@ -28,6 +28,7 @@ formulas=(
     gtags
     yarn
     neovim
+    jq
 )
 
 "brew tap..."
