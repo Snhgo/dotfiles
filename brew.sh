@@ -22,6 +22,7 @@ formulas=(
     cask
     node
     python3
+    pyenv
     lua
     markdown
     gtags
