@@ -81,29 +81,29 @@ repo = 'Shougo/neoyank.vim'
 on_path = '.*'
 on_i = 1
 
-[[plugins]]
-repo = 'jsfaint/gen_tags.vim'
-hook_add = '''
-let g:gen_tags#gtags_auto_gen = 1
-'''
-
-[[plugins]]
-repo = 'lighttiger2505/gtags.vim'
-hook_add = '''
-    " Options
-    let g:Gtags_Auto_Map = 0
-    let g:Gtags_OpenQuickfixWindow = 1
-    " Show reference of cousor word on quickfix
-    nmap <silent> R :<C-u>exe("Gtags -r ".expand('<cword>'))<CR>
-'''
-
-[[plugins]]
-repo = 'ozelentok/denite-gtags'
-hook_add = '''
-    " Prefix key
-    nmap [denite] <Nop>
-    map <C-j> [denite]
-    " Keymap
-    nmap <silent> [denite]<C-D> :Denite -buffer-name=gtags_completion gtags_completion<cr>
-'''
-
+# [[plugins]]
+# repo = 'jsfaint/gen_tags.vim'
+# hook_add = '''
+# let g:gen_tags#gtags_auto_gen = 1
+# '''
+#
+# [[plugins]]
+# repo = 'lighttiger2505/gtags.vim'
+# hook_add = '''
+#     " Options
+#     let g:Gtags_Auto_Map = 0
+#     let g:Gtags_OpenQuickfixWindow = 1
+#     " Show reference of cousor word on quickfix
+#     nmap <silent> R :<C-u>exe("Gtags -r ".expand('<cword>'))<CR>
+# '''
+#
+# [[plugins]]
+# repo = 'ozelentok/denite-gtags'
+# hook_add = '''
+#     " Prefix key
+#     nmap [denite] <Nop>
+#     map <C-j> [denite]
+#     " Keymap
+#     nmap <silent> [denite]<C-D> :Denite -buffer-name=gtags_completion gtags_completion<cr>
+# '''
+#

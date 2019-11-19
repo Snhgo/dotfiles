@@ -128,3 +128,8 @@ let g:ale_open_list = 0
 let g:ale_keep_list_window_open = 0
 '''
 
+
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+build = './install.sh nightly'
+hook_add = '~/.config/nvim/plugins/coc-setting.rc.vim'
