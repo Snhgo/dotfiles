@@ -50,11 +50,7 @@ let g:python3_host_prog = $PYENV_ROOT.'/versions/neovim3/bin/python'
 " let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
 
 " プラグインがインストールされるディレクトリ
-if exists('g:nyaovim_version')
-  let s:dein_dir = expand('~/.cache/nyaovim/dein')
-else
-  let s:dein_dir = expand('~/.cache/dein')
-endif
+let s:dein_dir = expand('~/.cache/dein')
 
 " dein.vim 本体
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -77,15 +73,12 @@ if dein#load_state(s:dein_dir)
   let s:toml      = g:rc_dir . '/dein.toml'
   let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
+  " call map(dein#check_clean(), "delete(v:val, 'rf')")
+  " call dein#recache_runtimepath()
+
   " TOML を読み込み、キャッシュしておく
   call dein#load_toml(s:toml,      {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
-
-  if exists('g:nyaovim_version')
-    call dein#add('rhysd/nyaovim-popup-tooltip')
-    call dein#add('rhysd/nyaovim-markdown-preview')
-    call dein#add('rhysd/nyaovim-mini-browser')
-  endif
 
   " 設定終了
   call dein#end()
