@@ -29,6 +29,7 @@ formulas=(
     yarn
     neovim
     jq
+    ripgrep
 )
 
 "brew tap..."

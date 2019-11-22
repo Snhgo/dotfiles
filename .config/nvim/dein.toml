@@ -31,30 +31,18 @@ hook_add = '''
 repo = 'elzr/vim-json'
 if   = '''! has('kaoriya')'''
 
-# 依存関係を指定したいとき
-[[plugins]]
-repo    = 'vim-airline/vim-airline'
-depends = ['tagbar', 'vim-fugitive', 'vim-airline-themes']
-hook_add = '''
-set laststatus=2
-let g:airline_theme = 'badwolf'
-let g:airline#extensions#virtualenv#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-'''
-
-# 依存関係を指定したからと言って、自動でインストールはされない（ここは NeoBundle と違う）
-[[plugins]]
-repo = 'vim-airline/vim-airline-themes'
-
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'jistr/vim-nerdtree-tabs'
 hook_add = '''
-" NERDTreeTabsをnvim起動時に同時に起動
-let g:nerdtree_tabs_open_on_console_startup=1
+  " NERDTreeTabsをnvim起動時に同時に起動
+  let g:nerdtree_tabs_open_on_console_startup=1
 '''
+
+[[plugins]]
+repo = 'Xuyuanp/nerdtree-git-plugin'
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
@@ -83,7 +71,7 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'Xuyuanp/nerdtree-git-plugin'
+repo = 'tpope/vim-surround'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
@@ -91,41 +79,54 @@ repo = 'airblade/vim-gitgutter'
 [[plugins]]
 repo = 'vim-scripts/vim-auto-save'
 hook_add = '''
-let g:auto_save = 1
-let g:auto_save_in_insert_mode = 0
+  let g:auto_save = 1
+  let g:auto_save_in_insert_mode = 0
 '''
+
+[[plugins]]
+repo    = 'vim-airline/vim-airline'
+depends = ['tagbar', 'vim-fugitive', 'vim-airline-themes']
+hook_add = '''
+  set laststatus=2
+  let g:airline_theme = 'badwolf'
+  let g:airline#extensions#virtualenv#enabled = 1
+  let g:airline#extensions#tabline#enabled = 1
+'''
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
 repo = 'majutsushi/tagbar'
 hook_add = '''
-let g:tagbar_width = 30
-let g:tagbar_autoshowtag = 1
+  let g:tagbar_width = 30
+  let g:tagbar_autoshowtag = 1
 '''
 
 [[plugins]]
 repo = 'w0rp/ale'
 hook_add = '''
-" エラー行に表示するマーク
-let g:ale_sign_error = '⨉'
-let g:ale_sign_warning = '⚠'
-" エラー行にカーソルをあわせた際に表示されるメッセージフォーマット
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-" エラー表示の列を常時表示
-let g:ale_sign_column_always = 1
+  " エラー行に表示するマーク
+  let g:ale_sign_error = '⨉'
+  let g:ale_sign_warning = '⚠'
+  " エラー行にカーソルをあわせた際に表示されるメッセージフォーマット
+  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+  " エラー表示の列を常時表示
+  let g:ale_sign_column_always = 1
 
-" ファイルを開いたときにlint実行
-let g:ale_lint_on_enter = 1
-" ファイルを保存したときにlint実行
-let g:ale_lint_on_save = 1
-" 編集中のlintはしない
-let g:ale_lint_on_text_changed = 'never'
+  " ファイルを開いたときにlint実行
+  let g:ale_lint_on_enter = 1
+  " ファイルを保存したときにlint実行
+  let g:ale_lint_on_save = 1
+  " 編集中のlintはしない
+  let g:ale_lint_on_text_changed = 'never'
 
-" lint結果をロケーションリストとQuickFixには表示しない
-" 出てると結構うざいしQuickFixを書き換えられるのは困る
-let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 0
-let g:ale_open_list = 0
-let g:ale_keep_list_window_open = 0
+  " lint結果をロケーションリストとQuickFixには表示しない
+  " 出てると結構うざいしQuickFixを書き換えられるのは困る
+  let g:ale_set_loclist = 0
+  let g:ale_set_quickfix = 0
+  let g:ale_open_list = 0
+  let g:ale_keep_list_window_open = 0
 '''
 
 # [[plugins]]
