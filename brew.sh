@@ -14,6 +14,7 @@ echo "ok. run brew upgrade..."
 brew upgrade --all
 
 formulas=(
+    fish
     git
     wget
     curl
@@ -25,7 +26,6 @@ formulas=(
     pyenv
     lua
     markdown
-    gtags
     yarn
     neovim
     jq
