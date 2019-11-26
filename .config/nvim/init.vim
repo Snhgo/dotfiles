@@ -44,10 +44,19 @@ nnoremap <Space>f :call <SID>format_file()<CR>
 " html
 "autocmd BufNewFile *.html 0r $HOME/.vim/template/html.txt
 
+" python2
+let g:python_host_prog = $PYENV_ROOT.'/versions/neovim2/bin/python'
+
 " python3
 let g:python3_host_prog = $PYENV_ROOT.'/versions/neovim3/bin/python'
 " let g:python3_host_prog = $PYENV_ROOT.'/shims/python3'
 " let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
+
+" ruby
+let g:ruby_host_prog = $RBENV_ROOT.'/versions/2.5.1/bin/neovim-ruby-host'
+
+" node
+let g:node_host_prog = $NODENV_ROOT.'/versions/10.15.3/bin/neovim-node-host'
 
 " プラグインがインストールされるディレクトリ
 let s:dein_dir = expand('~/.cache/dein')

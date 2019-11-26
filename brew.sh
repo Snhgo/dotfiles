@@ -23,13 +23,17 @@ formulas=(
     cask
     node
     python3
+    pip
     pyenv
+    pyenv-virtualenv
     lua
     markdown
     yarn
     neovim
     jq
     ripgrep
+    rbenv
+    nodenv
 )
 
 "brew tap..."
