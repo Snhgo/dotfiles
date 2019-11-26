@@ -9,13 +9,16 @@ done
 
 sh ./brew.sh
 
+# fishの設定
 echo "export LANG=ja_JP.UTF-8" >> ~/.config/fish/config.fish
+
+fish
 curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
 
-# curl -L raw.github.com/powerline/fonts/master/install.sh | bash
-
+# powerlineのfontのダウンロード
 git clone https://github.com/powerline/fonts.git
 sh fonts/install.sh
 rm -rf fonts
 
-# fisher add oh-my-fish/theme-bobthefish
+# fishのプロンプトのテーマの設定
+fisher add oh-my-fish/theme-bobthefish
