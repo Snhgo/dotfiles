@@ -35,6 +35,7 @@ pyenv install 3.7.3
 pyenv virtualenv 3.7.3 neovim3
 pyenv activate neovim3
 pip install neovim
+pip install jedi
 pyenv which python
 
 

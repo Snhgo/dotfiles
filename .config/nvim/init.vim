@@ -17,7 +17,7 @@ set undofile
 augroup MyAutoCmd
   autocmd!
 augroup END
-autocmd BufWritePre * :%s/\s\+$//ge
+" autocmd BufWritePre * :%s/\s\+$//ge
 
 " True Color対応
 if has('nvim')
