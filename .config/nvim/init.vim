@@ -38,12 +38,15 @@ function! s:format_file()
   normal gg=G
   silent call winrestview(view)
 endfunction
-nnoremap <Space>f :call <SID>format_file()<CR>
+nnoremap <S-f> :call <SID>format_file()<CR>
 
 " 新規ファイルテンプレート
 " html
 "autocmd BufNewFile *.html 0r $HOME/.vim/template/html.txt
 
+" -------------------------------------------------------------------------------
+" neovim言語設定
+" -------------------------------------------------------------------------------
 " python2
 let g:python_host_prog = $PYENV_ROOT.'/versions/neovim2/bin/python'
 
@@ -72,6 +75,12 @@ if &runtimepath !~# '/dein.vim'
   execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
+" ===============================================================================
+
+
+" -------------------------------------------------------------------------------
+" deinによるプラグインインストール及び設定読み込み
+" -------------------------------------------------------------------------------
 " 設定開始
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
@@ -82,10 +91,6 @@ if dein#load_state(s:dein_dir)
   let s:toml      = g:rc_dir . '/dein.toml'
   let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
-  " プラグインをアンインストールしたいときにキャッシュをクリアする
-  " call map(dein#check_clean(), "delete(v:val, 'rf')")
-  " call dein#recache_runtimepath()
-
   " TOML を読み込み、キャッシュしておく
   call dein#load_toml(s:toml,      {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
@@ -95,14 +100,20 @@ if dein#load_state(s:dein_dir)
   call dein#save_state()
 endif
 
+" プラグインの追加・削除やtomlファイルの設定を変更した後は
+" 適宜 call dein#update() や call dein#clear_state()
+
 " もし、未インストールものものがあったらインストール
 if dein#check_install()
   call dein#install()
 endif
+
+" ===============================================================================
 
 filetype plugin indent on
 
 runtime! keymap.rc.vim
 runtime! macscript.rc.vim
 runtime! auto_save.rc.vim
+runtime! vim-command.rc.vim
 
