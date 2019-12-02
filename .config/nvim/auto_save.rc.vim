@@ -1,5 +1,5 @@
-set autowrite
-set updatetime=1500
+" set autowrite
+" set updatetime=1500
 
 " function s:AutoWriteIfPossible()
 "   if &modified && !&readonly && bufname('%') !=# '' && &buftype ==# '' && expand("%") !=# ''

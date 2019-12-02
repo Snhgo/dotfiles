@@ -20,3 +20,6 @@
     sgraph = !"git log --oneline --graph"
     ancestor = !zsh -c 'diff -u <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -n 1' -
     unstage = reset HEAD
+[user]
+	email = kanaderukokoro@gmail.com
+	name = Snhgo

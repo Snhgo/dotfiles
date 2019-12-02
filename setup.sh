@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=( .config/nvim .config/coc .hyper.js)
+DOT_FILES=( .config/nvim .config/coc .config/efm-langserver .hyper.js )
 
 for file in ${DOT_FILES[@]}
 do

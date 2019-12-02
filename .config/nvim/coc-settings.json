@@ -2,19 +2,12 @@
   "diagnostic.enable": false,
   "python.linting.enabled": false,
   "python.jediPath": "~/.pyenv/versions/neovim3/lib/python3.7/site-packages/",
-  "python.jediEnabled": false
+  "python.jediEnabled": false,
   "languageserver": {
     "dockerfile": {
       "command": "docker-langserver",
       "filetypes": ["dockerfile"],
       "args": ["--stdio"]
-    },
-    "efm": {
-      "command": "efm-langserver",
-      "args": [],
-      // custom config path
-      // "args": ["-c", "/path/to/your/config.yaml"],
-      "filetypes": ["vim", "eruby", "markdown"]
     }
   }
 }

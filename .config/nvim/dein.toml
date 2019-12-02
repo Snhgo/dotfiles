@@ -128,19 +128,19 @@ hook_source = '''
 # 	nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
 # '''
 
-[[plugins]]
-repo = 'scrooloose/nerdtree'
-
-[[plugins]]
-repo = 'jistr/vim-nerdtree-tabs'
-hook_add = '''
-  " NERDTreeTabsをnvim起動時に同時に起動
-  let g:nerdtree_tabs_open_on_console_startup=1
-'''
-
-[[plugins]]
-repo = 'Xuyuanp/nerdtree-git-plugin'
-
+# [[plugins]]
+# repo = 'scrooloose/nerdtree'
+#
+# [[plugins]]
+# repo = 'jistr/vim-nerdtree-tabs'
+# hook_add = '''
+#   " NERDTreeTabsをnvim起動時に同時に起動
+#   let g:nerdtree_tabs_open_on_console_startup=1
+# '''
+#
+# [[plugins]]
+# repo = 'Xuyuanp/nerdtree-git-plugin'
+#
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 hook_post_update = '''
