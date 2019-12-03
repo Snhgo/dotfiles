@@ -100,13 +100,6 @@ vmap <Space>c <Plug>(caw:hatpos:toggle)
 nmap <Space>, <Plug>(caw:zeropos:toggle)
 vmap <Space>, <Plug>(caw:zeropos:toggle)
 
-" NERDTREE
-nnoremap <silent> <C-e> :NERDTreeTabsToggle<CR>
-nnoremap [nerdtree] <Nop>
-nmap <Space>n [nerdtree]
-nnoremap <silent>[nerdtree]n :NERDTreeToggle<CR>
-nnoremap <silent>[nerdtree]f :NERDTreeFind<CR>
-
 " git
 nnoremap [fugitive] <Nop>
 nmap <Space>g [fugitive]
