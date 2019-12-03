@@ -1,5 +1,11 @@
 
-nnoremap <silent> <Space>f :<C-u>Defx -new `expand('%:p:h')` -search=`expand('%:p')`<CR>
+" プロジェクトルートにてDefxを起動する
+nnoremap <silent> <Space>ff :<C-u>Defx<CR>
+" 開いているファイルのディレクトリにてDefxを起動する
+nnoremap <silent> <Space>fd :<C-u>Defx -new `expand('%:p:h')` -search=`expand('%:p')`<CR>
+
+let g:defx_icons_enable_syntax_highlight = 1
+let g:defx_icons_column_length = 1
 
 function! Root(path) abort
   return fnamemodify(a:path, ':t')
@@ -9,20 +15,21 @@ call defx#custom#source('file', {
     \ 'root': 'Root',
     \})
 
-call defx#custom#column('filename', {
-    \ 'directory_icon': '',
-    \ 'opened_icon': '',
-    \ })
-
+call defx#custom#column('icon', {
+      \ 'directory_icon': '▸',
+      \ 'opened_icon': '▾',
+      \ 'root_icon': ' ',
+      \ })
 call defx#custom#column('mark', {
     \ 'readonly_icon': '✗',
     \ 'selected_icon': '✓',
     \ })
 
+" columnsにて表示順序の制御
 call defx#custom#option('_', {
-    \ 'columns': 'indent:git:icons:filename',
-    \ 'show_ignored_files': 1,
-    \ })
+   \ 'columns': 'mark:indent:git:icon:filename:icons:type:size:time',
+   \ 'show_ignored_files': 1,
+   \ })
 
 autocmd FileType defx call s:defx_my_settings()
   function! s:defx_my_settings() abort
@@ -62,4 +69,5 @@ autocmd FileType defx call s:defx_my_settings()
     nnoremap <silent><buffer><expr> sl defx#do_action('load_session')
     nnoremap <silent><buffer><expr> x defx#do_action('execute_system')
     nnoremap <silent><buffer><expr> yy defx#do_action('yank_path')
+
   endfunction

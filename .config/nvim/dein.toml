@@ -58,6 +58,7 @@ depends = ['defx-icons', 'defx-git']
 hook_add = '''
   source ~/.config/nvim/plugins/defx.rc.vim
 '''
+
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 hook_post_update = '''
@@ -67,6 +68,7 @@ hook_post_update = '''
 [[plugins]]
 repo = 'cespare/vim-toml'
 
+# TODO:Lterminal
 [[plugins]]
 repo = 'kassio/neoterm'
 if = "has('nvim')"

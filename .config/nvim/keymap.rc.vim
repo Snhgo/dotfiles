@@ -27,59 +27,6 @@ vnoremap <C-l> $
 nnoremap <silent><C-j> :bp<CR>
 nnoremap <silent><C-k> :bn<CR>
 
-autocmd FileType defx call s:defx_my_settings()
-    function! s:defx_my_settings() abort
-     " Define mappings
-      nnoremap <silent><buffer><expr> <CR>
-     \ defx#do_action('open')
-      nnoremap <silent><buffer><expr> c
-     \ defx#do_action('copy')
-      nnoremap <silent><buffer><expr> m
-     \ defx#do_action('move')
-      nnoremap <silent><buffer><expr> p
-     \ defx#do_action('paste')
-      nnoremap <silent><buffer><expr> l
-     \ defx#do_action('open')
-      nnoremap <silent><buffer><expr> E
-     \ defx#do_action('open', 'vsplit')
-      nnoremap <silent><buffer><expr> P
-     \ defx#do_action('open', 'pedit')
-      nnoremap <silent><buffer><expr> K
-     \ defx#do_action('new_directory')
-      nnoremap <silent><buffer><expr> N
-     \ defx#do_action('new_file')
-      nnoremap <silent><buffer><expr> d
-     \ defx#do_action('remove')
-      nnoremap <silent><buffer><expr> r
-     \ defx#do_action('rename')
-      nnoremap <silent><buffer><expr> x
-     \ defx#do_action('execute_system')
-      nnoremap <silent><buffer><expr> yy
-     \ defx#do_action('yank_path')
-      nnoremap <silent><buffer><expr> .
-     \ defx#do_action('toggle_ignored_files')
-      nnoremap <silent><buffer><expr> h
-     \ defx#do_action('cd', ['..'])
-      nnoremap <silent><buffer><expr> ~
-     \ defx#do_action('cd')
-      nnoremap <silent><buffer><expr> q
-     \ defx#do_action('quit')
-      nnoremap <silent><buffer><expr> <Space>
-     \ defx#do_action('toggle_select') . 'j'
-      nnoremap <silent><buffer><expr> *
-     \ defx#do_action('toggle_select_all')
-      nnoremap <silent><buffer><expr> j
-     \ line('.') == line('$') ? 'gg' : 'j'
-      nnoremap <silent><buffer><expr> k
-     \ line('.') == 1 ? 'G' : 'k'
-      nnoremap <silent><buffer><expr> <C-l>
-     \ defx#do_action('redraw')
-      nnoremap <silent><buffer><expr> <C-g>
-     \ defx#do_action('print')
-      nnoremap <silent><buffer><expr> cd
-     \ defx#do_action('change_vim_cwd')
-    endfunction
-
 " neoterm
 nnoremap <silent> ,rc :TREPLSendFile<cr>
 nnoremap <silent> ,rl :TREPLSendLine<cr>
@@ -108,43 +55,10 @@ nnoremap <silent> [fugitive]d :<C-u>Gdiff<CR>
 nnoremap <silent> [fugitive]b :<C-u>Gblame<CR>
 nnoremap <silent> [figitive]l :<C-u>Glog<CR>
 
-" denite
-nmap [denite] <Nop>
-map <Space>d [denite]
-nmap <silent> [denite]f :<C-u>Denite file_rec<CR>
-nmap <silent> [denite]l :<C-u>Denite line<CR>
-nmap <silent> [denite]g :<C-u>Denite grep<CR>
-nmap <silent> [denite]u :<C-u>Denite file_mru<CR>
-nmap <silent> [denite]t :<C-u>Denite filetype<CR>
-nmap <silent> [denite]y :<C-u>Denite neoyank<CR>
-nmap <silent> [denite]r :<C-u>Denite -resume<CR>
-nmap <silent> [denite]d :<C-u>Denite directory_rec -default-action=cd<CR>
-
-" denite-all
-nmap [dn-all] <Nop>
-map <Space>a [dn-all]
-nmap <silent> [dn-all]f :<C-u>DeniteProjectDir file_rec<CR>
-nmap <silent> [dn-all]l :<C-u>DeniteProjectDir line<CR>
-nmap <silent> [dn-all]g :<C-u>DeniteProjectDir grep<CR>
-nmap <silent> [dn-all]d :<C-u>DeniteProjectDir directory_rec -default-action=cd<CR>
-
-" denite-preview
-nmap [dn-pv] <Nop>
-map <Space>p [dn-pv]
-nmap <silent> [dn-pv]f :<C-u>Denite -auto_preview file_rec<CR>
-nmap <silent> [dn-pv]l :<C-u>Denite -auto_preview line<CR>
-nmap <silent> [dn-pv]g :<C-u>Denite -auto_preview grep<CR>
-nmap <silent> [dn-pv]u :<C-u>Denite -auto_preview file_mru<CR>
-
-" denite-word
-nmap [dn-word] <Nop>
-map <Space>w [dn-word]
-nmap <silent> [dn-word]f :<C-u>DeniteCursorWord -auto_preview file_rec<CR>
-nmap <silent> [dn-word]l :<C-u>DeniteCursorWord -auto_preview line<CR>
-nmap <silent> [dn-word]g :<C-u>DeniteCursorWord -auto_preview grep<CR>
-
 " 補完周り
 imap <expr><TAB> pumvisible() ? "\<C-N>" : neosnippet#jumpable() ?  "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#jumpable() ?  "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+
+runtime! plugins/denite-keymap.rc.vim
 
