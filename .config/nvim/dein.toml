@@ -59,6 +59,13 @@ hook_add = '''
   source ~/.config/nvim/plugins/defx.rc.vim
 '''
 
+# ターミナル
+[[plugins]]
+repo = 'Shougo/deol.nvim'
+hook_add = '''
+  source ~/.config/nvim/plugins/deol.rc.vim
+'''
+
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 hook_post_update = '''

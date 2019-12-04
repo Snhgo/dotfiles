@@ -10,13 +10,4 @@ let g:defx_git#indicators = {
   \ 'Deleted'   : '✖',
   \ 'Unknown'   : '?'
   \ }
-" call defx#custom#column('git', 'indicators', {
-"  \ 'Modified'  : '✹',
-"  \ 'Staged'    : '✚',
-"  \ 'Untracked' : '✭',
-"  \ 'Renamed'   : '➜',
-"  \ 'Unmerged'  : '═',
-"  \ 'Ignored'   : '☒',
-"  \ 'Deleted'   : '✖',
-"  \ 'Unknown'   : '?'
-"  \ })
+
