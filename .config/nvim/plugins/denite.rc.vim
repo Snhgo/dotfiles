@@ -1,4 +1,10 @@
 
+hi Sample1 guibg=#8fbcbb
+
+augroup NormalFloatBG
+  autocmd!
+  autocmd BufWinEnter * highlight NormalFloat guibg=gray
+augroup END
 " use floating
 let s:denite_win_width_percent = 0.85
 let s:denite_win_height_percent = 0.7
@@ -8,10 +14,16 @@ let s:denite_default_options = {
    \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
    \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
    \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
-   \ 'highlight_filter_background': 'CursorLine',
    \ 'prompt': '$ ',
    \ 'start_filter': v:true,
    \ 'source_names': 'short',
+   \ 'highlight_matched_char': 'WildMenu',
+   \ 'highlight_preview_line': 'NormalFloat',
+  \ 'highlight_matched_range': 'Visual',
+  \ 'highlight_window_background': 'NormalFloat',
+  \ 'highlight_filter_background': 'StatusLine',
+  \ 'highlight_prompt': 'StatusLine',
+  \ 'vertical_preview': 1,
    \ }
 let s:denite_option_array = []
 for [key, value] in items(s:denite_default_options)
@@ -40,3 +52,18 @@ else
         \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 endif
 
+hi ActiveWindow guibg=#17252c
+hi InactiveWindow guibg=#0D1B22
+    hi Hoge guifg=#2e3440 guibg=#ebcb8b
+
+augroup transparent-windows
+  autocmd!
+  autocmd FileType denite call s:denite_window_bg_setting()
+  function! s:denite_window_bg_setting() abort
+    set winblend=10
+" Hoge をデフォルトのハイライトにする（Normal の代わりに使う）。
+set winhighlight=Normal:Hoge
+  endfunction
+
+  autocmd FileType denite-filter set winblend=10
+augroup END

@@ -54,7 +54,7 @@ repo = 'Shougo/neomru.vim'
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'
 hook_add='''
-let g:webdevicons_enable_denite = 1
+  let g:webdevicons_enable_denite = 1
 '''
 
 [[plugins]]

@@ -27,6 +27,7 @@ if has('nvim')
   " Or if you have Neovim >= 0.1.5
   if (has("termguicolors"))
     set termguicolors
+    set pumblend=10
   endif
 elseif has('patch-7.4.1778')
   set guicolors
