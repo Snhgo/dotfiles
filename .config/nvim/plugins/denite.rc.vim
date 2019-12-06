@@ -1,30 +1,31 @@
 
-hi Sample1 guibg=#8fbcbb
-
-augroup NormalFloatBG
-  autocmd!
-  autocmd BufWinEnter * highlight NormalFloat guibg=gray
-augroup END
 " use floating
 let s:denite_win_width_percent = 0.85
 let s:denite_win_height_percent = 0.7
+let s:winwidth = float2nr(&columns * s:denite_win_width_percent)
+let s:wincol = float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2)
+let s:winheight = float2nr(&lines * s:denite_win_height_percent)
+let s:winrow = float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2)
+
+hi WINHI_BG guibg=NONE
 let s:denite_default_options = {
-   \ 'split': 'floating',
-   \ 'winwidth': float2nr(&columns * s:denite_win_width_percent),
-   \ 'wincol': float2nr((&columns - (&columns * s:denite_win_width_percent)) / 2),
-   \ 'winheight': float2nr(&lines * s:denite_win_height_percent),
-   \ 'winrow': float2nr((&lines - (&lines * s:denite_win_height_percent)) / 2),
-   \ 'prompt': '$ ',
-   \ 'start_filter': v:true,
-   \ 'source_names': 'short',
-   \ 'highlight_matched_char': 'WildMenu',
-   \ 'highlight_preview_line': 'NormalFloat',
-  \ 'highlight_matched_range': 'Visual',
-  \ 'highlight_window_background': 'NormalFloat',
-  \ 'highlight_filter_background': 'StatusLine',
-  \ 'highlight_prompt': 'StatusLine',
-  \ 'vertical_preview': 1,
-   \ }
+      \ 'split': 'floating',
+      \ 'winwidth': s:winwidth,
+      \ 'wincol': s:wincol,
+      \ 'winheight': s:winheight,
+      \ 'winrow': s:winrow,
+      \ 'prompt': '$ ',
+      \ 'highlight_matched_char': 'WildMenu',
+      \ 'highlight_preview_line': 'NormalFloat',
+      \ 'highlight_window_background': 'WINHI_BG',
+      \ 'highlight_matched_range': 'Visual',
+      \ 'fighlight_filter_background': 'StatusLine',
+      \ 'highlight_prompt': 'StatusLine',
+      \ 'start_filter': v:true,
+      \ 'source_names': 'short',
+      \ 'vertical_preview': 1,
+      \ }
+
 let s:denite_option_array = []
 for [key, value] in items(s:denite_default_options)
   call add(s:denite_option_array, '-'.key.'='.value)
@@ -52,18 +53,89 @@ else
         \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 endif
 
-hi ActiveWindow guibg=#17252c
-hi InactiveWindow guibg=#0D1B22
-    hi Hoge guifg=#2e3440 guibg=#ebcb8b
-
+let g:denite_winid = -1
+let g:frame_float_winid = -1
 augroup transparent-windows
   autocmd!
+  autocmd FileType denite call s:open_frame_float_win()
   autocmd FileType denite call s:denite_window_bg_setting()
   function! s:denite_window_bg_setting() abort
     set winblend=10
-" Hoge をデフォルトのハイライトにする（Normal の代わりに使う）。
-set winhighlight=Normal:Hoge
+    let g:denite_winid = win_getid()
+
+    hi CursorLine  guibg=#555555
   endfunction
 
-  autocmd FileType denite-filter set winblend=10
+  " autocmd FileType denite-filter set winblend=10
+
+  autocmd BufWinLeave * call s:denite_quit()
+  function! s:denite_quit() abort
+    if g:denite_winid > 0 && g:denite_winid == win_getid()
+      call s:close_frame_float_win()
+      let g:denite_winid = -1
+    endif
+  endfunction
+
+  "deniteのfloat windowの枠用float window ----------------------
+  function! s:open_frame_float_win() abort
+
+    " 複数表示を避ける
+    if g:frame_float_winid > 0
+      return
+    endif
+
+    let width = s:winwidth + 4
+    let top_edge_frame_str = '|'
+    let bottom_edge_frame_str = '|'
+    let frame_str = '|'
+    let i = 0
+    let width_length = width - 2
+    while i < width_length
+      let top_edge_frame_str = top_edge_frame_str . '‾'
+      let bottom_edge_frame_str = bottom_edge_frame_str . '_'
+      let frame_str = frame_str . ' '
+      let i += 1
+    endwhile
+    let top_edge_frame_str = top_edge_frame_str . '|'
+    let bottom_edge_frame_str = bottom_edge_frame_str . '|'
+    let frame_str = frame_str . '|'
+
+    let height = s:winheight + 3
+    let buf = nvim_create_buf(v:false, v:true)
+
+    let list = []
+    let i = 0
+    while i < height
+      if 0 == i
+        call add(list, top_edge_frame_str)
+      elseif i < height - 1
+        call add(list, frame_str)
+      else
+        call add(list, bottom_edge_frame_str)
+      endif
+      let i += 1
+    endwhile
+
+    call nvim_buf_set_lines(buf, 0, -1, v:true, list)
+    let opts = {'relative': 'editor',
+          \ 'width': width,
+          \ 'height': height,
+          \ 'col': s:wincol - 2,
+          \ 'row': s:winrow - 1,
+          \ 'style': 'minimal'}
+    let g:frame_float_winid = nvim_open_win(buf, 0, opts)
+    " optional: change highlight, otherwise Pmenu is used
+    hi FRAME guifg=#297F8E guibg=NONE
+    call nvim_win_set_option(g:frame_float_winid, 'winhighlight', 'Normal:FRAME')
+  endfunction
+
+  " 枠用floatwindowの削除
+  function! s:close_frame_float_win() abort
+    call nvim_win_close(g:frame_float_winid, v:true)
+    let g:frame_float_winid = -1
+  endfunction
+
 augroup END
+
+
+

@@ -14,4 +14,6 @@
 au MyAutoCmd VimEnter * nested colorscheme iceberg
 colorscheme iceberg
 
+hi CursorLine guibg=#c3c3c3
+
 let g:lightline_color = 'iceberg'

@@ -14,6 +14,8 @@ set shiftwidth=2
 set expandtab
 set undofile
 
+" let default_win_id = win_getid()
+" echo win_getid()
 augroup MyAutoCmd
   autocmd!
 augroup END
