@@ -36,7 +36,6 @@ call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>')
 call denite#custom#map('insert', '<C-t>', '<denite:do_action:tabopen>', 'noremap')
 call denite#custom#map('insert', '<C-q>', '<denite:enter_mode:normal>', 'noremap')
 call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
-call denite#custom#option('default', 'prompt', '>')
 
 " ripgrepがある場合
 if executable('rg')
@@ -63,7 +62,7 @@ augroup transparent-windows
     set winblend=10
     let g:denite_winid = win_getid()
 
-    hi CursorLine  guibg=#555555
+    hi CursorLine  guibg=#434343
   endfunction
 
   " autocmd FileType denite-filter set winblend=10
@@ -84,34 +83,43 @@ augroup transparent-windows
       return
     endif
 
-    let width = s:winwidth + 4
-    let top_edge_frame_str = '|'
-    let bottom_edge_frame_str = '|'
-    let frame_str = '|'
+    let width = s:winwidth + 6
+    let top_edge_frame_str = ' |'
+    let top_margin_frame_str = ' '
+    let bottom_edge_frame_str = ' |'
+    let bottom_margin_frame_str = ' '
+    let frame_str = ' |'
     let i = 0
-    let width_length = width - 2
+    let width_length = width - 4
     while i < width_length
       let top_edge_frame_str = top_edge_frame_str . '‾'
+      let top_margin_frame_str = top_margin_frame_str . ' '
       let bottom_edge_frame_str = bottom_edge_frame_str . '_'
+      let bottom_margin_frame_str = bottom_margin_frame_str . ' '
       let frame_str = frame_str . ' '
       let i += 1
     endwhile
-    let top_edge_frame_str = top_edge_frame_str . '|'
-    let bottom_edge_frame_str = bottom_edge_frame_str . '|'
-    let frame_str = frame_str . '|'
+    let top_edge_frame_str = top_edge_frame_str . '| '
+    let bottom_edge_frame_str = bottom_edge_frame_str . '| '
+    let frame_str = frame_str . '| '
 
-    let height = s:winheight + 3
+    " 上下マージンと上下ラインとdenite filter windowの分が5
+    let height = s:winheight + 5
     let buf = nvim_create_buf(v:false, v:true)
 
     let list = []
     let i = 0
     while i < height
-      if 0 == i
+      if i == 0
+        call add(list, top_margin_frame_str)
+      elseif i == 1
         call add(list, top_edge_frame_str)
-      elseif i < height - 1
+      elseif i < height - 2
         call add(list, frame_str)
-      else
+      elseif i < height - 1
         call add(list, bottom_edge_frame_str)
+      else
+        call add(list, bottom_margin_frame_str)
       endif
       let i += 1
     endwhile
@@ -120,13 +128,14 @@ augroup transparent-windows
     let opts = {'relative': 'editor',
           \ 'width': width,
           \ 'height': height,
-          \ 'col': s:wincol - 2,
-          \ 'row': s:winrow - 1,
+          \ 'col': s:wincol - 3,
+          \ 'row': s:winrow - 2,
           \ 'style': 'minimal'}
     let g:frame_float_winid = nvim_open_win(buf, 0, opts)
     " optional: change highlight, otherwise Pmenu is used
     hi FRAME guifg=#297F8E guibg=NONE
     call nvim_win_set_option(g:frame_float_winid, 'winhighlight', 'Normal:FRAME')
+    call nvim_win_set_option(g:frame_float_winid, 'winblend', 11)
   endfunction
 
   " 枠用floatwindowの削除
