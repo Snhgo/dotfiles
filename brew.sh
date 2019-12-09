@@ -34,6 +34,7 @@ formulas=(
     ripgrep
     rbenv
     nodenv
+    boost
 )
 
 "brew tap..."

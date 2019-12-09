@@ -60,7 +60,7 @@ hook_add='''
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 on_cmd = 'Denite'
-depends='vim-devicons'
+depends=['neomru.vim', 'vim-devicons']
 hook_post_source = '''
   source ~/.config/nvim/plugins/denite.rc.vim
 '''

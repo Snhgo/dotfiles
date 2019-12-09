@@ -151,6 +151,13 @@ hook_add = '''
   let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 '''
 
+# ブラウザ上のテキストエリアにてNVIMを起動する
+[[plugins]]
+repo = 'glacambre/firenvim'
+hook_post_update = '''
+  call firenvim#install(0)
+'''
+
 # Markdownをブラウザと同期して表示
 [[plugins]]
 repo = 'iamcco/markdown-preview.nvim'
