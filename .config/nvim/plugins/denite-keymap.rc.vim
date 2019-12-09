@@ -27,6 +27,9 @@ augroup denite_settings_g
   autocmd FileType denite-filter call s:denite_filter_settings()
   function! s:denite_filter_settings() abort
     imap <silent><buffer> <C-f> <Plug>(denite_filter_quit)
+    imap <silent><buffer> <C-r> <Plug>(denite_filter_update)i
+    inoremap <silent><buffer> <C-j> <Esc><C-w>p:call cursor(line('.')+1,0)<CR><C-w>pA
+	  inoremap <silent><buffer> <C-k> <Esc><C-w>p:call cursor(line('.')-1,0)<CR><C-w>pA
     " <CR>でカーソルのあるファイルorディレクトリを開く
     imap <silent><buffer> <CR> <Plug>(denite_filter_quit)<CR>
     imap <silent><buffer> <C-q> <Plug>(denite_filter_quit)q
@@ -36,8 +39,10 @@ augroup END
 
 
 " denite
+" デフォルトの動作を<Space>dとして設定する
 nmap [denite] <Nop>
 map <Space>d [denite]
+" ファイル検索
 nmap <silent> [denite]f :<C-u>Denite file/rec<CR>
 nmap <silent> [denite]l :<C-u>Denite line<CR>
 nmap <silent> [denite]g :<C-u>Denite grep<CR>
@@ -46,11 +51,12 @@ nmap <silent> [denite]t :<C-u>Denite filetype<CR>
 nmap <silent> [denite]y :<C-u>Denite neoyank<CR>
 nmap <silent> [denite]r :<C-u>Denite -resume<CR>
 nmap <silent> [denite]d :<C-u>Denite directory_rec -default-action=cd<CR>
+nmap <silent> [denite]b :<C-u>Denite buffer<CR>
 
 " denite-all
 nmap [dn-all] <Nop>
 map <Space>a [dn-all]
-nmap <silent> [dn-all]f :<C-u>DeniteProjectDir file_rec<CR>
+nmap <silent> [dn-all]f :<C-u>DeniteProjectDir file/rec<CR>
 nmap <silent> [dn-all]l :<C-u>DeniteProjectDir line<CR>
 nmap <silent> [dn-all]g :<C-u>DeniteProjectDir grep<CR>
 nmap <silent> [dn-all]d :<C-u>DeniteProjectDir directory_rec -default-action=cd<CR>
@@ -58,8 +64,8 @@ nmap <silent> [dn-all]d :<C-u>DeniteProjectDir directory_rec -default-action=cd<
 " denite-word
 nmap [dn-word] <Nop>
 map <Space>w [dn-word]
-nmap <silent> [dn-word]f :<C-u>DeniteCursorWord -auto_preview file_rec<CR>
-nmap <silent> [dn-word]l :<C-u>DeniteCursorWord -auto_preview line<CR>
-nmap <silent> [dn-word]g :<C-u>DeniteCursorWord -auto_preview grep<CR>
+nmap <silent> [dn-word]f :<C-u>DeniteCursorWord file/rec<CR>
+nmap <silent> [dn-word]l :<C-u>DeniteCursorWord line<CR>
+nmap <silent> [dn-word]g :<C-u>DeniteCursorWord grep<CR>
 
 

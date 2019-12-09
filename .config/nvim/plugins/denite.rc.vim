@@ -1,4 +1,3 @@
-
 " use floating
 let s:denite_win_width_percent = 0.85
 let s:denite_win_height_percent = 0.7
@@ -24,6 +23,7 @@ let s:denite_default_options = {
       \ 'start_filter': v:true,
       \ 'source_names': 'short',
       \ 'vertical_preview': 1,
+      \ 'max_dynamic_update_candidates': 100000
       \ }
 
 let s:denite_option_array = []
@@ -31,11 +31,6 @@ for [key, value] in items(s:denite_default_options)
   call add(s:denite_option_array, '-'.key.'='.value)
 endfor
 call denite#custom#option('default', s:denite_default_options)
-call denite#custom#map('insert', '<C-j>', '<denite:move_to_next_line>')
-call denite#custom#map('insert', '<C-k>', '<denite:move_to_previous_line>')
-call denite#custom#map('insert', '<C-t>', '<denite:do_action:tabopen>', 'noremap')
-call denite#custom#map('insert', '<C-q>', '<denite:enter_mode:normal>', 'noremap')
-call denite#custom#map('insert', "<C-v>", '<denite:do_action:vsplit>')
 
 " ripgrepがある場合
 if executable('rg')
@@ -51,6 +46,9 @@ else
   call denite#custom#var('file/rec', 'command',
         \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 endif
+
+call denite#custom#source('file/rec', 'matcher', ['matcher_cpsm'])
+" call denite#custom#source('file/rec', 'grep', 'matchers', ['matcher_cpsm'])
 
 let g:denite_winid = -1
 let g:frame_float_winid = -1
