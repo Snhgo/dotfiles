@@ -27,6 +27,7 @@ end
 
 ## alias
 alias v='nvim'
+alias g='git'
 alias pe='pyenv'
 alias pe='pyenv'
 alias pev='pyenv virtualenv'

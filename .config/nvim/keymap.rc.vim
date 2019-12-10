@@ -16,8 +16,7 @@ nnoremap <C-k> :bprev
 nnoremap <C-j> :bnext
 
 
-nnoremap ; :
-nnoremap ; :
+" nnoremap ; :
 nnoremap <C-h> 0
 nnoremap <C-l> $
 vnoremap <C-h> 0
