@@ -9,7 +9,11 @@
     dp = diff --no-prefix
     dsp = diff --cached --no-prefix
     co = checkout
+    cmt = commit
     bh = branch
+    ph = push
+    m = merge
+    f = fetch
     st = status
     logg = log --graph --all --decorate
     log1 = log --pretty='format:%C(yellow)%h%Creset %C(magenta)%cd%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset%C(black bold)%ar%Creset' --date=iso

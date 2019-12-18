@@ -59,6 +59,7 @@ map <Space>a [dn-all]
 nmap <silent> [dn-all]f :<C-u>DeniteProjectDir file/rec<CR>
 nmap <silent> [dn-all]l :<C-u>DeniteProjectDir line<CR>
 nmap <silent> [dn-all]g :<C-u>DeniteProjectDir grep<CR>
+nmap <silent> [dn-all]u :<C-u>DeniteProjectDir file_mru<CR>
 nmap <silent> [dn-all]d :<C-u>DeniteProjectDir directory_rec -default-action=cd<CR>
 
 " denite-word

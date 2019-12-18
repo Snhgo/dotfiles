@@ -31,7 +31,7 @@ const SODIUM_BASE64_VARIANT_URLSAFE = 5;
 const SODIUM_BASE64_VARIANT_URLSAFE_NO_PADDING = 7;
 const SODIUM_CRYPTO_AUTH_BYTES = 32;
 const SODIUM_CRYPTO_AUTH_KEYBYTES = 32;
-const SODIUM_CRYPTO_BOX_SEALBYTES = 16;
+const SODIUM_CRYPTO_BOX_SEALBYTES = 48;
 const SODIUM_CRYPTO_BOX_SECRETKEYBYTES = 32;
 const SODIUM_CRYPTO_BOX_PUBLICKEYBYTES = 32;
 const SODIUM_CRYPTO_BOX_KEYPAIRBYTES = 64;
@@ -49,7 +49,7 @@ const SODIUM_CRYPTO_GENERICHASH_KEYBYTES_MIN = 16;
 const SODIUM_CRYPTO_GENERICHASH_KEYBYTES_MAX = 64;
 const SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_SALTBYTES = 32;
 const SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_STRPREFIX = '$7$';
-const SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_OPSLIMIT_INTERACTIVE = 534288;
+const SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_OPSLIMIT_INTERACTIVE = 524288;
 const SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_MEMLIMIT_INTERACTIVE = 16777216;
 const SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_OPSLIMIT_SENSITIVE = 33554432;
 const SODIUM_CRYPTO_PWHASH_SCRYPTSALSA208SHA256_MEMLIMIT_SENSITIVE = 1073741824;
@@ -1169,7 +1169,7 @@ function sodium_crypto_scalarmult_base(
  * It is equivalent to calling random_bytes() but improves code clarity and can
  * prevent misuse by ensuring that the provided key length is always be correct.
  *
- * @since 7.2.0
+ * @since 7.2
  * @see https://secure.php.net/manual/en/function.sodium-crypto-secretbox-keygen.php
  */
 function sodium_crypto_secretbox_keygen(): string {}
@@ -1180,7 +1180,7 @@ function sodium_crypto_secretbox_keygen(): string {}
  * It is equivalent to calling random_bytes() but improves code clarity and can
  * prevent misuse by ensuring that the provided key length is always be correct.
  *
- * @since 7.2.0
+ * @since 7.2
  * @see https://secure.php.net/manual/en/function.sodium-crypto-aead-aes256gcm-keygen.php
  */
 function sodium_crypto_aead_aes256gcm_keygen(): string {}
@@ -1190,7 +1190,7 @@ function sodium_crypto_aead_aes256gcm_keygen(): string {}
  * It is equivalent to calling random_bytes() but improves code clarity and can
  * prevent misuse by ensuring that the provided key length is always be correct.
  *
- * @since 7.2.0
+ * @since 7.2
  * @see https://secure.php.net/manual/en/function.sodium-crypto-aead-chacha20poly1305-keygen.php
  */
 function sodium_crypto_aead_chacha20poly1305_keygen(): string {}
@@ -1201,43 +1201,43 @@ function sodium_crypto_aead_chacha20poly1305_keygen(): string {}
  * It is equivalent to calling random_bytes() but improves code clarity and can
  * prevent misuse by ensuring that the provided key length is always be correct.
  *
- * @since 7.2.0
+ * @since 7.2
  * @see https://secure.php.net/manual/en/function.sodium-crypto-aead-chacha20poly1305-ietf-keygen.php
  */
 function sodium_crypto_aead_chacha20poly1305_ietf_keygen(): string {}
 
 /**
- * @since 7.2.0
+ * @since 7.2
  * @see https://www.php.net/manual/en/function.sodium-crypto-aead-xchacha20poly1305-ietf-decrypt.php
  */
 function sodium_crypto_aead_xchacha20poly1305_ietf_decrypt(string $ciphertext,string $ad,string $nonce,string $key): string {}
 
 /**
- * @since 7.2.0
+ * @since 7.2
  * https://www.php.net/manual/en/function.sodium-crypto-aead-xchacha20poly1305-ietf-encrypt.php
  */
 function sodium_crypto_aead_xchacha20poly1305_ietf_encrypt(string $msg, string $ad, string $nonce, string $key): string{}
 
 /**
- * @since 7.2.0
+ * @since 7.2
  * @see https://www.php.net/manual/en/function.sodium-crypto-aead-xchacha20poly1305-ietf-keygen.php
  */
 function sodium_crypto_aead_xchacha20poly1305_ietf_keygen():string {}
 
 /**
- * @since 7.2.0
+ * @since 7.2
  * @see https://www.php.net/manual/en/function.sodium-crypto-pwhash-str-needs-rehash.php
  */
 function sodium_crypto_pwhash_str_needs_rehash(string $password, int $opslimit, int $memlimit): bool{}
 
 /**
- * @since 7.2.0
+ * @since 7.2
  * @see https://www.php.net/manual/en/function.sodium-crypto-secretstream-xchacha20poly1305-keygen.php
  */
 function sodium_crypto_secretstream_xchacha20poly1305_keygen(): string {}
 
 /**
- * @since 7.2.0
+ * @since 7.2
  * @see https://www.php.net/manual/en/function.sodium-crypto-secretstream-xchacha20poly1305-init-push.php
  */
 function sodium_crypto_secretstream_xchacha20poly1305_init_push(string $key): array{}
@@ -1247,37 +1247,37 @@ function sodium_crypto_secretstream_xchacha20poly1305_init_push(string $key): ar
  * @param string $msg
  * @param string $ad [optional]
  * @param int $tag [optional]
- * @since 7.2.0
+ * @since 7.2
  * @see https://www.php.net/manual/en/function.sodium-crypto-secretstream-xchacha20poly1305-push.php
  */
 function sodium_crypto_secretstream_xchacha20poly1305_push(string &$state, string $msg, string $ad, int $tag): string{}
 
 /**
- * @since 7.2.0
+ * @since 7.2
  * @see https://www.php.net/manual/en/function.sodium-crypto-secretstream-xchacha20poly1305-init-pull.php
  */
 function sodium_crypto_secretstream_xchacha20poly1305_init_pull($header, $key): string{}
 
 /**
- * @since 7.2.0
+ * @since 7.2
  * @see https://www.php.net/manual/en/function.sodium-crypto-secretstream-xchacha20poly1305-pull.php
  */
 function sodium_crypto_secretstream_xchacha20poly1305_pull(string &$state, string $c, string $ad = ''): array {}
 
 /**
- * @since 7.2.0
+ * @since 7.2
  * @see https://www.php.net/manual/en/function.sodium-crypto-secretstream-xchacha20poly1305-rekey.php
  */
 function sodium_crypto_secretstream_xchacha20poly1305_rekey(string &$state): void{}
 
 /**
- * @since 7.2.0
+ * @since 7.2
  * @see https://www.php.net/manual/en/function.sodium-bin2base64.php
  */
 function sodium_bin2base64(string $bin, int $id): string {}
 
 /**
- * @since 7.2.0
+ * @since 7.2
  * @see https://www.php.net/manual/en/function.sodium-base642bin.php
  */
 function sodium_base642bin(string $b64, int $id, string $ignore = ''){}

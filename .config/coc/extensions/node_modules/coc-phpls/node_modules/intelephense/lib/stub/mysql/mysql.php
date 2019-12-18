@@ -187,7 +187,7 @@ function mysql_unbuffered_query ($query, $link_identifier = null) {}
 /**
  * Selects a database and executes a query on it
  * @link https://php.net/manual/en/function.mysql-db-query.php
- * @deprecated 5.3.0 Use mysql_select_db() and mysql_query() instead
+ * @deprecated 5.3 Use mysql_select_db() and mysql_query() instead
  * @param string $database <p>
  * The name of the database that will be selected.
  * </p>
@@ -215,7 +215,7 @@ function mysql_db_query ($database, $query, $link_identifier = null) {}
  * failure. Use the <b>mysql_tablename</b> function to traverse
  * this result pointer, or any function for result tables, such as 
  * <b>mysql_fetch_array</b>.
- * @deprecated 5.4.0
+ * @deprecated 5.4
  * @since 4.0
  * @since 5.0
  */
@@ -234,7 +234,7 @@ function mysql_list_dbs ($link_identifier = null) {}
  * Use the <b>mysql_tablename</b> function to
  * traverse this result pointer, or any function for result tables,
  * such as <b>mysql_fetch_array</b>.
- * @deprecated 5.2.0
+ * @deprecated 5.2
  * @since 4.0
  * @since 5.0
  */
@@ -270,7 +270,7 @@ function mysql_list_fields ($database_name, $table_name, $link_identifier = null
  * @link https://php.net/manual/en/function.mysql-list-processes.php
  * @param resource $link_identifier [optional] 
  * @return resource|false A result pointer resource on success or false on failure.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function mysql_list_processes ($link_identifier = null) {}
@@ -648,7 +648,7 @@ function mysql_field_flags ($result, $field_offset) {}
 /**
  * Escapes a string for use in a mysql_query
  * @link https://php.net/manual/en/function.mysql-escape-string.php
- * @deprecated 5.3.0 Use mysql_real_escape_string() instead
+ * @deprecated 5.3 Use mysql_real_escape_string() instead
  * @param string $unescaped_string <p>
  * The string that is to be escaped.
  * </p>
@@ -667,7 +667,7 @@ function mysql_escape_string ($unescaped_string) {}
  * </p>
  * @param resource $link_identifier [optional] 
  * @return string|false the escaped string, or false on error.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function mysql_real_escape_string ($unescaped_string, $link_identifier = null) {}
@@ -681,7 +681,7 @@ function mysql_real_escape_string ($unescaped_string, $link_identifier = null) {
  * flush tables and queries per second. For a complete list of other status 
  * variables, you have to use the SHOW STATUS SQL command. 
  * If <i>link_identifier</i> is invalid, null is returned.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function mysql_stat ($link_identifier = null) {}
@@ -692,7 +692,7 @@ function mysql_stat ($link_identifier = null) {}
  * @link https://php.net/manual/en/function.mysql-thread-id.php
  * @param resource $link_identifier [optional] 
  * @return int|false The thread ID on success or false on failure.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function mysql_thread_id ($link_identifier = null) {}
@@ -703,7 +703,7 @@ function mysql_thread_id ($link_identifier = null) {}
  * @link https://php.net/manual/en/function.mysql-client-encoding.php
  * @param resource $link_identifier [optional] 
  * @return string the default character set name for the current connection.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function mysql_client_encoding ($link_identifier = null) {}
@@ -715,7 +715,7 @@ function mysql_client_encoding ($link_identifier = null) {}
  * @param resource $link_identifier [optional] 
  * @return bool true if the connection to the server MySQL server is working, 
  * otherwise false.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function mysql_ping ($link_identifier = null) {}
@@ -773,7 +773,7 @@ function mysql_get_server_info ($link_identifier = null) {}
  * failure. See the example below for which statements provide information,
  * and what the returned value may look like. Statements that are not listed 
  * will return false.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function mysql_info ($link_identifier = null) {}
@@ -795,7 +795,7 @@ function mysql_set_charset ($charset, $link_identifier = null) {}
  * @param $database_name
  * @param $query
  * @param $link_identifier [optional]
- * @deprecated 5.3.0 Use mysql_db_query instead.
+ * @deprecated 5.3 Use mysql_db_query instead.
  */
 function mysql ($database_name, $query, $link_identifier) {}
 

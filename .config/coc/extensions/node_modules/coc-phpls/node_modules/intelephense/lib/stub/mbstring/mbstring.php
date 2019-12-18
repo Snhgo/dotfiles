@@ -17,7 +17,7 @@
  * @param string $encoding [optional] &mbstring.encoding.parameter;
  * @return string A case folded version of string converted in the
  * way specified by mode.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function mb_convert_case ($str, $mode, $encoding = null) {}
@@ -30,7 +30,7 @@ function mb_convert_case ($str, $mode, $encoding = null) {}
  * </p>
  * @param string $encoding [optional] &mbstring.encoding.parameter;
  * @return string str with all alphabetic characters converted to uppercase.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function mb_strtoupper ($str, $encoding = null) {}
@@ -43,7 +43,7 @@ function mb_strtoupper ($str, $encoding = null) {}
  * </p>
  * @param string $encoding [optional] &mbstring.encoding.parameter;
  * @return string str with all alphabetic characters converted to lowercase.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function mb_strtolower ($str, $encoding = null) {}
@@ -321,7 +321,7 @@ function mb_strrpos ($haystack, $needle, $offset = 0, $encoding = null) {}
  * @return int|false Return the numeric position of the first occurrence of
  * needle in the haystack
  * string, or false if needle is not found.
- * @since 5.2.0
+ * @since 5.2
  */
 function mb_stripos ($haystack, $needle, $offset = 0, $encoding = null) {}
 
@@ -347,7 +347,7 @@ function mb_stripos ($haystack, $needle, $offset = 0, $encoding = null) {}
  * the last occurrence of needle in the
  * haystack string, or false
  * if needle is not found.
- * @since 5.2.0
+ * @since 5.2
  */
 function mb_strripos ($haystack, $needle, $offset = 0, $encoding = null) {}
 
@@ -375,7 +375,7 @@ function mb_strripos ($haystack, $needle, $offset = 0, $encoding = null) {}
  * </p>
  * @return string|false the portion of haystack,
  * or false if needle is not found.
- * @since 5.2.0
+ * @since 5.2
  */
 function mb_strstr ($haystack, $needle, $before_needle = false, $encoding = null) {}
 
@@ -403,7 +403,7 @@ function mb_strstr ($haystack, $needle, $before_needle = false, $encoding = null
  * </p>
  * @return string|false the portion of haystack.
  * or false if needle is not found.
- * @since 5.2.0
+ * @since 5.2
  */
 function mb_strrchr ($haystack, $needle, $before_needle = false, $encoding = null) {}
 
@@ -431,7 +431,7 @@ function mb_strrchr ($haystack, $needle, $before_needle = false, $encoding = nul
  * </p>
  * @return string|false the portion of haystack,
  * or false if needle is not found.
- * @since 5.2.0
+ * @since 5.2
  */
 function mb_stristr ($haystack, $needle, $before_needle = false, $encoding = null) {}
 
@@ -459,7 +459,7 @@ function mb_stristr ($haystack, $needle, $before_needle = false, $encoding = nul
  * </p>
  * @return string|false the portion of haystack.
  * or false if needle is not found.
- * @since 5.2.0
+ * @since 5.2
  */
 function mb_strrichr ($haystack, $needle, $before_needle = false, $encoding = null) {}
 
@@ -476,7 +476,7 @@ function mb_strrichr ($haystack, $needle, $before_needle = false, $encoding = nu
  * @return int The number of times the
  * needle substring occurs in the
  * haystack string.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function mb_substr_count ($haystack, $needle, $encoding = null) {}
@@ -834,7 +834,7 @@ function mb_convert_variables ($to_encoding, $from_encoding, &...$vars) {}
  * </p>
  * @param string $encoding &mbstring.encoding.parameter;
  * @param bool $is_hex [optional]
- * @return string The converted string.
+ * @return string|false|null The converted string.
  * @since 4.0.6
  * @since 5.0
  */
@@ -851,11 +851,14 @@ function mb_encode_numericentity ($str, array $convmap, $encoding = null, $is_he
  * the code area to convert.
  * </p>
  * @param string $encoding &mbstring.encoding.parameter;
- * @return string The converted string.
+ * @param bool $is_hex [optional] <p>
+ * this parameter is not used.
+ * </p>
+ * @return string|false|null The converted string.
  * @since 4.0.6
  * @since 5.0
  */
-function mb_decode_numericentity ($str, array $convmap, $encoding = null) {}
+function mb_decode_numericentity ($str, array $convmap, $encoding = null, $is_hex = false) {}
 
 /**
  * Send encoded mail
@@ -863,7 +866,7 @@ function mb_decode_numericentity ($str, array $convmap, $encoding = null) {}
  * @param string $to <p>
  * The mail addresses being sent to. Multiple
  * recipients may be specified by putting a comma between each
- * address in to. 
+ * address in to.
  * This parameter is not automatically encoded.
  * </p>
  * @param string $subject <p>
@@ -872,9 +875,10 @@ function mb_decode_numericentity ($str, array $convmap, $encoding = null) {}
  * @param string $message <p>
  * The message of the mail.
  * </p>
- * @param string $additional_headers [optional] <p>
- * additional_headers is inserted at
- * the end of the header. This is typically used to add extra
+ * @param string|array $additional_headers [optional] <p>
+ * String or array to be inserted at the end of the email header. <br/>
+ * Since 7.2.0 accepts an array. Its keys are the header names and its values are the respective header values.<br/>
+ * This is typically used to add extra
  * headers. Multiple extra headers are separated with a
  * newline ("\n").
  * </p>
@@ -905,7 +909,7 @@ function mb_send_mail ($to, $subject, $message, $additional_headers = null, $add
  * </p>
  * @return array|mixed An array of type information if type
  * is not specified, otherwise a specific type.
- * @since 4.2.0
+ * @since 4.2
  * @since 5.0
  */
 function mb_get_info ($type = null) {}
@@ -934,7 +938,7 @@ function mb_check_encoding ($var = null, $encoding = null) {}
  * or FALSE on failure. In this case, the internal character encoding
  * is NOT changed. If encoding is omitted, then the current character
  * encoding name for a multibyte regex is returned.
- * @since 4.2.0
+ * @since 4.2
  * @since 5.0
  */
 function mb_regex_encoding ($encoding = null) {}
@@ -947,7 +951,7 @@ function mb_regex_encoding ($encoding = null) {}
  * </p>
  * @return string The previous options. If options is omitted, 
  * it returns the string that describes the current options.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function mb_regex_set_options ($options = null) {}
@@ -965,10 +969,10 @@ function mb_regex_set_options ($options = null) {}
  * Contains a substring of the matched string.
  * </p>
  * @return int 
- * @since 4.2.0
+ * @since 4.2
  * @since 5.0
  */
-function mb_ereg ($pattern, $string, array $regs = null) {}
+function mb_ereg ($pattern, $string, array &$regs = null) {}
 
 /**
  * Regular expression match ignoring case with multibyte support
@@ -983,10 +987,10 @@ function mb_ereg ($pattern, $string, array $regs = null) {}
  * Contains a substring of the matched string.
  * </p>
  * @return int 
- * @since 4.2.0
+ * @since 4.2
  * @since 5.0
  */
-function mb_eregi ($pattern, $string, array $regs = null) {}
+function mb_eregi ($pattern, $string, array &$regs = null) {}
 
 /**
  * Replace regular expression with multibyte support
@@ -1015,7 +1019,7 @@ function mb_eregi ($pattern, $string, array $regs = null) {}
  * evaluated as PHP expression.
  * <p>PHP 7.1: The <i>e</i> modifier has been deprecated.</p>
  * @return string|false The resultant string on success, or false on error.
- * @since 4.2.0
+ * @since 4.2
  * @since 5.0
  */
 function mb_ereg_replace ($pattern, $replacement, $string, $option = "msr") {}
@@ -1081,7 +1085,7 @@ function mb_ereg_replace_callback ($pattern, callable $callback, $string, $optio
  * mb_ereg_replace.
  * <p>PHP 7.1: The <i>e</i> modifier has been deprecated.</p>
  * @return string|false The resultant string or false on error.
- * @since 4.2.0
+ * @since 4.2
  * @since 5.0
  */
 function mb_eregi_replace ($pattern, $replace, $string, $option = "msr") {}
@@ -1099,7 +1103,7 @@ function mb_eregi_replace ($pattern, $replace, $string, $option = "msr") {}
  * it will be split in limit elements as
  * maximum.
  * @return string[] The result as an array.
- * @since 4.2.0
+ * @since 4.2
  * @since 5.0
  */
 function mb_split ($pattern, $string, $limit = null) {}
@@ -1116,7 +1120,7 @@ function mb_split ($pattern, $string, $limit = null) {}
  * @param string $option [optional] <p>
  * </p>
  * @return bool 
- * @since 4.2.0
+ * @since 4.2
  * @since 5.0
  */
 function mb_ereg_match ($pattern, $string, $option = null) {}
@@ -1131,7 +1135,7 @@ function mb_ereg_match ($pattern, $string, $option = null) {}
  * The search option.
  * </p>
  * @return bool 
- * @since 4.2.0
+ * @since 4.2
  * @since 5.0
  */
 function mb_ereg_search ($pattern = null, $option = null) {}
@@ -1149,7 +1153,7 @@ function mb_ereg_search ($pattern = null, $option = null) {}
  * element is the offset, in bytes, where the match begins relative
  * to the start of the search string, and the second element is the
  * length in bytes of the match. If an error occurs, FALSE is returned.
- * @since 4.2.0
+ * @since 4.2
  * @since 5.0
  */
 function mb_ereg_search_pos ($pattern = null, $option = null) {}
@@ -1168,7 +1172,7 @@ function mb_ereg_search_pos ($pattern = null, $option = null) {}
  * returns an array including substring of matched part as first element,
  * the first grouped part with brackets as second element, the second grouped
  * part as third element, and so on. It returns FALSE on error.
- * @since 4.2.0
+ * @since 4.2
  * @since 5.0
  */
 function mb_ereg_search_regs ($pattern = null, $option = null) {}
@@ -1186,7 +1190,7 @@ function mb_ereg_search_regs ($pattern = null, $option = null) {}
  * The search option.
  * </p>
  * @return bool 
- * @since 4.2.0
+ * @since 4.2
  * @since 5.0
  */
 function mb_ereg_search_init ($string, $pattern = null, $option = null) {}
@@ -1200,7 +1204,7 @@ function mb_ereg_search_init ($string, $pattern = null, $option = null) {}
  * sub-string, the second element will have the first part grouped with
  * brackets, the third element will have the second part grouped with
  * brackets, and so on. It returns FALSE on error;
- * @since 4.2.0
+ * @since 4.2
  * @since 5.0
  */
 function mb_ereg_search_getregs () {}
@@ -1209,7 +1213,7 @@ function mb_ereg_search_getregs () {}
  * Returns start point for next regular expression match
  * @link https://php.net/manual/en/function.mb-ereg-search-getpos.php
  * @return int 
- * @since 4.2.0
+ * @since 4.2
  * @since 5.0
  * @deprecated 7.3
  */
@@ -1222,7 +1226,7 @@ function mb_ereg_search_getpos () {}
  * The position to set.
  * </p>
  * @return bool
- * @since 4.2.0
+ * @since 4.2
  * @since 5.0
  */
 function mb_ereg_search_setpos ($position) {}
@@ -1324,22 +1328,28 @@ function mbereg_search_getregs () {}
 function mbereg_search_getpos () {}
 
 /**
+ * Get a specific character.
+ * @link https://www.php.net/manual/en/function.mb-chr.php
  * @param int $cp
  * @param string $encoding
- * @return string|false
+ * @return string|false specific character or FALSE on failure.
  * @since 7.2
  */
 function mb_chr($cp, $encoding) {}
 
 /**
+ * Get code point of character
+ * @link https://www.php.net/manual/en/function.mb-ord.php
  * @param string $str
  * @param string $encoding
- * @return int|false
+ * @return int|false code point of character or FALSE on failure.
  * @since 7.2
  */
 function mb_ord($str, $encoding) {}
 
 /**
+ * Scrub broken multibyte strings.
+ * @link https://www.php.net/manual/en/function.mb-scrub.php
  * @param string $str
  * @param string $encoding
  * @return string|false

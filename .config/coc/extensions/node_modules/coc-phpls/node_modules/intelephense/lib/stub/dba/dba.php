@@ -215,6 +215,29 @@ function dba_exists ($key, $handle) {}
 function dba_fetch ($key, $handle) {}
 
 /**
+ * Fetch data specified by key
+ * @link https://php.net/manual/en/function.dba-fetch.php
+ * @param string $key <p>
+ * The key the data is specified by.
+ * </p>
+ * <p>
+ * When working with inifiles this function accepts arrays as keys
+ * where index 0 is the group and index 1 is the value name. See:
+ * <b>dba_key_split</b>.
+ * </p>
+ * @param int $skip The number of key-value pairs to ignore when using cdb databases. This value is ignored for all other databases which do not support multiple keys with the same name.
+ * @param resource $handle <p>
+ * The database handler, returned by <b>dba_open</b> or
+ * <b>dba_popen</b>.
+ * </p>
+ * @return string|false the associated string if the key/data pair is found, <b>FALSE</b>
+ * otherwise.
+ * @since 4.0
+ * @since 5.0
+ */
+function dba_fetch ($key, $skip, $handle) {}
+
+/**
  * Insert entry
  * @link https://php.net/manual/en/function.dba-insert.php
  * @param string $key <p>
@@ -320,7 +343,7 @@ function dba_sync ($handle) {}
  * <p>
  * When the internal cdb library is used you will see
  * cdb and cdb_make.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function dba_handlers ($full_info = false) {}
@@ -329,7 +352,7 @@ function dba_handlers ($full_info = false) {}
  * List all open database files
  * @link https://php.net/manual/en/function.dba-list.php
  * @return array An associative array, in the form resourceid =&gt; filename.
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function dba_list () {}

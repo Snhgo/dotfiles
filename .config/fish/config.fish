@@ -36,4 +36,4 @@ alias pev='pyenv virtualenv'
 set -g theme_color_scheme solarized
 set -g theme_display_git yes
 
-eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+# eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)

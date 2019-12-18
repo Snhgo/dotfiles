@@ -363,6 +363,14 @@ class SoapClient  {
 	public function __getTypes () {}
 
 	/**
+	 * Returns a list of all cookies
+	 * @link https://php.net/manual/en/soapclient.getcookies.php
+	 * @return array The array of all cookies
+	 * @since 5.4.3
+	 */
+	public function __getCookies () {}
+
+	/**
 	 * Performs a SOAP request
 	 * @link https://php.net/manual/en/soapclient.dorequest.php
 	 * @param string $request <p>
@@ -438,7 +446,7 @@ class SoapVar  {
 	 * @param mixed $data <p>
 	 * The data to pass or return.
 	 * </p>
-	 * @param string $encoding <p>
+	 * @param string|int $encoding <p>
 	 * The encoding ID, one of the XSD_... constants.
 	 * </p>
 	 * @param string $type_name [optional] <p>
@@ -535,15 +543,11 @@ class SoapServer  {
 	 * @param string $class_name <p>
 	 * The name of the exported class.
 	 * </p>
-	 * @param mixed $args [optional] <p>
-	 * These optional parameters will be passed to the default class constructor
-	 * during object creation.
-	 * </p>
-	 * @param mixed $_ [optional]
+	 * @param mixed $_ [optional] These optional parameters will be passed to the default class constructor during object creation.
 	 * @return void No value is returned.
 	 * @since 5.0.1
 	 */
-	public function setClass ($class_name, $args = null, $_ = null) {}
+	public function setClass ($class_name, $_ = null) {}
 
 	/**
 	 * Sets the object which will be used to handle SOAP requests
@@ -552,7 +556,7 @@ class SoapServer  {
 	 * The object to handle the requests.
 	 * </p>
 	 * @return void No value is returned.
-	 * @since 5.2.0
+	 * @since 5.2
 	 */
 	public function setObject ($object) {}
 
@@ -856,25 +860,25 @@ define ('WSDL_CACHE_BOTH', 3);
 
 /**
  * @link https://php.net/manual/en/soap.constants.php
- * @since 5.5.0
+ * @since 5.5
  */
 define ('SOAP_SSL_METHOD_TLS', 0);
 
 /**
  * @link https://php.net/manual/en/soap.constants.php
- * @since 5.5.0
+ * @since 5.5
  */
 define ('SOAP_SSL_METHOD_SSLv2', 1);
 
 /**
  * @link https://php.net/manual/en/soap.constants.php
- * @since 5.5.0
+ * @since 5.5
  */
 define ('SOAP_SSL_METHOD_SSLv3', 2);
 
 /**
  * @link https://php.net/manual/en/soap.constants.php
- * @since 5.5.0
+ * @since 5.5
  */
 define ('SOAP_SSL_METHOD_SSLv23', 3);
 

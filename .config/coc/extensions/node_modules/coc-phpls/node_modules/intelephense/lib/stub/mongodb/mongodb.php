@@ -25,6 +25,7 @@ namespace MongoDB {}
         use MongoDB\Driver\Exception\RuntimeException;
         use MongoDB\Driver\Exception\WriteConcernException;
         use MongoDB\Driver\Exception\WriteException;
+        use Traversable;
 
         /**
          * The MongoDB\Driver\Manager is the main entry point to the extension. It is responsible for maintaining connections to MongoDB (be it standalone server, replica set, or sharded cluster).
@@ -54,6 +55,11 @@ namespace MongoDB {}
              * @param BulkWrite $bulk The MongoDB\Driver\BulkWrite to execute.
              * @param array|WriteConcern $options WriteConcern type for backwards compatibility
              * @return WriteResult
+             * @throws InvalidArgumentException on argument parsing errors.
+             * @throws ConnectionException if connection to the server fails for other then authentication reasons
+             * @throws AuthenticationException if authentication is needed and fails             
+             * @throws BulkWriteException on any write failure 
+             * @throws RuntimeException on other errors (invalid command, command arguments, ...)
              * @since 1.4.0 added $options argument
              */
             final public function executeBulkWrite($namespace, BulkWrite $bulk, $options = [])
@@ -504,6 +510,14 @@ namespace MongoDB {}
             const RP_SECONDARY = 2;
             const RP_SECONDARY_PREFERRED = 6;
             const RP_NEAREST = 10;
+            /**
+             * @since 1.2.0
+             */
+            const NO_MAX_STALENESS = -1;
+            /**
+             * @since 1.2.0
+             */
+            const SMALLEST_MAX_STALENESS_SECONDS = 90;
 
             /**
              * Construct immutable ReadPreference
@@ -513,7 +527,7 @@ namespace MongoDB {}
              * @param array $options
              * @throws InvalidArgumentException if mode is invalid or if tagSets is provided for a primary read preference.
              */
-            final public function __construct($mode, array $tagSets = null, array $options = [] )
+            final public function __construct($mode, array $tagSets = null, array $options = [])
             {
             }
 
@@ -537,8 +551,10 @@ namespace MongoDB {}
 
             /**
              * Returns an object for BSON serialization
-             * @link https://php.net/manual/en/mongodb-driver-readpreference.bsonserialize.php
-             * @return object
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-driver-readpreference.bsonserialize.php
+             * @return object Returns an object for serializing the WriteConcern as BSON.
+             * @throws InvalidArgumentException
              */
             final public function bsonSerialize()
             {
@@ -552,9 +568,15 @@ namespace MongoDB {}
          */
         final class ReadConcern implements Serializable
         {
+            /**
+             * @since 1.2.0
+             */
             const LINEARIZABLE = 'linearizable' ;
             const LOCAL = 'local' ;
             const MAJORITY = 'majority' ;
+            /**
+             * @since 1.4.0
+             */
             const AVAILABLE = 'available' ;
 
             /**
@@ -602,7 +624,7 @@ namespace MongoDB {}
          * The MongoDB\Driver\Cursor class encapsulates the results of a MongoDB command or query and may be returned by MongoDB\Driver\Manager::executeCommand() or MongoDB\Driver\Manager::executeQuery(), respectively.
          * @link https://php.net/manual/en/class.mongodb-driver-cursor.php
          */
-        final class Cursor implements \Traversable
+        final class Cursor implements CursorInterface
         {
             /**
              * Create a new Cursor
@@ -713,7 +735,7 @@ namespace MongoDB {}
              * @param array $options
              * @throws InvalidArgumentException on argument parsing errors.
              */
-            public function __construct(array $options = [])
+            public final function __construct(array $options = [])
             {
             }
 
@@ -747,7 +769,7 @@ namespace MongoDB {}
              * @return mixed
              * @Throws MongoDB\Driver\InvalidArgumentException on argument parsing errors.
              */
-            public function insert($document)
+            public final function insert($document)
             {
             }
 
@@ -767,7 +789,7 @@ namespace MongoDB {}
         /**
          * WriteConcern controls the acknowledgment of a write operation, specifies the level of write guarantee for Replica Sets.
          */
-        final class WriteConcern
+        final class WriteConcern implements Serializable
         {
             /**
              * Majority of all the members in the set; arbiters, non-voting members, passive members, hidden members and delayed members are all included in the definition of majority write concern.
@@ -810,6 +832,17 @@ namespace MongoDB {}
              * @return int
              */
             final public function getWtimeout()
+            {
+            }
+
+            /**
+             * Returns an object for BSON serialization
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-driver-writeconcern.bsonserialize.php
+             * @return object Returns an object for serializing the WriteConcern as BSON.
+             * @throws InvalidArgumentException
+             */
+            final public function bsonSerialize()
             {
             }
         }
@@ -1017,11 +1050,12 @@ namespace MongoDB {}
             /**
              * Advances the cluster time for this session
              * @link https://secure.php.net/manual/en/mongodb-driver-session.advanceclustertime.php
+             * @param array|object $clusterTime The cluster time is a document containing a logical timestamp and server signature
              * @return void
              * @throws \MongoDB\Driver\Exception\InvalidArgumentException On argument parsing errors
              * @since 1.4.0
              */
-            final public function advanceClusterTime()
+            final public function advanceClusterTime($clusterTime)
             {
             }
 
@@ -1100,6 +1134,28 @@ namespace MongoDB {}
             }
 
             /**
+             * Returns the server to which this session is pinned, or NULL if the session is not pinned to any server.
+             * @link https://secure.php.net/manual/en/mongodb-driver-session.getserver.php
+             * @return \MongoDB\Driver\Server|null
+             * @throws \MongoDB\Driver\Exception\InvalidArgumentException
+             * @since 1.6.0
+             */
+            final public function getServer()
+            {
+            }
+
+            /**
+             * Returns whether a multi-document transaction is in progress.
+             * @link https://secure.php.net/manual/en/mongodb-driver-session.isintransaction.php
+             * @return bool
+             * @throws \MongoDB\Driver\Exception\InvalidArgumentException
+             * @since 1.6.0
+             */
+            final public function isInTransaction()
+            {
+            }
+
+            /**
              * Starts a transaction
              * @link https://secure.php.net/manual/en/mongodb-driver-session.starttransaction.php
              * @param array|object $options
@@ -1113,11 +1169,62 @@ namespace MongoDB {}
             {
             }
         }
+
+        /**
+         * This interface is implemented by MongoDB\Driver\Cursor but may also be used for type-hinting and userland classes.
+         * @link https://www.php.net/manual/en/class.mongodb-driver-cursorinterface.php
+         * @since 1.6.0
+         */
+        interface CursorInterface extends Traversable
+        {
+            /**
+             * Returns the MongoDB\Driver\CursorId associated with this cursor. A cursor ID uniquely identifies the cursor on the server.
+             * @return CursorId Returns the MongoDB\Driver\CursorId for this cursor.
+             * @throws InvalidArgumentException
+             * @link https://www.php.net/manual/en/mongodb-driver-cursorinterface.getid.php
+             */
+            function getId();
+
+            /**
+             * Returns the MongoDB\Driver\Server associated with this cursor.
+             * This is the server that executed the MongoDB\Driver\Query or MongoDB\Driver\Command.
+             * @link https://www.php.net/manual/en/mongodb-driver-cursorinterface.getserver.php
+             * @return Server Returns the MongoDB\Driver\Server associated with this cursor.
+             * @throws InvalidArgumentException
+             */
+            function getServer();
+
+            /**
+             * Checks whether the cursor may have additional results available to read.
+             * @link https://www.php.net/manual/en/mongodb-driver-cursorinterface.isdead.php
+             * @return bool Returns TRUE if additional results are not available, and FALSE otherwise.
+             * @throws InvalidArgumentException
+             */
+            function isDead();
+
+            /**
+             * Sets a type map to use for BSON unserialization
+             * @link https://www.php.net/manual/en/mongodb-driver-cursorinterface.settypemap.php
+             * @param array $typemap Type map configuration.
+             * @return mixed
+             * @throws InvalidArgumentException
+             */
+            function setTypeMap(array $typemap);
+
+            /**
+             * Iterates the cursor and returns its results in an array.
+             * MongoDB\Driver\CursorInterface::setTypeMap() may be used to control how documents are unserialized into PHP values.
+             * @return array Returns an array containing all results for this cursor.
+             * @throws InvalidArgumentException
+             */
+            function toArray();
+        }
     }
 
     namespace MongoDB\Driver\Exception {
 
         use MongoDB\Driver\WriteResult;
+        use Throwable;
 
         /**
          * Thrown when the driver encounters a runtime error (e.g. internal error from » libmongoc).
@@ -1147,7 +1254,7 @@ namespace MongoDB {}
          * Common interface for all driver exceptions. This may be used to catch only exceptions originating from the driver itself.
          * @link https://php.net/manual/en/class.mongodb-driver-exception-exception.php
          */
-        interface Exception
+        interface Exception extends Throwable
         {
         }
 
@@ -1214,7 +1321,7 @@ namespace MongoDB {}
          * @link https://php.net/manual/en/class.mongodb-driver-exception-writeexception.php
          * @since 1.0.0
          */
-        abstract class WriteException extends RuntimeException implements Exception
+        abstract class WriteException extends ServerException implements Exception
         {
             /**
              * @var WriteResult associated with the failed write operation.
@@ -1264,7 +1371,7 @@ namespace MongoDB {}
          * Thrown when a query or command fails to complete within a specified time limit (e.g. maxTimeMS).
          * @link https://php.net/manual/en/class.mongodb-driver-exception-executiontimeoutexception.php
          */
-        class ExecutionTimeoutException extends RuntimeException implements Exception
+        class ExecutionTimeoutException extends ServerException implements Exception
         {
         }
 
@@ -1551,7 +1658,7 @@ namespace MongoDB {}
              * Returns the command document
              * The reply document will be converted from BSON to PHP using the default deserialization rules (e.g. BSON documents will be converted to stdClass).
              * @link   https://secure.php.net/manual/en/mongodb-driver-monitoring-commandstartedevent.getcommand.php
-             * @return string the command document as a stdClass object.
+             * @return object the command document as a stdClass object.
              * @throws \InvalidArgumentException on argument parsing errors.
              * @since 1.3.0
              */
@@ -1626,8 +1733,37 @@ namespace MongoDB {}
      */
     namespace MongoDB\BSON {
 
+        use JsonSerializable;
         use MongoDB\Driver\Exception\InvalidArgumentException;
         use MongoDB\Driver\Exception\UnexpectedValueException;
+        use DateTime;
+
+        /**
+         * Converts a BSON string to its Canonical Extended JSON representation.
+         * The canonical format prefers type fidelity at the expense of concise output and is most suited for producing
+         * output that can be converted back to BSON without any loss of type information
+         * (e.g. numeric types will remain differentiated).
+         * @link https://www.php.net/manual/en/function.mongodb.bson-tocanonicalextendedjson.php
+         * @param string $bson BSON value to be converted
+         * @return string The converted JSON value
+         * @throws UnexpectedValueException
+         */
+        function toCanonicalExtendedJSON($bson)
+        {
+        }
+
+        /**
+         * Converts a BSON string to its » Relaxed Extended JSON representation.
+         * The relaxed format prefers use of JSON type primitives at the expense of type fidelity and is most suited for
+         * producing output that can be easily consumed by web APIs and humans.
+         * @link https://www.php.net/manual/en/function.mongodb.bson-torelaxedextendedjson.php
+         * @param string $bson BSON value to be converted
+         * @return string The converted JSON value
+         * @throws UnexpectedValueException
+         */
+        function toRelaxedExtendedJSON($bson)
+        {
+        }
 
         /**
          * Returns the BSON representation of a JSON value
@@ -1685,7 +1821,7 @@ namespace MongoDB {}
          * Class Binary
          * @link https://php.net/manual/en/class.mongodb-bson-binary.php
          */
-        class Binary implements Type
+        final class Binary implements Type, BinaryInterface, \Serializable, JsonSerializable
         {
             const TYPE_GENERIC = 0;
             const TYPE_FUNCTION = 1;
@@ -1701,7 +1837,7 @@ namespace MongoDB {}
              * @param string $data
              * @param integer $type
              */
-            public function __construct($data, $type)
+            public final function __construct($data, $type)
             {
             }
 
@@ -1710,7 +1846,7 @@ namespace MongoDB {}
              * @link https://php.net/manual/en/mongodb-bson-binary.getdata.php
              * @return string
              */
-            public function getData()
+            final public function getData()
             {
             }
 
@@ -1719,7 +1855,55 @@ namespace MongoDB {}
              * @link https://php.net/manual/en/mongodb-bson-binary.gettype.php
              * @return integer
              */
-            public function getType()
+            final public function getType()
+            {
+            }
+
+            public static function __set_state($an_array)
+            {
+            }
+
+            /**
+             * Returns the Binary's data
+             * @link https://www.php.net/manual/en/mongodb-bson-binary.tostring.php
+             * @return string
+             */
+            final public function __toString()
+            {
+            }
+
+            /**
+             * Serialize a Binary
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-binary.serialize.php
+             * @return string
+             * @throws InvalidArgumentException
+             */
+            final public function serialize()
+            {
+            }
+
+            /**
+             * Unserialize a Binary
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-binary.unserialize.php
+             * @param string $serialized
+             * @return void
+             * @throws InvalidArgumentException on argument parsing errors or if the properties are invalid
+             * @throws UnexpectedValueException if the properties cannot be unserialized (i.e. serialized was malformed)
+             */
+            final public function unserialize($serialized)
+            {
+            }
+
+            /**
+             * Returns a representation that can be converted to JSON
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-binary.jsonserialize.php
+             * @return mixed data which can be serialized by json_encode()
+             * @throws InvalidArgumentException on argument parsing errors
+             */
+            final public function jsonSerialize()
             {
             }
         }
@@ -1728,7 +1912,7 @@ namespace MongoDB {}
          * BSON type for the Decimal128 floating-point format, which supports numbers with up to 34 decimal digits (i.e. significant digits) and an exponent range of −6143 to +6144.
          * @link https://php.net/manual/en/class.mongodb-bson-decimal128.php
          */
-        class Decimal128 implements Type
+        final class Decimal128 implements Type, Decimal128Interface, \Serializable, JsonSerializable
         {
             /**
              * Construct a new Decimal128
@@ -1747,13 +1931,52 @@ namespace MongoDB {}
             final public function __toString()
             {
             }
+
+            public static function __set_state($an_array)
+            {
+            }
+
+            /**
+             * Serialize a Decimal128
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-decimal128.serialize.php
+             * @return string
+             * @throws InvalidArgumentException
+             */
+            final public function serialize()
+            {
+            }
+
+            /**
+             * Unserialize a Decimal128
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-decimal128.unserialize.php
+             * @param string $serialized
+             * @return void
+             * @throws InvalidArgumentException on argument parsing errors or if the properties are invalid
+             * @throws UnexpectedValueException if the properties cannot be unserialized (i.e. serialized was malformed)
+             */
+            final public function unserialize($serialized)
+            {
+            }
+
+            /**
+             * Returns a representation that can be converted to JSON
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-decimal128.jsonserialize.php
+             * @return mixed data which can be serialized by json_encode()
+             * @throws InvalidArgumentException on argument parsing errors
+             */
+            final public function jsonSerialize()
+            {
+            }
         }
 
         /**
          * Class Javascript
          * @link https://php.net/manual/en/class.mongodb-bson-javascript.php
          */
-        class Javascript implements Type
+        final class Javascript implements Type, JavascriptInterface, \Serializable, JsonSerializable
         {
             /**
              * Construct a new Javascript
@@ -1764,37 +1987,179 @@ namespace MongoDB {}
             final public function __construct($code, $scope = [])
             {
             }
+
+            public static function __set_state($an_array)
+            {
+            }
+
+            /**
+             * Returns the Javascript's code
+             * @return string
+             * @link https://secure.php.net/manual/en/mongodb-bson-javascript.getcode.php
+             */
+            final public function getCode()
+            {
+            }
+
+            /**
+             * Returns the Javascript's scope document
+             * @return object|null
+             * @link https://secure.php.net/manual/en/mongodb-bson-javascript.getscope.php
+             */
+            final public function getScope()
+            {
+            }
+
+            /**
+             * Returns the Javascript's code
+             * @return string
+             * @link https://secure.php.net/manual/en/mongodb-bson-javascript.tostring.php
+             */
+            final public function __toString()
+            {
+            }
+
+            /**
+             * Serialize a Javascript
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-javascript.serialize.php
+             * @return string
+             * @throws InvalidArgumentException
+             */
+            final public function serialize()
+            {
+            }
+
+            /**
+             * Unserialize a Javascript
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-javascript.unserialize.php
+             * @param string $serialized
+             * @return void
+             * @throws InvalidArgumentException on argument parsing errors or if the properties are invalid
+             * @throws UnexpectedValueException if the properties cannot be unserialized (i.e. serialized was malformed)
+             */
+            final public function unserialize($serialized)
+            {
+            }
+
+            /**
+             * Returns a representation that can be converted to JSON
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-javascript.jsonserialize.php
+             * @return mixed data which can be serialized by json_encode()
+             * @throws InvalidArgumentException on argument parsing errors
+             */
+            final public function jsonSerialize()
+            {
+            }
         }
 
         /**
          * Class MaxKey
          * @link https://php.net/manual/en/class.mongodb-bson-maxkey.php
          */
-        class MaxKey implements Type
+        final class MaxKey implements Type, MaxKeyInterface, \Serializable, JsonSerializable
         {
+            public static function __set_state($an_array)
+            {
+            }
+
+            /**
+             * Serialize a MaxKey
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-maxkey.serialize.php
+             * @return string
+             * @throws InvalidArgumentException
+             */
+            final public function serialize()
+            {
+            }
+
+            /**
+             * Unserialize a MaxKey
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-maxkey.unserialize.php
+             * @param string $serialized
+             * @return void
+             * @throws InvalidArgumentException on argument parsing errors or if the properties are invalid
+             * @throws UnexpectedValueException if the properties cannot be unserialized (i.e. serialized was malformed)
+             */
+            final public function unserialize($serialized)
+            {
+            }
+
+            /**
+             * Returns a representation that can be converted to JSON
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-maxkey.jsonserialize.php
+             * @return mixed data which can be serialized by json_encode()
+             * @throws InvalidArgumentException on argument parsing errors
+             */
+            final public function jsonSerialize()
+            {
+            }
         }
 
         /**
          * Class MinKey
          * @link https://php.net/manual/en/class.mongodb-bson-minkey.php
          */
-        class MinKey implements Type
+        final class MinKey implements Type, MinKeyInterface, \Serializable, JsonSerializable
         {
+            public static function __set_state($an_array)
+            {
+            }
+
+            /**
+             * Serialize a MinKey
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-minkey.serialize.php
+             * @return string
+             * @throws InvalidArgumentException
+             */
+            final public function serialize()
+            {
+            }
+
+            /**
+             * Unserialize a MinKey
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-minkey.unserialize.php
+             * @param string $serialized
+             * @return void
+             * @throws InvalidArgumentException on argument parsing errors or if the properties are invalid
+             * @throws UnexpectedValueException if the properties cannot be unserialized (i.e. serialized was malformed)
+             */
+            final public function unserialize($serialized)
+            {
+            }
+
+            /**
+             * Returns a representation that can be converted to JSON
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-minkey.jsonserialize.php
+             * @return mixed data which can be serialized by json_encode()
+             * @throws InvalidArgumentException on argument parsing errors
+             */
+            final public function jsonSerialize()
+            {
+            }
         }
 
         /**
          * Class ObjectId
          * @link https://php.net/manual/en/class.mongodb-bson-objectid.php
          */
-        class ObjectId implements Type
+        final class ObjectId implements Type, ObjectIdInterface, \Serializable, JsonSerializable
         {
             /**
              * Construct a new ObjectId
              * @link https://php.net/manual/en/mongodb-bson-objectid.construct.php
-             * @param string $id A 24-character hexadecimal string. If not provided, the driver will generate an ObjectId.
+             * @param string|null $id A 24-character hexadecimal string. If not provided, the driver will generate an ObjectId.
              * @throws InvalidArgumentException if id is not a 24-character hexadecimal string.
              */
-            public function __construct($id = null)
+            public final function __construct($id = null)
             {
             }
 
@@ -1803,27 +2168,27 @@ namespace MongoDB {}
              * @link https://php.net/manual/en/mongodb-bson-objectid.tostring.php
              * @return string
              */
-            public function __toString()
+            final public function __toString()
             {
             }
-            
+
             /**
              * Returns the timestamp component of this ObjectId
              * @since 1.2.0
              * @link https://secure.php.net/manual/en/mongodb-bson-objectid.gettimestamp.php
              * @return int the timestamp component of this ObjectId
              */
-            public function getTimestamp()
+            public final function getTimestamp()
             {
             }
-            
+
             /**
              * Returns a representation that can be converted to JSON
              * @since 1.2.0
              * @link https://secure.php.net/manual/en/mongodb-bson-objectid.jsonserialize.php
              * @return mixed data which can be serialized by json_encode()
              */
-            public function jsonSerialize()
+            final public function jsonSerialize()
             {
             }
 
@@ -1833,17 +2198,17 @@ namespace MongoDB {}
              * @link https://secure.php.net/manual/en/mongodb-bson-objectid.serialize.php
              * @return string the serialized representation of the object
              */
-            public function serialize()
+            final public function serialize()
             {
             }
-            
+
             /**
              * Unserialize an ObjectId
              * @since 1.2.0
              * @link https://secure.php.net/manual/en/mongodb-bson-objectid.unserialize.php
-             * @return ObjectId unserialized object
+             * @return void
              */
-            public function unserialize(string $serialized)
+            final public function unserialize($serialized)
             {
             }
         }
@@ -1852,7 +2217,7 @@ namespace MongoDB {}
          * Class Regex
          * @link https://php.net/manual/en/class.mongodb-bson-regex.php
          */
-        class Regex implements Type
+        final class Regex implements Type, RegexInterface, \Serializable, JsonSerializable
         {
             /**
              * Construct a new Regex
@@ -1860,7 +2225,7 @@ namespace MongoDB {}
              * @param string $pattern
              * @param string $flags [optional]
              */
-            public function __construct($pattern, $flags = "")
+            public final function __construct($pattern, $flags = "")
             {
             }
 
@@ -1868,7 +2233,7 @@ namespace MongoDB {}
              * Returns the Regex's flags
              * @link https://php.net/manual/en/mongodb-bson-regex.getflags.php
              */
-            public function getFlags()
+            final public function getFlags()
             {
             }
 
@@ -1877,7 +2242,7 @@ namespace MongoDB {}
              * @link https://php.net/manual/en/mongodb-bson-regex.getpattern.php
              * @return string
              */
-            public function getPattern()
+            final public function getPattern()
             {
             }
 
@@ -1886,7 +2251,46 @@ namespace MongoDB {}
              * @link https://php.net/manual/en/mongodb-bson-regex.tostring.php
              * @return string
              */
-            public function __toString()
+            final public function __toString()
+            {
+            }
+
+            public static function __set_state($an_array)
+            {
+            }
+
+            /**
+             * Serialize a Regex
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-regex.serialize.php
+             * @return string
+             * @throws InvalidArgumentException
+             */
+            final public function serialize()
+            {
+            }
+
+            /**
+             * Unserialize a Regex
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-regex.unserialize.php
+             * @param string $serialized
+             * @return void
+             * @throws InvalidArgumentException on argument parsing errors or if the properties are invalid
+             * @throws UnexpectedValueException if the properties cannot be unserialized (i.e. serialized was malformed)
+             */
+            final public function unserialize($serialized)
+            {
+            }
+
+            /**
+             * Returns a representation that can be converted to JSON
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-regex.jsonserialize.php
+             * @return mixed data which can be serialized by json_encode()
+             * @throws InvalidArgumentException on argument parsing errors
+             */
+            final public function jsonSerialize()
             {
             }
         }
@@ -1895,7 +2299,7 @@ namespace MongoDB {}
          * Represents a BSON timestamp, which is an internal MongoDB type not intended for general date storage.
          * @link https://php.net/manual/en/class.mongodb-bson-timestamp.php
          */
-        class Timestamp implements TimestampInterface, Type
+        final class Timestamp implements TimestampInterface, Type, \Serializable, JsonSerializable
         {
             /**
              * Construct a new Timestamp
@@ -1922,7 +2326,7 @@ namespace MongoDB {}
              * @return int
              * @since 1.3.0
              */
-            public function getIncrement()
+            final public function getIncrement()
             {
             }
 
@@ -1932,7 +2336,42 @@ namespace MongoDB {}
              * @return int
              * @since 1.3.0
              */
-            public function getTimestamp()
+            final public function getTimestamp()
+            {
+            }
+
+            /**
+             * Serialize a Timestamp
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-timestamp.serialize.php
+             * @return string
+             * @throws InvalidArgumentException
+             */
+            final public function serialize()
+            {
+            }
+
+            /**
+             * Unserialize a Timestamp
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-timestamp.unserialize.php
+             * @param string $serialized
+             * @return void
+             * @throws InvalidArgumentException on argument parsing errors or if the properties are invalid
+             * @throws UnexpectedValueException if the properties cannot be unserialized (i.e. serialized was malformed)
+             */
+            final public function unserialize($serialized)
+            {
+            }
+
+            /**
+             * Returns a representation that can be converted to JSON
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-timestamp.jsonserialize.php
+             * @return mixed data which can be serialized by json_encode()
+             * @throws InvalidArgumentException on argument parsing errors
+             */
+            final public function jsonSerialize()
             {
             }
         }
@@ -1941,7 +2380,7 @@ namespace MongoDB {}
          * Represents a BSON date.
          * @link https://php.net/manual/en/class.mongodb-bson-utcdatetime.php
          */
-        class UTCDateTime implements Type, TimestampInterface, \Serializable, \JsonSerializable
+        final class UTCDateTime implements Type, UTCDateTimeInterface, \Serializable, \JsonSerializable
         {
             /**
              * Construct a new UTCDateTime
@@ -1971,61 +2410,37 @@ namespace MongoDB {}
             }
 
             /**
-             * String representation of object
-             *
-             * @link  https://php.net/manual/en/serializable.serialize.php
-             * @return string the string representation of the object or null
-             * @since 5.1.0
+             * Serialize a UTCDateTime
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-utcdatetime.serialize.php
+             * @return string
+             * @throws InvalidArgumentException
              */
-            public function serialize()
+            final public function serialize()
             {
             }
 
             /**
-             * Constructs the object
-             *
-             * @link  https://php.net/manual/en/serializable.unserialize.php
-             *
-             * @param string $serialized <p>
-             *                           The string representation of the object.
-             *                           </p>
-             *
+             * Unserialize a UTCDateTime
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-utcdatetime.unserialize.php
+             * @param string $serialized
              * @return void
-             * @since 5.1.0
+             * @throws InvalidArgumentException on argument parsing errors or if the properties are invalid
+             * @throws UnexpectedValueException if the properties cannot be unserialized (i.e. serialized was malformed)
              */
-            public function unserialize($serialized)
+            final public function unserialize($serialized)
             {
             }
 
             /**
-             * Specify data which should be serialized to JSON
-             *
-             * @link  https://php.net/manual/en/jsonserializable.jsonserialize.php
-             * @return mixed data which can be serialized by <b>json_encode</b>,
-             * which is a value of any type other than a resource.
-             * @since 5.4.0
+             * Returns a representation that can be converted to JSON
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-utcdatetime.jsonserialize.php
+             * @return mixed data which can be serialized by json_encode()
+             * @throws InvalidArgumentException on argument parsing errors
              */
-            public function jsonSerialize()
-            {
-            }
-
-            /**
-             * Returns the increment component of this TimestampInterface
-             *
-             * @link https://secure.php.net/manual/en/mongodb-bson-timestampinterface.getincrement.php
-             * @return int
-             */
-            public function getIncrement()
-            {
-            }
-
-            /**
-             * Returns the timestamp component of this TimestampInterface
-             *
-             * @link https://secure.php.net/manual/en/mongodb-bson-timestampinterface.gettimestamp.php
-             * @return int
-             */
-            public function getTimestamp()
+            final public function jsonSerialize()
             {
             }
         }
@@ -2037,45 +2452,52 @@ namespace MongoDB {}
          * @deprecated
          * @link https://secure.php.net/manual/en/class.mongodb-bson-undefined.php
          */
-        class Undefined implements Type,\Serializable, \JsonSerializable
+        final class Undefined implements Type,\Serializable, \JsonSerializable
         {
-
-            /**
-             * String representation of object
-             *
-             * @link  https://php.net/manual/en/serializable.serialize.php
-             * @return string the string representation of the object or null
-             * @since 5.1.0
-             */
-            public function serialize()
+            final private function __construct()
             {
             }
 
             /**
-             * Constructs the object
-             *
-             * @link  https://php.net/manual/en/serializable.unserialize.php
-             *
-             * @param string $serialized <p>
-             *                           The string representation of the object.
-             *                           </p>
-             *
+             * Serialize an Undefined
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-undefined.serialize.php
+             * @return string
+             * @throws InvalidArgumentException
+             */
+            final public function serialize()
+            {
+            }
+
+            /**
+             * Unserialize an Undefined
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-undefined.unserialize.php
+             * @param string $serialized
              * @return void
-             * @since 5.1.0
+             * @throws InvalidArgumentException on argument parsing errors or if the properties are invalid
+             * @throws UnexpectedValueException if the properties cannot be unserialized (i.e. serialized was malformed)
              */
-            public function unserialize($serialized)
+            final public function unserialize($serialized)
             {
             }
 
             /**
-             * Specify data which should be serialized to JSON
-             *
-             * @link  https://php.net/manual/en/jsonserializable.jsonserialize.php
-             * @return mixed data which can be serialized by <b>json_encode</b>,
-             * which is a value of any type other than a resource.
-             * @since 5.4.0
+             * Returns a representation that can be converted to JSON
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-undefined.jsonserialize.php
+             * @return mixed data which can be serialized by json_encode()
+             * @throws InvalidArgumentException on argument parsing errors
              */
-            public function jsonSerialize()
+            final public function jsonSerialize()
+            {
+            }
+
+            /**
+             * Returns the Undefined as a string
+             * @return string Returns the string representation of this Symbol.
+             */
+            final public function __toString()
             {
             }
         }
@@ -2087,49 +2509,307 @@ namespace MongoDB {}
          * @deprecated
          * @link https://secure.php.net/manual/en/class.mongodb-bson-symbol.php
          */
-        class Symbol implements Type,\Serializable, \JsonSerializable
+        final class Symbol implements Type,\Serializable, \JsonSerializable
         {
-            /**
-             * String representation of object
-             *
-             * @link  https://php.net/manual/en/serializable.serialize.php
-             * @return string the string representation of the object or null
-             * @since 5.1.0
-             */
-            public function serialize()
+            final private function __construct()
             {
             }
 
             /**
-             * Constructs the object
-             *
-             * @link  https://php.net/manual/en/serializable.unserialize.php
-             *
-             * @param string $serialized <p>
-             *                           The string representation of the object.
-             *                           </p>
-             *
+             * Serialize a Symbol
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-symbol.serialize.php
+             * @return string
+             * @throws InvalidArgumentException
+             */
+            final public function serialize()
+            {
+            }
+
+            /**
+             * Unserialize a Symbol
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-symbol.unserialize.php
+             * @param string $serialized
              * @return void
-             * @since 5.1.0
+             * @throws InvalidArgumentException on argument parsing errors or if the properties are invalid
+             * @throws UnexpectedValueException if the properties cannot be unserialized (i.e. serialized was malformed)
              */
-            public function unserialize($serialized)
+            final public function unserialize($serialized)
             {
             }
 
             /**
-             * Specify data which should be serialized to JSON
-             *
-             * @link  https://php.net/manual/en/jsonserializable.jsonserialize.php
-             * @return mixed data which can be serialized by <b>json_encode</b>,
-             * which is a value of any type other than a resource.
-             * @since 5.4.0
+             * Returns a representation that can be converted to JSON
+             * @since 1.2.0
+             * @link https://www.php.net/manual/en/mongodb-bson-symbol.jsonserialize.php
+             * @return mixed data which can be serialized by json_encode()
+             * @throws InvalidArgumentException on argument parsing errors
              */
-            public function jsonSerialize()
+            final public function jsonSerialize()
+            {
+            }
+
+            /**
+             * Returns the Symbol as a string
+             * @return string Returns the string representation of this Symbol.
+             */
+            final public function __toString()
             {
             }
         }
 
+        /**
+         * BSON type for the "DbPointer" type. This BSON type is deprecated, and this class can not be instantiated. It will be created from a
+         * BSON symbol type while converting BSON to PHP, and can also be converted back into BSON while storing documents in the database.
+         *
+         * @deprecated
+         * @since 1.4.0
+         * @link https://secure.php.net/manual/en/class.mongodb-bson-dbpointer.php
+         */
+        final class DbPointer implements Type,\Serializable, \JsonSerializable
+        {
+            final private function __construct()
+            {
+            }
+
             /**
+             * Serialize a DBPointer
+             *
+             * @link https://www.php.net/manual/en/mongodb-bson-dbpointer.serialize.php
+             * @return string
+             * @throws InvalidArgumentException
+             */
+            final public function serialize()
+            {
+            }
+
+            /**
+             * Unserialize a DBPointer
+             *
+             * @link https://www.php.net/manual/en/mongodb-bson-dbpointer.unserialize.php
+             *
+             * @param string $serialized
+             *
+             * @return void
+             * @throws InvalidArgumentException on argument parsing errors or if the properties are invalid
+             * @throws UnexpectedValueException if the properties cannot be unserialized (i.e. serialized was malformed)
+             */
+            final public function unserialize($serialized)
+            {
+            }
+
+            /**
+             * Returns a representation that can be converted to JSON
+             *
+             * @link https://www.php.net/manual/en/mongodb-bson-dbpointer.jsonserialize.php
+             * @return mixed data which can be serialized by json_encode()
+             * @throws InvalidArgumentException on argument parsing errors
+             */
+            final public function jsonSerialize()
+            {
+            }
+
+            /**
+             * Returns the Symbol as a string
+             *
+             * @return string Returns the string representation of this Symbol.
+             */
+            final public function __toString()
+            {
+            }
+        }
+
+        /**
+         * BSON type for a 64-bit integer. This class cannot be instantiated and is only created during BSON decoding when a 64-bit
+         * integer cannot be represented as a PHP integer on a 32-bit platform. Versions of the driver before 1.5.0 would throw an
+         * exception when attempting to decode a 64-bit integer on a 32-bit platform.
+         * During BSON encoding, objects of this class will convert back to a 64-bit integer type. This allows 64-bit integers to be
+         * roundtripped through a 32-bit PHP environment without any loss of precision. The __toString() method allows the 64-bit integer
+         * value to be accessed as a string.
+         *
+         * @deprecated
+         * @since 1.5.0
+         * @link https://secure.php.net/manual/en/class.mongodb-bson-int64.php
+         */
+        final class Int64 implements Type,\Serializable, \JsonSerializable
+        {
+            final private function __construct()
+            {
+            }
+
+            /**
+             * Serialize an Int64
+             * @link https://www.php.net/manual/en/mongodb-bson-int64.serialize.php
+             * @return string
+             * @throws InvalidArgumentException
+             */
+            final public function serialize()
+            {
+            }
+
+            /**
+             * Unserialize an Int64
+             * @link https://www.php.net/manual/en/mongodb-bson-int64.unserialize.php
+             * @param string $serialized
+             * @return void
+             * @throws InvalidArgumentException on argument parsing errors or if the properties are invalid
+             * @throws UnexpectedValueException if the properties cannot be unserialized (i.e. serialized was malformed)
+             */
+            final public function unserialize($serialized)
+            {
+            }
+
+            /**
+             * Returns a representation that can be converted to JSON
+             * @link https://www.php.net/manual/en/mongodb-bson-int64.jsonserialize.php
+             * @return mixed data which can be serialized by json_encode()
+             * @throws InvalidArgumentException on argument parsing errors
+             */
+            final public function jsonSerialize()
+            {
+            }
+
+            /**
+             * Returns the Symbol as a string
+             * @return string Returns the string representation of this Symbol.
+             */
+            final public function __toString()
+            {
+            }
+        }
+
+        /**
+         * This interface is implemented by MongoDB\BSON\Binary but may also be used for type-hinting and userland classes.
+         * @link https://www.php.net/manual/en/class.mongodb-bson-binaryinterface.php
+         */
+        interface BinaryInterface
+        {
+            /**
+             * @link https://www.php.net/manual/en/mongodb-bson-binaryinterface.getdata.php
+             * @return string Returns the BinaryInterface's data
+             */
+            function getData();
+
+            /**
+             * @link https://www.php.net/manual/en/mongodb-bson-binaryinterface.gettype.php
+             * @return int Returns the BinaryInterface's type.
+             */
+            function getType();
+
+            /**
+             * This method is an alias of: MongoDB\BSON\BinaryInterface::getData().
+             * @link https://www.php.net/manual/en/mongodb-bson-binaryinterface.tostring.php
+             * @return string Returns the BinaryInterface's data.
+             */
+            function __toString();
+        }
+
+        /**
+         * This interface is implemented by MongoDB\BSON\ObjectId but may also be used for type-hinting and userland classes.
+         * @link https://www.php.net/manual/en/class.mongodb-bson-objectidinterface.php
+         */
+        interface ObjectIdInterface
+        {
+            /**
+             * @link https://www.php.net/manual/en/mongodb-bson-objectidinterface.gettimestamp.php
+             * @return int Returns the timestamp component of this ObjectIdInterface.
+             */
+            function getTimestamp();
+
+            /**
+             * Returns the hexidecimal representation of this ObjectId
+             * @link https://www.php.net/manual/en/mongodb-bson-objectid.tostring.php
+             * @return string Returns the hexidecimal representation of this ObjectId
+             */
+            function __toString();
+
+            /**
+             * Construct a new ObjectId
+             * @param string|null $id A 24-character hexadecimal string. If not provided, the driver will generate an ObjectId.
+             * @throws InvalidArgumentException
+             */
+            function __construct($id = null);
+        }
+
+        /**
+         * @link https://www.php.net/manual/en/class.mongodb-bson-regexinterface.php
+         * This interface is implemented by MongoDB\BSON\Regex but may also be used for type-hinting and userland classes.
+         */
+        interface RegexInterface
+        {
+            /**
+             * @link https://www.php.net/manual/en/mongodb-bson-regexinterface.getflags.php
+             * @return string Returns the RegexInterface's flags.
+             */
+            function getFlags();
+
+            /**
+             * @link https://www.php.net/manual/en/mongodb-bson-regexinterface.getpattern.php
+             * @return string Returns the RegexInterface's pattern.
+             */
+            function getPattern();
+
+            /**
+             * Returns the string representation of this RegexInterface
+             * @link https://www.php.net/manual/en/mongodb-bson-regexinterface.tostring.php
+             * @return string
+             */
+            function __toString();
+        }
+
+        /**
+         * This interface is implemented by MongoDB\BSON\UTCDateTime but may also be used for type-hinting and userland classes.
+         * @link https://www.php.net/manual/en/class.mongodb-bson-utcdatetimeinterface.php
+         */
+        interface UTCDateTimeInterface
+        {
+            /**
+             * @link https://www.php.net/manual/en/mongodb-bson-utcdatetimeinterface.todatetime.php
+             * @return DateTime Returns the DateTime representation of this UTCDateTimeInterface. The returned DateTime should use the UTC time zone.
+             */
+            function toDateTime();
+
+            /**
+             * Returns the string representation of this UTCDateTimeInterface
+             * @link https://www.php.net/manual/en/mongodb-bson-utcdatetimeinterface.tostring.php
+             * @return string
+             */
+            function __toString();
+        }
+
+        /**
+         * This interface is implemented by MongoDB\BSON\MaxKey but may also be used for type-hinting and userland classes.
+         * @link https://www.php.net/manual/en/class.mongodb-bson-maxkeyinterface.php
+         */
+        interface MaxKeyInterface
+        {
+        }
+
+        /**
+         * This interface is implemented by MongoDB\BSON\MinKey but may also be used for type-hinting and userland classes.
+         * @link https://www.php.net/manual/en/class.mongodb-bson-minkeyinterface.php
+         */
+        interface MinKeyInterface
+        {
+
+        }
+
+        /**
+         * This interface is implemented by MongoDB\BSON\Decimal128 but may also be used for type-hinting and userland classes.
+         * @link https://www.php.net/manual/en/class.mongodb-bson-decimal128interface.php
+         */
+        interface Decimal128Interface
+        {
+            /**
+             * Returns the string representation of this Decimal128Interface
+             * @link https://www.php.net/manual/en/mongodb-bson-decimal128interface.tostring.php
+             * @return string Returns the string representation of this Decimal128Interface
+             */
+            function __toString();
+        }
+
+        /**
          * Classes may implement this interface to take advantage of automatic ODM (object document mapping) behavior in the driver.
          * @link https://php.net/manual/en/class.mongodb-bson-persistable.php
          */
@@ -2222,7 +2902,7 @@ namespace MongoDB {}
         interface JavascriptInterface
         {
             /**
-             * Returns the Javascript's code
+             * Returns the JavascriptInterface's code
              * @return string
              * @link https://secure.php.net/manual/en/mongodb-bson-javascriptinterface.getcode.php
              * @since 1.3.0

@@ -3195,6 +3195,7 @@ class IntlTimeZone {
      * @link https://secure.php.net/manual/en/intltimezone.getwindowsid.php
      * @param string $timezone
      * @return string|false the Windows timezone or <b>FALSE</b> on failure
+     * @since 7.1
      */
     public static function getWindowsID($timezone) { }
 
@@ -5700,14 +5701,13 @@ function resourcebundle_count(ResourceBundle $r, $bundle) { }
  * (PHP &gt;= 5.3.2, PECL intl &gt;= 2.0.0)<br/>
  * Get supported locales
  * @link https://php.net/manual/en/resourcebundle.locales.php
- * @param ResourceBundle $r
  * @param string $bundlename <p>
  * Path of ResourceBundle for which to get available locales, or
  * empty string for default locales list.
  * </p>
  * @return array the list of locales supported by the bundle.
  */
-function resourcebundle_locales(ResourceBundle $r, $bundlename) { }
+function resourcebundle_locales($bundlename) { }
 
 /**
  * (PHP &gt;= 5.3.2, PECL intl &gt;= 2.0.0)<br/>
@@ -6072,9 +6072,10 @@ define ('IDNA_NONTRANSITIONAL_TO_ASCII', 16);
 define ('IDNA_NONTRANSITIONAL_TO_UNICODE', 32);
 
 /**
- * Use IDNA 2003 algorithm in <b>idn_to_utf8</b> and
- * <b>idn_to_ascii</b>. This is the default.
+ * Use IDNA 2003 algorithm in {@see idn_to_utf8} and
+ * {@see idn_to_ascii}. This is the default.
  * @link https://php.net/manual/en/intl.constants.php
+ * @deprecated 7.2 Use {@see INTL_IDNA_VARIANT_UTS46} instead.
  */
 define ('INTL_IDNA_VARIANT_2003', 0);
 

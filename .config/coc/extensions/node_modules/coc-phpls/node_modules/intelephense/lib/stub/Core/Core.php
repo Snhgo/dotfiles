@@ -152,7 +152,7 @@ function strncasecmp ($str1, $str2, $len) {}
  * false.
  * @since 4.0
  * @since 5.0
- * @deprecated 7.2
+ * @deprecated 7.2 Use a foreach loop instead.
  */
 function each (array &$array) {}
 
@@ -242,7 +242,7 @@ function each (array &$array) {}
  * </td>
  * </tr>
  * <tr valign="top">
- * <td>6143</td>
+ * <td>32767</td>
  * <td>
  * E_ALL
  * </td>
@@ -344,7 +344,7 @@ function get_class ($object = null) {}
  * the "Late Static Binding" class name
  * @link https://php.net/manual/en/function.get-called-class.php
  * @return string the class name. Returns false if called from outside a class.
- * @since 5.3.0
+ * @since 5.3
  */
 function get_called_class () {}
 
@@ -395,7 +395,7 @@ function method_exists ($object, $method_name) {}
  * </p>
  * @return bool true if the property exists, false if it doesn't exist or
  * null in case of an error.
- * @since 5.1.0
+ * @since 5.1
  */
 function property_exists ($class, $property) {}
 
@@ -405,7 +405,7 @@ function property_exists ($class, $property) {}
  * @param bool $autoload [optional] Whether to autoload if not already loaded.
  * @return bool Returns TRUE if trait exists, FALSE if not, NULL in case of an error.
  * @link https://secure.php.net/manual/en/function.trait-exists.php
- * @since 5.4.0
+ * @since 5.4
  */
 function trait_exists($traitname, $autoload ) {}
 
@@ -464,7 +464,7 @@ function function_exists ($function_name) {}
  * @param string $alias The alias name for the class.
  * @param bool $autoload [optional] Whether to autoload if the original class is not found.
  * @return bool true on success or false on failure.
- * @since 5.3.0
+ * @since 5.3
  */
 function class_alias ($original, $alias, $autoload = TRUE) {}
 
@@ -610,7 +610,7 @@ function user_error ($message, $error_type = E_USER_NOTICE) {}
 /**
  * Sets a user-defined error handler function
  * @link https://php.net/manual/en/function.set-error-handler.php
- * @param callable $error_handler <p>
+ * @param callable|null $error_handler <p>
  * The user function needs to accept two parameters: the error code, and a
  * string describing the error. Then there are three optional parameters 
  * that may be supplied: the filename in which the error occurred, the
@@ -635,7 +635,7 @@ function user_error ($message, $error_type = E_USER_NOTICE) {}
  * <i>error_handler</i> will be called for every error
  * regardless to the setting of the error_reporting setting.
  * </p>
- * @return mixed a string containing the previously defined error handler (if any). If
+ * @return callable|null a string containing the previously defined error handler (if any). If
  * the built-in error handler is used null is returned. null is also returned
  * in case of an error such as an invalid callback. If the previous error handler
  * was a class method, this function will return an indexed array with the class
@@ -710,7 +710,7 @@ function get_declared_interfaces () {}
  * @return array with names of all declared traits in values. Returns NULL in case of a failure.
  * @link https://secure.php.net/manual/en/function.get-declared-traits.php
  * @see class_uses()
- * @since 5.4.0
+ * @since 5.4
  */
 function get_declared_traits() {}
 
@@ -749,7 +749,7 @@ function get_defined_vars () {}
  * @return string a unique function name as a string, or false on error.
  * @since 4.0.1
  * @since 5.0
- * @deprecated 7.2
+ * @deprecated 7.2 Use anonymous functions instead.
  */
 function create_function ($args, $code) {}
 
@@ -865,7 +865,11 @@ function get_extension_funcs ($module_name) {}
  * [E_USER_ERROR] => 256
  * [E_USER_WARNING] => 512
  * [E_USER_NOTICE] => 1024
- * [E_ALL] => 2047
+ * [E_STRICT] => 2048
+ * [E_RECOVERABLE_ERROR] => 4096
+ * [E_DEPRECATED] => 8192
+ * [E_USER_DEPRECATED] => 16384
+ * [E_ALL] => 32767
  * [TRUE] => 1
  * )
  * [pcre] => Array
@@ -886,7 +890,7 @@ function get_extension_funcs ($module_name) {}
  * </pre>
  * </p>
  * @return array 
- * @since 4.1.0
+ * @since 4.1
  * @since 5.0
  */
 function get_defined_constants ($categorize = false) {}
@@ -988,7 +992,7 @@ function get_defined_constants ($categorize = false) {}
  * </td>
  * </tr>
  * </table>
- * @since 4.3.0
+ * @since 4.3
  * @since 5.0
  */
 function debug_backtrace ($options = DEBUG_BACKTRACE_PROVIDE_OBJECT, $limit = 0) {}
@@ -1025,7 +1029,7 @@ function debug_print_backtrace ($options = 0, $limit = 0) {}
  * Forces collection of any existing garbage cycles
  * @link https://php.net/manual/en/function.gc-collect-cycles.php
  * @return int number of collected cycles.
- * @since 5.3.0
+ * @since 5.3
  */
 function gc_collect_cycles () {}
 
@@ -1033,7 +1037,7 @@ function gc_collect_cycles () {}
  * Returns status of the circular reference collector
  * @link https://php.net/manual/en/function.gc-enabled.php
  * @return bool true if the garbage collector is enabled, false otherwise.
- * @since 5.3.0
+ * @since 5.3
  */
 function gc_enabled () {}
 
@@ -1041,7 +1045,7 @@ function gc_enabled () {}
  * Activates the circular reference collector
  * @link https://php.net/manual/en/function.gc-enable.php
  * @return void 
- * @since 5.3.0
+ * @since 5.3
  */
 function gc_enable () {}
 
@@ -1049,7 +1053,7 @@ function gc_enable () {}
  * Deactivates the circular reference collector
  * @link https://php.net/manual/en/function.gc-disable.php
  * @return void 
- * @since 5.3.0
+ * @since 5.3
  */
 function gc_disable () {}
 
