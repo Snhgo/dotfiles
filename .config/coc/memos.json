@@ -25,7 +25,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/neovim2",
         "fileHash": "6d11fbc0c72128ad48410de086fcf4b3cbcfd769681ac25310df2d5b35ce23726a7536a9a148c26e4a05225f7e3869d9941bc5492f1837de978905043729c378"
       },
-      "expiry": 1574848705264
+      "expiry": 1594175371056
     },
     "/Users/kobayass/.pyenv/versions/neovim2/bin/python.v3": {
       "data": {
@@ -50,7 +50,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/neovim2",
         "fileHash": "228de75382c63b1218287f17a69f5961d3e619cc9786430cec5ea77975b901e1b195d21f635571130076c7d38b5dbd59093c856ecc3b9c741e3831ef3101ab98"
       },
-      "expiry": 1574848705265
+      "expiry": 1594175371056
     },
     "/Users/kobayass/.pyenv/versions/3.7.3/bin/python3.v3": {
       "data": {
@@ -75,7 +75,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/3.7.3",
         "fileHash": "cbf92e2be5514319c6668e878ab27bff34672388c609ab008d52d3d66eb8509b45240936a27e78bf3d6b091a4b43ef19bec73395525b82665d3a92876ef00d29"
       },
-      "expiry": 1574848705265
+      "expiry": 1594175371014
     },
     "/Users/kobayass/.pyenv/versions/3.7.3/bin/python3.7.v3": {
       "data": {
@@ -100,7 +100,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/3.7.3",
         "fileHash": "7d38e98771f9515029dd119d0018f4deab6f077c0d8fb927dfd5435413b257d46918e21dc2540d4e0cc3d374b21a6b7e5236398e30b265c055fc992ee943f35f"
       },
-      "expiry": 1574848705266
+      "expiry": 1594175371012
     },
     "/Users/kobayass/.pyenv/versions/3.6.0/bin/python3.v3": {
       "data": {
@@ -125,7 +125,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/3.6.0",
         "fileHash": "575a37f7b2f9607935b9fc6a8b4f4f3f4cc72b2e7a40781bfd184ca3a0aab930a0b60b0325aad2a885bc982f9efd121f6979489239656ec6a5bc9498db29520a"
       },
-      "expiry": 1574848705267
+      "expiry": 1594175371017
     },
     "/Users/kobayass/.pyenv/versions/3.7.3/bin/python.v3": {
       "data": {
@@ -150,7 +150,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/3.7.3",
         "fileHash": "25700da2f75da06f217843ebbafd29611ebd7d5459982553b6df982938ceb2869051aba86a85acb7550b1f5258daf3c74660352b0a0f97017356e33fbab832bf"
       },
-      "expiry": 1574848705267
+      "expiry": 1594175371015
     },
     "/Users/kobayass/.pyenv/versions/3.6.0/bin/python3.6.v3": {
       "data": {
@@ -175,7 +175,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/3.6.0",
         "fileHash": "ac2efb47cb50fcc70f6e304b8a841102dba330fb0920125951302d0c594f62fd7e642f0c4ffc12d418dd7f26eceac03e4d019f16f02df3480d37dcf5b148c5e4"
       },
-      "expiry": 1574848705268
+      "expiry": 1594175371016
     },
     "/Users/kobayass/.pyenv/versions/2.7.15/bin/python2.7.v3": {
       "data": {
@@ -200,7 +200,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/2.7.15",
         "fileHash": "ca5e816963d1f7d6c32f93953a2ce9129482884b210c9f86080b53ccc43af4ed14cd10b109e0af5dab1aa39cadfffcadd38d44229379917b09f4387013d3cf26"
       },
-      "expiry": 1574848705269
+      "expiry": 1594175371020
     },
     "/Users/kobayass/.pyenv/versions/3.6.0/bin/python.v3": {
       "data": {
@@ -225,7 +225,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/3.6.0",
         "fileHash": "13ff9c3e0de21dc12324c94444e4cb2759fb02407ce77ec6bf79b28536b5ef0076774e03d42c2ddf0e4b1d0b2651159a7674d5e4d4b2b4fe465d93827f298678"
       },
-      "expiry": 1574848705270
+      "expiry": 1594175371019
     },
     "/Users/kobayass/.pyenv/versions/2.7.15/bin/python2.v3": {
       "data": {
@@ -250,7 +250,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/2.7.15",
         "fileHash": "c5eb9e57c4d77938a7176c4338510db503ac20d2b5cbac505f7b2115ca8d1ee4bb2f144b7875462c2b5dc73c9e9275ee7b212b2943198cd71005c503f11406b9"
       },
-      "expiry": 1574848705271
+      "expiry": 1594175371023
     },
     "/Users/kobayass/.pyenv/versions/2.7.15/bin/python.v3": {
       "data": {
@@ -275,7 +275,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/2.7.15",
         "fileHash": "48c28fb48803a0f60b203f635e0459c4ad57b4f06781ba6b59b93fa03a1f346fdc4a8cb383857b3e9429df1f48aeb17894ff99b251f5a7e1460736b9f82276a8"
       },
-      "expiry": 1574848705272
+      "expiry": 1594175371024
     },
     "/usr/local/bin/python3.7.v3": {
       "data": {
@@ -300,7 +300,7 @@
         "sysPrefix": "/usr/local/Cellar/python/3.7.5/Frameworks/Python.framework/Versions/3.7",
         "fileHash": "a85c223afac7c7b5a8b5788b1890955e12d44f1a5764965ffdb7f66c362fa4a4165ea9b1561d4f1c00c0733d3114b6aee9fe7775ddd8b28d88e99f332ee1ae70"
       },
-      "expiry": 1574848705276
+      "expiry": 1594175371050
     },
     "/usr/local/bin/python3.v3": {
       "data": {
@@ -325,7 +325,7 @@
         "sysPrefix": "/usr/local/Cellar/python/3.7.5/Frameworks/Python.framework/Versions/3.7",
         "fileHash": "78ece979a724bce50f57812be9f9ded73edc65d30cbadfbc8068b1de2fbec8ded1d34e3623507c9ba4a08d2be5019349ab9d4388c09f6fb9e3ba34e5a2465195"
       },
-      "expiry": 1574848705277
+      "expiry": 1594175371052
     },
     "/usr/bin/python2.7.v3": {
       "data": {
@@ -337,20 +337,20 @@
             "includePrerelease": false
           },
           "loose": false,
-          "raw": "2.7.10-final",
+          "raw": "2.7.16-final",
           "major": 2,
           "minor": 7,
-          "patch": 10,
+          "patch": 16,
           "prerelease": [
             "final"
           ],
           "build": [],
-          "version": "2.7.10-final"
+          "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
         "fileHash": "6aa930f23736cdd16c0dd01e02f7f52cee85451c732d4790ce95dd73e1060890c88dd583c38cba97597d1725c8ee9a233cd7da4bf4f6f45b8ceb79f27b086792"
       },
-      "expiry": 1574848705279
+      "expiry": 1594175371049
     },
     "/usr/bin/python.v3": {
       "data": {
@@ -362,20 +362,20 @@
             "includePrerelease": false
           },
           "loose": false,
-          "raw": "2.7.10-final",
+          "raw": "2.7.16-final",
           "major": 2,
           "minor": 7,
-          "patch": 10,
+          "patch": 16,
           "prerelease": [
             "final"
           ],
           "build": [],
-          "version": "2.7.10-final"
+          "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "724af219e81ddbcdce77aa42dd2b38b07ddc22d3c1b9dd3c66863c29aacee6787d368ab498eaca6976c1ddfe434c4abc957f657d5cbbca318c9e72caf27106d6"
+        "fileHash": "adb055d3b32c4ea00ca80e7b061d656406a8c9fa7aba792584c2812229ec89e039e11b5353c7c303626ca9be7255617e829066d78b384ba443f5e3061d2fc7bb"
       },
-      "expiry": 1574848705280
+      "expiry": 1594175371048
     },
     "/Users/kobayass/.pyenv/versions/corporate/bin/python.v3": {
       "data": {
@@ -400,7 +400,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/corporate",
         "fileHash": "ab04d6d96dcceba1682818dc84f141e09d297dbc562d2ed90b41f04e327cd19425638689e8e70a7a4d0735f1bd4cc3fe81f85f3d39d6c4a9de816b3b7874db75"
       },
-      "expiry": 1574848705283
+      "expiry": 1594175371010
     },
     "/Users/kobayass/.pyenv/versions/corporate/bin/python3.v3": {
       "data": {
@@ -425,7 +425,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/corporate",
         "fileHash": "5231ce54260ca2bb73c0d54a91653b0adadaba32a40f4875d2e66c82e04d6d3defcf6e4f37e8f25860d0a085fb8c003f0ff446eb500bbdffdfd56a09ab5a713b"
       },
-      "expiry": 1574848705284
+      "expiry": 1594175371060
     },
     "/Users/kobayass/.pyenv/versions/neovim2/bin/python2.v3": {
       "data": {
@@ -450,7 +450,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/neovim2",
         "fileHash": "af7b8f29900f97d4973058c26b9f592923f97d451e3c5f2a7367771fb285b03389921da0749fc6ee1b9b524dcaf06f5c34dfca2395527933bb916237e29194f5"
       },
-      "expiry": 1574848705285
+      "expiry": 1594175371057
     },
     "/Users/kobayass/.pyenv/versions/neovim3/bin/python.v3": {
       "data": {
@@ -475,7 +475,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/neovim3",
         "fileHash": "e7ee7fe2069fa1fb1f4d8c4eabd6d447c368bd2d63c26ca83a4a2bf2e575a26b3edb14575f6c2d4a314eec1d295ae8afecff541781d61bead817404d23090d15"
       },
-      "expiry": 1574848705286
+      "expiry": 1594175371059
     },
     "/Users/kobayass/.pyenv/shims/python.v3": {
       "data": {
@@ -500,7 +500,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/corporate",
         "fileHash": "42d6367c73e04326103a469a768dfc7eea4507344c4444444415a180e28480e548e70d869fa7d9fb06d925183c82980a504238a6ab3b30de0b06feb65300bf7c"
       },
-      "expiry": 1574848705290
+      "expiry": 1578447581077
     },
     "/Users/kobayass/.pyenv/versions/neovim3/bin/python3.v3": {
       "data": {
@@ -525,7 +525,7 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/neovim3",
         "fileHash": "c5e507b288c60b44df01faf044326291c3d0173881b2f0567c7e30e0e33d4f38e72f5310e33bd3a62624f11d568ec2dceaf96207f0cbd065efe143d8c2e764b2"
       },
-      "expiry": 1574848705291
+      "expiry": 1594175371058
     },
     "INTERPRETERS_CACHE_v3_VirtualEnvService": [
       {
@@ -936,102 +936,9 @@
         "sysPrefix": "/Users/kobayass/.pyenv/versions/corporate",
         "fileHash": "4680a9216a1f5ddc4cfe4688ab66ccc78b929c2b064003b26919216741516ba13ac949727a82c6b169c017dbf2b8434aac78453dd9c1f87872cd173342aff9c9"
       },
-      "expiry": 1574848705307
+      "expiry": 1578447581094
     },
-    "INTERPRETERS_CACHE_v3_CurrentPathService": [
-      {
-        "architecture": 3,
-        "path": "/Users/kobayass/.pyenv/versions/corporate/bin/python3",
-        "version": {
-          "options": {
-            "loose": false,
-            "includePrerelease": false
-          },
-          "loose": false,
-          "raw": "3.6.0-final",
-          "major": 3,
-          "minor": 6,
-          "patch": 0,
-          "prerelease": [
-            "final"
-          ],
-          "build": [],
-          "version": "3.6.0-final"
-        },
-        "sysPrefix": "/Users/kobayass/.pyenv/versions/corporate",
-        "fileHash": "5231ce54260ca2bb73c0d54a91653b0adadaba32a40f4875d2e66c82e04d6d3defcf6e4f37e8f25860d0a085fb8c003f0ff446eb500bbdffdfd56a09ab5a713b",
-        "type": "Unknown"
-      },
-      {
-        "architecture": 3,
-        "path": "/Users/kobayass/.pyenv/versions/corporate/bin/python",
-        "version": {
-          "options": {
-            "loose": false,
-            "includePrerelease": false
-          },
-          "loose": false,
-          "raw": "3.6.0-final",
-          "major": 3,
-          "minor": 6,
-          "patch": 0,
-          "prerelease": [
-            "final"
-          ],
-          "build": [],
-          "version": "3.6.0-final"
-        },
-        "sysPrefix": "/Users/kobayass/.pyenv/versions/corporate",
-        "fileHash": "ab04d6d96dcceba1682818dc84f141e09d297dbc562d2ed90b41f04e327cd19425638689e8e70a7a4d0735f1bd4cc3fe81f85f3d39d6c4a9de816b3b7874db75",
-        "type": "Unknown"
-      },
-      {
-        "architecture": 3,
-        "path": "/Users/kobayass/.pyenv/versions/corporate/bin/python",
-        "version": {
-          "options": {
-            "loose": false,
-            "includePrerelease": false
-          },
-          "loose": false,
-          "raw": "3.6.0-final",
-          "major": 3,
-          "minor": 6,
-          "patch": 0,
-          "prerelease": [
-            "final"
-          ],
-          "build": [],
-          "version": "3.6.0-final"
-        },
-        "sysPrefix": "/Users/kobayass/.pyenv/versions/corporate",
-        "fileHash": "ab04d6d96dcceba1682818dc84f141e09d297dbc562d2ed90b41f04e327cd19425638689e8e70a7a4d0735f1bd4cc3fe81f85f3d39d6c4a9de816b3b7874db75",
-        "type": "Unknown"
-      }
-    ],
-    "InterpreterAutoSeletionRule-currentPath": {
-      "architecture": 3,
-      "path": "/Users/kobayass/.pyenv/versions/corporate/bin/python",
-      "version": {
-        "options": {
-          "loose": false,
-          "includePrerelease": false
-        },
-        "loose": false,
-        "raw": "3.6.0-final",
-        "major": 3,
-        "minor": 6,
-        "patch": 0,
-        "prerelease": [
-          "final"
-        ],
-        "build": [],
-        "version": "3.6.0-final"
-      },
-      "sysPrefix": "/Users/kobayass/.pyenv/versions/corporate",
-      "fileHash": "ab04d6d96dcceba1682818dc84f141e09d297dbc562d2ed90b41f04e327cd19425638689e8e70a7a4d0735f1bd4cc3fe81f85f3d39d6c4a9de816b3b7874db75",
-      "type": "Unknown"
-    },
+    "INTERPRETERS_CACHE_v3_CurrentPathService": [],
     "preferredGlobalPyInterpreter": {
       "architecture": 3,
       "path": "/usr/local/bin/python3",
@@ -1085,55 +992,9 @@
           "displayName": "Python 3.6.0 64-bit ('corporate': venv)"
         }
       },
-      "expiry": 1574848882249
+      "expiry": 1594175371172
     },
     "INTERPRETERS_CACHE_v3_KnownPathsService": [
-      {
-        "architecture": 3,
-        "path": "/Users/kobayass/.pyenv/shims/python",
-        "version": {
-          "options": {
-            "loose": false,
-            "includePrerelease": false
-          },
-          "loose": false,
-          "raw": "3.6.0-final",
-          "major": 3,
-          "minor": 6,
-          "patch": 0,
-          "prerelease": [
-            "final"
-          ],
-          "build": [],
-          "version": "3.6.0-final"
-        },
-        "sysPrefix": "/Users/kobayass/.pyenv/versions/corporate",
-        "fileHash": "42d6367c73e04326103a469a768dfc7eea4507344c4444444415a180e28480e548e70d869fa7d9fb06d925183c82980a504238a6ab3b30de0b06feb65300bf7c",
-        "type": "Unknown"
-      },
-      {
-        "architecture": 3,
-        "path": "/Users/kobayass/.pyenv/shims/python3",
-        "version": {
-          "options": {
-            "loose": false,
-            "includePrerelease": false
-          },
-          "loose": false,
-          "raw": "3.6.0-final",
-          "major": 3,
-          "minor": 6,
-          "patch": 0,
-          "prerelease": [
-            "final"
-          ],
-          "build": [],
-          "version": "3.6.0-final"
-        },
-        "sysPrefix": "/Users/kobayass/.pyenv/versions/corporate",
-        "fileHash": "4680a9216a1f5ddc4cfe4688ab66ccc78b929c2b064003b26919216741516ba13ac949727a82c6b169c017dbf2b8434aac78453dd9c1f87872cd173342aff9c9",
-        "type": "Unknown"
-      },
       {
         "architecture": 3,
         "path": "/usr/local/bin/python3",
@@ -1189,18 +1050,18 @@
             "includePrerelease": false
           },
           "loose": false,
-          "raw": "2.7.10-final",
+          "raw": "2.7.16-final",
           "major": 2,
           "minor": 7,
-          "patch": 10,
+          "patch": 16,
           "prerelease": [
             "final"
           ],
           "build": [],
-          "version": "2.7.10-final"
+          "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "724af219e81ddbcdce77aa42dd2b38b07ddc22d3c1b9dd3c66863c29aacee6787d368ab498eaca6976c1ddfe434c4abc957f657d5cbbca318c9e72caf27106d6",
+        "fileHash": "adb055d3b32c4ea00ca80e7b061d656406a8c9fa7aba792584c2812229ec89e039e11b5353c7c303626ca9be7255617e829066d78b384ba443f5e3061d2fc7bb",
         "type": "Unknown"
       },
       {
@@ -1212,15 +1073,15 @@
             "includePrerelease": false
           },
           "loose": false,
-          "raw": "2.7.10-final",
+          "raw": "2.7.16-final",
           "major": 2,
           "minor": 7,
-          "patch": 10,
+          "patch": 16,
           "prerelease": [
             "final"
           ],
           "build": [],
-          "version": "2.7.10-final"
+          "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
         "fileHash": "6aa930f23736cdd16c0dd01e02f7f52cee85451c732d4790ce95dd73e1060890c88dd583c38cba97597d1725c8ee9a233cd7da4bf4f6f45b8ceb79f27b086792",
@@ -1281,18 +1142,18 @@
             "includePrerelease": false
           },
           "loose": false,
-          "raw": "2.7.10-final",
+          "raw": "2.7.16-final",
           "major": 2,
           "minor": 7,
-          "patch": 10,
+          "patch": 16,
           "prerelease": [
             "final"
           ],
           "build": [],
-          "version": "2.7.10-final"
+          "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-        "fileHash": "724af219e81ddbcdce77aa42dd2b38b07ddc22d3c1b9dd3c66863c29aacee6787d368ab498eaca6976c1ddfe434c4abc957f657d5cbbca318c9e72caf27106d6",
+        "fileHash": "adb055d3b32c4ea00ca80e7b061d656406a8c9fa7aba792584c2812229ec89e039e11b5353c7c303626ca9be7255617e829066d78b384ba443f5e3061d2fc7bb",
         "type": "Unknown"
       },
       {
@@ -1304,15 +1165,15 @@
             "includePrerelease": false
           },
           "loose": false,
-          "raw": "2.7.10-final",
+          "raw": "2.7.16-final",
           "major": 2,
           "minor": 7,
-          "patch": 10,
+          "patch": 16,
           "prerelease": [
             "final"
           ],
           "build": [],
-          "version": "2.7.10-final"
+          "version": "2.7.16-final"
         },
         "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
         "fileHash": "6aa930f23736cdd16c0dd01e02f7f52cee85451c732d4790ce95dd73e1060890c88dd583c38cba97597d1725c8ee9a233cd7da4bf4f6f45b8ceb79f27b086792",
@@ -1325,63 +1186,63 @@
         "displayName": "Python 2.7.15 64-bit ('2.7.15': pyenv)",
         "hash": "48c28fb48803a0f60b203f635e0459c4ad57b4f06781ba6b59b93fa03a1f346fdc4a8cb383857b3e9429df1f48aeb17894ff99b251f5a7e1460736b9f82276a8-c47472747fe00897fdfe39a8048d6efe"
       },
-      "expiry": 1574848705476
+      "expiry": 1594175371131
     },
     "/Users/kobayass/.pyenv/versions/3.6.0/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.6.0 64-bit ('3.6.0': pyenv)",
         "hash": "13ff9c3e0de21dc12324c94444e4cb2759fb02407ce77ec6bf79b28536b5ef0076774e03d42c2ddf0e4b1d0b2651159a7674d5e4d4b2b4fe465d93827f298678-83e4f4205a476719a7325794469b1eb1"
       },
-      "expiry": 1574848705478
+      "expiry": 1594175371133
     },
     "/Users/kobayass/.pyenv/versions/3.7.3/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.7.3 64-bit ('3.7.3': pyenv)",
         "hash": "25700da2f75da06f217843ebbafd29611ebd7d5459982553b6df982938ceb2869051aba86a85acb7550b1f5258daf3c74660352b0a0f97017356e33fbab832bf-c632704692fcb4872b4e6ac8018154c1"
       },
-      "expiry": 1574848705479
+      "expiry": 1594175371134
     },
     "/Users/kobayass/.pyenv/versions/corporate/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.6.0 64-bit ('corporate': venv)",
         "hash": "ab04d6d96dcceba1682818dc84f141e09d297dbc562d2ed90b41f04e327cd19425638689e8e70a7a4d0735f1bd4cc3fe81f85f3d39d6c4a9de816b3b7874db75-e2ee68fa987a056154567ae5dc7ff6ec"
       },
-      "expiry": 1574848705699
+      "expiry": 1594175371136
     },
     "/Users/kobayass/.pyenv/versions/neovim2/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 2.7.15 64-bit ('neovim2': pyenv)",
         "hash": "228de75382c63b1218287f17a69f5961d3e619cc9786430cec5ea77975b901e1b195d21f635571130076c7d38b5dbd59093c856ecc3b9c741e3831ef3101ab98-4f53cf3aeb045e091590f5bc73165bdf"
       },
-      "expiry": 1574848705481
+      "expiry": 1594175371138
     },
     "/Users/kobayass/.pyenv/versions/neovim3/bin/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.7.3 64-bit ('neovim3': venv)",
         "hash": "e7ee7fe2069fa1fb1f4d8c4eabd6d447c368bd2d63c26ca83a4a2bf2e575a26b3edb14575f6c2d4a314eec1d295ae8afecff541781d61bead817404d23090d15-f42d7fdf459f580cf03b906ea83ca8d0"
       },
-      "expiry": 1574848705482
+      "expiry": 1594175371139
     },
     "/Users/kobayass/.pyenv/shims/python.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.6.0 64-bit",
         "hash": "42d6367c73e04326103a469a768dfc7eea4507344c4444444415a180e28480e548e70d869fa7d9fb06d925183c82980a504238a6ab3b30de0b06feb65300bf7c-6d65d3fbc0fa4ed0a85af778b830ebbf"
       },
-      "expiry": 1574848705484
+      "expiry": 1578447581246
     },
     "/usr/local/bin/python3.interpreter.displayName.v7": {
       "data": {
         "displayName": "Python 3.7.5 64-bit",
         "hash": "78ece979a724bce50f57812be9f9ded73edc65d30cbadfbc8068b1de2fbec8ded1d34e3623507c9ba4a08d2be5019349ab9d4388c09f6fb9e3ba34e5a2465195-b373951334d6188cb1c5e2a3bf00afe9"
       },
-      "expiry": 1574848705485
+      "expiry": 1594175371220
     },
     "/usr/bin/python.interpreter.displayName.v7": {
       "data": {
-        "displayName": "Python 2.7.10 64-bit",
-        "hash": "724af219e81ddbcdce77aa42dd2b38b07ddc22d3c1b9dd3c66863c29aacee6787d368ab498eaca6976c1ddfe434c4abc957f657d5cbbca318c9e72caf27106d6-20c51675fb62f2aa30f28eccdcd305fd"
+        "displayName": "Python 2.7.16 64-bit",
+        "hash": "adb055d3b32c4ea00ca80e7b061d656406a8c9fa7aba792584c2812229ec89e039e11b5353c7c303626ca9be7255617e829066d78b384ba443f5e3061d2fc7bb-1ef21d6c3747ac8eb7611cf729e078f2"
       },
-      "expiry": 1574848705487
+      "expiry": 1594175371142
     },
     "InterpreterAutoSeletionRule-system": {
       "architecture": 3,
@@ -1436,7 +1297,7 @@
           "displayName": "Python 2.7.15 64-bit ('2.7.15': pyenv)"
         }
       },
-      "expiry": 1574848705535
+      "expiry": 1594175371162
     },
     "/Users/kobayass/.pyenv/versions/3.6.0/bin/python.interpreter.Details.v7": {
       "data": {
@@ -1467,7 +1328,7 @@
           "displayName": "Python 3.6.0 64-bit ('3.6.0': pyenv)"
         }
       },
-      "expiry": 1574848705537
+      "expiry": 1594175371165
     },
     "/Users/kobayass/.pyenv/versions/3.7.3/bin/python.interpreter.Details.v7": {
       "data": {
@@ -1498,7 +1359,7 @@
           "displayName": "Python 3.7.3 64-bit ('3.7.3': pyenv)"
         }
       },
-      "expiry": 1574848705540
+      "expiry": 1594175371168
     },
     "/Users/kobayass/.pyenv/versions/neovim2/bin/python.interpreter.Details.v7": {
       "data": {
@@ -1529,7 +1390,7 @@
           "displayName": "Python 2.7.15 64-bit ('neovim2': pyenv)"
         }
       },
-      "expiry": 1574848705545
+      "expiry": 1594175371175
     },
     "/Users/kobayass/.pyenv/versions/neovim3/bin/python.interpreter.Details.v7": {
       "data": {
@@ -1560,7 +1421,7 @@
           "displayName": "Python 3.7.3 64-bit ('neovim3': venv)"
         }
       },
-      "expiry": 1574848705548
+      "expiry": 1594175371178
     },
     "/Users/kobayass/.pyenv/shims/python.interpreter.Details.v7": {
       "data": {
@@ -1590,7 +1451,7 @@
           "displayName": "Python 3.6.0 64-bit"
         }
       },
-      "expiry": 1574848705553
+      "expiry": 1578447581294
     },
     "/usr/local/bin/python3.interpreter.Details.v7": {
       "data": {
@@ -1617,14 +1478,15 @@
           "sysPrefix": "/usr/local/Cellar/python/3.7.5/Frameworks/Python.framework/Versions/3.7",
           "fileHash": "78ece979a724bce50f57812be9f9ded73edc65d30cbadfbc8068b1de2fbec8ded1d34e3623507c9ba4a08d2be5019349ab9d4388c09f6fb9e3ba34e5a2465195",
           "type": "Unknown",
-          "displayName": "Python 3.7.5 64-bit"
+          "displayName": "Python 3.7.5 64-bit",
+          "__store": true
         }
       },
-      "expiry": 1574848705557
+      "expiry": 1594175371195
     },
     "/usr/bin/python.interpreter.Details.v7": {
       "data": {
-        "fileHash": "724af219e81ddbcdce77aa42dd2b38b07ddc22d3c1b9dd3c66863c29aacee6787d368ab498eaca6976c1ddfe434c4abc957f657d5cbbca318c9e72caf27106d6",
+        "fileHash": "adb055d3b32c4ea00ca80e7b061d656406a8c9fa7aba792584c2812229ec89e039e11b5353c7c303626ca9be7255617e829066d78b384ba443f5e3061d2fc7bb",
         "info": {
           "architecture": 3,
           "path": "/usr/bin/python",
@@ -1634,23 +1496,23 @@
               "includePrerelease": false
             },
             "loose": false,
-            "raw": "2.7.10-final",
+            "raw": "2.7.16-final",
             "major": 2,
             "minor": 7,
-            "patch": 10,
+            "patch": 16,
             "prerelease": [
               "final"
             ],
             "build": [],
-            "version": "2.7.10-final"
+            "version": "2.7.16-final"
           },
           "sysPrefix": "/System/Library/Frameworks/Python.framework/Versions/2.7",
-          "fileHash": "724af219e81ddbcdce77aa42dd2b38b07ddc22d3c1b9dd3c66863c29aacee6787d368ab498eaca6976c1ddfe434c4abc957f657d5cbbca318c9e72caf27106d6",
+          "fileHash": "adb055d3b32c4ea00ca80e7b061d656406a8c9fa7aba792584c2812229ec89e039e11b5353c7c303626ca9be7255617e829066d78b384ba443f5e3061d2fc7bb",
           "type": "Unknown",
-          "displayName": "Python 2.7.10 64-bit"
+          "displayName": "Python 2.7.16 64-bit"
         }
       },
-      "expiry": 1574848705582
+      "expiry": 1594175371185
     },
     "InterpreterAutoSeletionRule-cachedInterpreters": {
       "architecture": 3,
@@ -1674,7 +1536,6 @@
       "sysPrefix": "/usr/local/Cellar/python/3.7.5/Frameworks/Python.framework/Versions/3.7",
       "fileHash": "78ece979a724bce50f57812be9f9ded73edc65d30cbadfbc8068b1de2fbec8ded1d34e3623507c9ba4a08d2be5019349ab9d4388c09f6fb9e3ba34e5a2465195",
       "type": "Unknown",
-      "cachedEntry": true,
       "displayName": "Python 3.7.5 64-bit"
     },
     "ProposeLSBanner": false

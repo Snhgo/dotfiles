@@ -1,4 +1,4 @@
-import { TextDocument } from 'vscode-languageserver';
+import { TextDocument } from 'vscode-html-languageservice';
 export interface LanguageModelCache<T> {
     get(document: TextDocument): T;
     onDocumentRemoved(document: TextDocument): void;

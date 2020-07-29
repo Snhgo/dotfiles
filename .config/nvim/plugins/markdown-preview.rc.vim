@@ -35,12 +35,16 @@ let g:mkdp_browser = ''
 
 " set to 1, echo preview page url in command line when open preview page
 " default is 0
-let g:mkdp_echo_preview_url = 0
+let g:mkdp_echo_preview_url = 1
 
+function! g:Open_browser(url)
+    silent exe 'silent !open -a "Google Chrome" ' . a:url
+endfunction
+let g:mkdp_browserfunc = 'g:Open_browser'
 " a custom vim function name to open preview page
 " this function will receive url as param
 " default is empty
-let g:mkdp_browserfunc = ''
+" let g:mkdp_browserfunc = ''
 
 " options for markdown render
 " mkit: markdown-it options for render

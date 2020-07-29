@@ -3,23 +3,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("mocha");
 const assert = require("assert");
 const embeddedSupport = require("../modes/embeddedSupport");
-const vscode_languageserver_types_1 = require("vscode-languageserver-types");
 const vscode_html_languageservice_1 = require("vscode-html-languageservice");
+const languageModes_1 = require("../modes/languageModes");
 suite('HTML Embedded Support', () => {
-    var htmlLanguageService = vscode_html_languageservice_1.getLanguageService();
+    const htmlLanguageService = vscode_html_languageservice_1.getLanguageService();
     function assertLanguageId(value, expectedLanguageId) {
-        let offset = value.indexOf('|');
+        const offset = value.indexOf('|');
         value = value.substr(0, offset) + value.substr(offset + 1);
-        let document = vscode_languageserver_types_1.TextDocument.create('test://test/test.html', 'html', 0, value);
-        let position = document.positionAt(offset);
-        let docRegions = embeddedSupport.getDocumentRegions(htmlLanguageService, document);
-        let languageId = docRegions.getLanguageAtPosition(position);
+        const document = languageModes_1.TextDocument.create('test://test/test.html', 'html', 0, value);
+        const position = document.positionAt(offset);
+        const docRegions = embeddedSupport.getDocumentRegions(htmlLanguageService, document);
+        const languageId = docRegions.getLanguageAtPosition(position);
         assert.equal(languageId, expectedLanguageId);
     }
     function assertEmbeddedLanguageContent(value, languageId, expectedContent) {
-        let document = vscode_languageserver_types_1.TextDocument.create('test://test/test.html', 'html', 0, value);
-        let docRegions = embeddedSupport.getDocumentRegions(htmlLanguageService, document);
-        let content = docRegions.getEmbeddedDocument(languageId);
+        const document = languageModes_1.TextDocument.create('test://test/test.html', 'html', 0, value);
+        const docRegions = embeddedSupport.getDocumentRegions(htmlLanguageService, document);
+        const content = docRegions.getEmbeddedDocument(languageId);
         assert.equal(content.getText(), expectedContent);
     }
     test('Styles', function () {

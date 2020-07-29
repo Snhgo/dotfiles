@@ -7,13 +7,13 @@
 
 import {
 	InitializeParams, InitializeResult, ServerCapabilities, ConfigurationParams,
-	WorkspaceFolder, ColorInformation, TextDocumentSyncKind, Emitter
+    WorkspaceFolder, ColorInformation, TextDocumentSyncKind, Emitter, TextDocumentChangeEvent
 } from 'vscode-languageserver';
-import { Event, CancellationToken, PublishDiagnosticsParams } from 'vscode-languageserver-protocol'
+import { Event, CancellationToken, PublishDiagnosticsParams, TextDocumentContentChangeEvent } from 'vscode-languageserver-protocol'
 import { 
 	TextDocument, Diagnostic, DocumentLink, SymbolInformation, CompletionItem, 
-	Position, Range, TextDocumentChangeEvent, TextDocumentIdentifier, VersionedTextDocumentIdentifier,
-	TextDocumentItem, TextDocumentContentChangeEvent, FormattingOptions, Color
+	Position, Range, TextDocumentIdentifier, VersionedTextDocumentIdentifier,
+	TextDocumentItem, FormattingOptions, Color
 } from 'vscode-languageserver-types';
 import { getLanguageModes, LanguageModes, Settings } from './modes/languageModes';
 
@@ -25,6 +25,7 @@ import { runSafe, runSafeAsync } from './utils/runner';
 
 import { getFoldingRanges } from './modes/htmlFolding';
 import { getDataProviders } from './customData';
+import { getSelectionRanges } from './modes/selectionRanges';
 
 interface UpdateableDocument extends TextDocument {
 	update(event: TextDocumentContentChangeEvent, version: number): void;
@@ -43,20 +44,20 @@ class TextDocuments {
 
 	private _documents: { [uri: string]: TextDocument };
 
-	private _onDidChangeContent: Emitter<TextDocumentChangeEvent>;
-	private _onDidOpen: Emitter<TextDocumentChangeEvent>;
-	private _onDidClose: Emitter<TextDocumentChangeEvent>;
-	private _onDidSave: Emitter<TextDocumentChangeEvent>;
+	private _onDidChangeContent: Emitter<TextDocumentChangeEvent<TextDocument>>;
+	private _onDidOpen: Emitter<TextDocumentChangeEvent<TextDocument>>;
+	private _onDidClose: Emitter<TextDocumentChangeEvent<TextDocument>>;
+	private _onDidSave: Emitter<TextDocumentChangeEvent<TextDocument>>;
 
 	/**
 	 * Create a new text document manager.
 	 */
 	public constructor() {
 		this._documents = Object.create(null);
-		this._onDidChangeContent = new Emitter<TextDocumentChangeEvent>();
-		this._onDidOpen = new Emitter<TextDocumentChangeEvent>();
-		this._onDidClose = new Emitter<TextDocumentChangeEvent>();
-		this._onDidSave = new Emitter<TextDocumentChangeEvent>();
+		this._onDidChangeContent = new Emitter<TextDocumentChangeEvent<TextDocument>>();
+		this._onDidOpen = new Emitter<TextDocumentChangeEvent<TextDocument>>();
+		this._onDidClose = new Emitter<TextDocumentChangeEvent<TextDocument>>();
+		this._onDidSave = new Emitter<TextDocumentChangeEvent<TextDocument>>();
 	}
 
 	/**
@@ -71,7 +72,7 @@ class TextDocuments {
 	 * An event that fires when a text document managed by this manager
 	 * has been opened or the content changes.
 	 */
-	public get onDidChangeContent(): Event<TextDocumentChangeEvent> {
+	public get onDidChangeContent(): Event<TextDocumentChangeEvent<TextDocument>> {
 		return this._onDidChangeContent.event;
 	}
 
@@ -79,7 +80,7 @@ class TextDocuments {
 	 * An event that fires when a text document managed by this manager
 	 * has been opened.
 	 */
-	public get onDidOpen(): Event<TextDocumentChangeEvent> {
+	public get onDidOpen(): Event<TextDocumentChangeEvent<TextDocument>> {
 		return this._onDidOpen.event;
 	}
 
@@ -87,7 +88,7 @@ class TextDocuments {
 	 * An event that fires when a text document managed by this manager
 	 * has been saved.
 	 */
-	public get onDidSave(): Event<TextDocumentChangeEvent> {
+	public get onDidSave(): Event<TextDocumentChangeEvent<TextDocument>> {
 		return this._onDidSave.event;
 	}
 
@@ -95,7 +96,7 @@ class TextDocuments {
 	 * An event that fires when a text document managed by this manager
 	 * has been closed.
 	 */
-	public get onDidClose(): Event<TextDocumentChangeEvent> {
+	public get onDidClose(): Event<TextDocumentChangeEvent<TextDocument>> {
 		return this._onDidClose.event;
 	}
 
@@ -455,10 +456,7 @@ export namespace HtmlCssJsService {
 			const document = documents.get(textDocumentIdentifier.uri);
 
 			if (document) {
-				const htmlMode = languageModes.getMode('html');
-				if (htmlMode && htmlMode.getSelectionRanges) {
-					return htmlMode.getSelectionRanges(document, positions);
-				}
+                return getSelectionRanges(languageModes, document, positions);
 			}
 			return [];
 		}, [], `Error while computing selection ranges for ${textDocumentIdentifier.uri}`, token);

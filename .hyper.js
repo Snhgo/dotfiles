@@ -140,6 +140,9 @@ module.exports = {
     webGLRenderer: true,
 
     // for advanced config flags please refer to https://hyper.is/#cfg
+    hyperMarkdownPreview: {
+        stylesheet: 'github' // github | none
+    },
   },
 
   // a list of plugins to fetch and install from npm
@@ -155,7 +158,8 @@ module.exports = {
     "hyper-opacity",
     "hyper-pane",
     "hyper-tab-icons-plus",
-    "hypercwd"
+    "hypercwd",
+    "hyper-markdown-preview"
   ],
 
   // in development, you can create a directory under

@@ -1,4 +1,2 @@
-import { TextDocument, CompletionItem } from 'vscode-languageserver-types';
-import { WorkspaceFolder } from 'vscode-languageserver';
-import { ICompletionParticipant } from 'vscode-html-languageservice';
+import { ICompletionParticipant, TextDocument, CompletionItem, WorkspaceFolder } from './languageModes';
 export declare function getPathCompletionParticipant(document: TextDocument, workspaceFolders: WorkspaceFolder[], result: CompletionItem[]): ICompletionParticipant;

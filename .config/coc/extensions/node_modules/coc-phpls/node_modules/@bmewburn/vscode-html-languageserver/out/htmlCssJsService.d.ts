@@ -1,6 +1,6 @@
 import { InitializeParams, InitializeResult, ConfigurationParams, ColorInformation } from 'vscode-languageserver';
-import { CancellationToken, PublishDiagnosticsParams } from 'vscode-languageserver-protocol';
-import { DocumentLink, SymbolInformation, CompletionItem, Position, Range, TextDocumentIdentifier, VersionedTextDocumentIdentifier, TextDocumentItem, TextDocumentContentChangeEvent, FormattingOptions, Color } from 'vscode-languageserver-types';
+import { CancellationToken, PublishDiagnosticsParams, TextDocumentContentChangeEvent } from 'vscode-languageserver-protocol';
+import { DocumentLink, SymbolInformation, CompletionItem, Position, Range, TextDocumentIdentifier, VersionedTextDocumentIdentifier, TextDocumentItem, FormattingOptions, Color } from 'vscode-languageserver-types';
 import { Settings } from './modes/languageModes';
 export declare namespace HtmlCssJsService {
     function initialise(params: InitializeParams): InitializeResult;
@@ -23,7 +23,7 @@ export declare namespace HtmlCssJsService {
     function provideFoldingRanges(textDocumentIdentifier: TextDocumentIdentifier, token: CancellationToken): Thenable<import("vscode-languageserver-types").FoldingRange[] | import("vscode-languageserver").ResponseError<unknown> | null>;
     function provideSelectionRanges(textDocumentIdentifier: TextDocumentIdentifier, positions: Position[], token: CancellationToken): Thenable<import("vscode-languageserver-types").SelectionRange[] | import("vscode-languageserver").ResponseError<unknown>>;
     function provideDocumentColours(textDocumentIdentifier: TextDocumentIdentifier, token: CancellationToken): Thenable<ColorInformation[] | import("vscode-languageserver").ResponseError<unknown>>;
-    function provideColorPresentations(textDocumentIdentifier: TextDocumentIdentifier, range: Range, color: Color, token: CancellationToken): Thenable<import("vscode-languageserver").ColorPresentation[] | import("vscode-languageserver").ResponseError<unknown>>;
+    function provideColorPresentations(textDocumentIdentifier: TextDocumentIdentifier, range: Range, color: Color, token: CancellationToken): Thenable<import("vscode-languageserver-types").ColorPresentation[] | import("vscode-languageserver").ResponseError<unknown>>;
     function provideTagClose(textDocumentIdentifier: TextDocumentIdentifier, position: Position, token: CancellationToken): Thenable<string | import("vscode-languageserver").ResponseError<unknown> | null>;
     var requestConfigurationDelegate: (params: ConfigurationParams) => Thenable<Settings>;
 }

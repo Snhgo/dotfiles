@@ -1,6 +1,5 @@
 import 'mocha';
-import { TextDocument, CompletionList, CompletionItemKind } from 'vscode-languageserver-types';
-import { WorkspaceFolder } from 'vscode-languageserver';
+import { WorkspaceFolder, TextDocument, CompletionList, CompletionItemKind } from '../modes/languageModes';
 export interface ItemDescription {
     label: string;
     documentation?: string;

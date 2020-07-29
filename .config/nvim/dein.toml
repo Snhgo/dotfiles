@@ -112,10 +112,17 @@ hook_add = '''
 # ステータスラインやタブ周りの見た目の設定
 [[plugins]]
 repo    = 'vim-airline/vim-airline'
-depends = ['vim-fugitive', 'vim-airline-themes']
+depends = ['vim-fugitive', 'vim-airline-themes', 'vim-devicons']
 hook_add = '''
  source ~/.config/nvim/plugins/airline.rc.vim
 '''
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+hook_add='''
+  let g:webdevicons_enable_denite = 1
+'''
+
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
 
@@ -146,25 +153,18 @@ hook_add = '''
 '''
 
 [[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
 repo = 'nixprime/cpsm'
 hook_add = '''
   let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 '''
 
-# ブラウザ上のテキストエリアにてNVIMを起動する
 [[plugins]]
-repo = 'glacambre/firenvim'
-hook_post_update = '''
-  call firenvim#install(0)
-'''
-
-# Markdownをブラウザと同期して表示
-[[plugins]]
-repo = 'iamcco/markdown-preview.nvim'
-on_ft = ['markdown', 'pandoc.markdown', 'rmd']
-build = 'cd app & yarn install'
+repo = 'tyru/open-browser.vim'
 hook_add = '''
-  source ~/.config/nvim/plugins/markdown-preview.rc.vim
+  let g:openbrowser_browser_commands = [ {'name': 'google-chrome-stable',  'args': ['{browser}', '{uri}']} ]
 '''
 
 # LSP(Laungage Server Protcol)用
@@ -173,6 +173,20 @@ repo = 'neoclide/coc.nvim'
 rev = 'release'
 on_i = 1
 merged = '0'
-hook_add = '''
+hook_source = '''
  source ~/.config/nvim/plugins/coc-setting.rc.vim
 '''
+
+# denite
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+on_cmd = 'Denite'
+depends=['neomru.vim', 'vim-devicons']
+hook_source = '''
+  source ~/.config/nvim/plugins/denite.rc.vim
+'''
+
+

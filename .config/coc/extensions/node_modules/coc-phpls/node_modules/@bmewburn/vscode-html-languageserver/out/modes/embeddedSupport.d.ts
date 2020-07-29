@@ -1,4 +1,4 @@
-import { TextDocument, Position, LanguageService, Range } from 'vscode-html-languageservice';
+import { TextDocument, Position, LanguageService, Range } from './languageModes';
 export interface LanguageRange extends Range {
     languageId: string | undefined;
     attributeValue?: boolean;

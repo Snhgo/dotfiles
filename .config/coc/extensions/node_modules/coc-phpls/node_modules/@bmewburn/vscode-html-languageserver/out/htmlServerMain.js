@@ -1,9 +1,10 @@
 "use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
@@ -17,10 +18,24 @@ const vscode_uri_1 = require("vscode-uri");
 const runner_1 = require("./utils/runner");
 const htmlFolding_1 = require("./modes/htmlFolding");
 const customData_1 = require("./customData");
+const selectionRanges_1 = require("./modes/selectionRanges");
+const semanticTokens_1 = require("./modes/semanticTokens");
 var TagCloseRequest;
 (function (TagCloseRequest) {
     TagCloseRequest.type = new vscode_languageserver_1.RequestType('html/tag');
 })(TagCloseRequest || (TagCloseRequest = {}));
+var OnTypeRenameRequest;
+(function (OnTypeRenameRequest) {
+    OnTypeRenameRequest.type = new vscode_languageserver_1.RequestType('html/onTypeRename');
+})(OnTypeRenameRequest || (OnTypeRenameRequest = {}));
+var SemanticTokenRequest;
+(function (SemanticTokenRequest) {
+    SemanticTokenRequest.type = new vscode_languageserver_1.RequestType('html/semanticTokens');
+})(SemanticTokenRequest || (SemanticTokenRequest = {}));
+var SemanticTokenLegendRequest;
+(function (SemanticTokenLegendRequest) {
+    SemanticTokenLegendRequest.type = new vscode_languageserver_1.RequestType('html/semanticTokenLegend');
+})(SemanticTokenLegendRequest || (SemanticTokenLegendRequest = {}));
 const connection = vscode_languageserver_1.createConnection();
 console.log = connection.console.log.bind(connection.console);
 console.error = connection.console.error.bind(connection.console);
@@ -30,12 +45,12 @@ process.on('unhandledRejection', (e) => {
 process.on('uncaughtException', (e) => {
     console.error(runner_1.formatError(`Unhandled exception`, e));
 });
-const documents = new vscode_languageserver_1.TextDocuments();
+const documents = new vscode_languageserver_1.TextDocuments(languageModes_1.TextDocument);
 documents.listen(connection);
 let workspaceFolders = [];
 let languageModes;
 let clientSnippetSupport = false;
-let clientDynamicRegisterSupport = false;
+let dynamicFormatterRegistration = false;
 let scopedSettingsSupport = false;
 let workspaceFoldersSupport = false;
 let foldingRangeLimit = Number.MAX_VALUE;
@@ -91,16 +106,16 @@ connection.onInitialize((params) => {
         return c;
     }
     clientSnippetSupport = getClientCapability('textDocument.completion.completionItem.snippetSupport', false);
-    clientDynamicRegisterSupport = getClientCapability('workspace.symbol.dynamicRegistration', false);
+    dynamicFormatterRegistration = getClientCapability('textDocument.rangeFormatting.dynamicRegistration', false) && (typeof params.initializationOptions.provideFormatter !== 'boolean');
     scopedSettingsSupport = getClientCapability('workspace.configuration', false);
     workspaceFoldersSupport = getClientCapability('workspace.workspaceFolders', false);
     foldingRangeLimit = getClientCapability('textDocument.foldingRange.rangeLimit', Number.MAX_VALUE);
     const capabilities = {
-        textDocumentSync: documents.syncKind,
+        textDocumentSync: vscode_languageserver_1.TextDocumentSyncKind.Incremental,
         completionProvider: clientSnippetSupport ? { resolveProvider: true, triggerCharacters: ['.', ':', '<', '"', '=', '/'] } : undefined,
         hoverProvider: true,
         documentHighlightProvider: true,
-        documentRangeFormattingProvider: false,
+        documentRangeFormattingProvider: params.initializationOptions.provideFormatter === true,
         documentLinkProvider: { resolveProvider: false },
         documentSymbolProvider: true,
         definitionProvider: true,
@@ -108,7 +123,8 @@ connection.onInitialize((params) => {
         referencesProvider: true,
         colorProvider: {},
         foldingRangeProvider: true,
-        selectionRangeProvider: true
+        selectionRangeProvider: true,
+        renameProvider: true
     };
     return { capabilities };
 });
@@ -136,7 +152,7 @@ connection.onDidChangeConfiguration((change) => {
     globalSettings = change.settings;
     documentSettings = {};
     documents.all().forEach(triggerValidation);
-    if (clientDynamicRegisterSupport) {
+    if (dynamicFormatterRegistration) {
         const enableFormatter = globalSettings && globalSettings.html && globalSettings.html.format && globalSettings.html.format.enable;
         if (enableFormatter) {
             if (!formatterRegistration) {
@@ -204,8 +220,8 @@ function validateTextDocument(textDocument) {
         }
     });
 }
-connection.onCompletion((textDocumentPosition, token) => __awaiter(this, void 0, void 0, function* () {
-    return runner_1.runSafeAsync(() => __awaiter(this, void 0, void 0, function* () {
+connection.onCompletion((textDocumentPosition, token) => __awaiter(void 0, void 0, void 0, function* () {
+    return runner_1.runSafeAsync(() => __awaiter(void 0, void 0, void 0, function* () {
         const document = documents.get(textDocumentPosition.textDocument.uri);
         if (!document) {
             return null;
@@ -296,8 +312,8 @@ connection.onSignatureHelp((signatureHelpParms, token) => {
         return null;
     }, null, `Error while computing signature help for ${signatureHelpParms.textDocument.uri}`, token);
 });
-connection.onDocumentRangeFormatting((formatParams, token) => __awaiter(this, void 0, void 0, function* () {
-    return runner_1.runSafeAsync(() => __awaiter(this, void 0, void 0, function* () {
+connection.onDocumentRangeFormatting((formatParams, token) => __awaiter(void 0, void 0, void 0, function* () {
+    return runner_1.runSafeAsync(() => __awaiter(void 0, void 0, void 0, function* () {
         const document = documents.get(formatParams.textDocument.uri);
         if (document) {
             let settings = yield getDocumentSettings(document, () => true);
@@ -372,7 +388,7 @@ connection.onRequest(TagCloseRequest.type, (params, token) => {
         if (document) {
             const pos = params.position;
             if (pos.character > 0) {
-                const mode = languageModes.getModeAtPosition(document, vscode_languageserver_1.Position.create(pos.line, pos.character - 1));
+                const mode = languageModes.getModeAtPosition(document, languageModes_1.Position.create(pos.line, pos.character - 1));
                 if (mode && mode.doAutoClose) {
                     return mode.doAutoClose(document, pos);
                 }
@@ -393,14 +409,59 @@ connection.onFoldingRanges((params, token) => {
 connection.onSelectionRanges((params, token) => {
     return runner_1.runSafe(() => {
         const document = documents.get(params.textDocument.uri);
-        const positions = params.positions;
         if (document) {
-            const htmlMode = languageModes.getMode('html');
-            if (htmlMode && htmlMode.getSelectionRanges) {
-                return htmlMode.getSelectionRanges(document, positions);
-            }
+            return selectionRanges_1.getSelectionRanges(languageModes, document, params.positions);
         }
         return [];
     }, [], `Error while computing selection ranges for ${params.textDocument.uri}`, token);
+});
+connection.onRenameRequest((params, token) => {
+    return runner_1.runSafe(() => {
+        const document = documents.get(params.textDocument.uri);
+        const position = params.position;
+        if (document) {
+            const htmlMode = languageModes.getMode('html');
+            if (htmlMode && htmlMode.doRename) {
+                return htmlMode.doRename(document, position, params.newName);
+            }
+        }
+        return null;
+    }, null, `Error while computing rename for ${params.textDocument.uri}`, token);
+});
+connection.onRequest(OnTypeRenameRequest.type, (params, token) => {
+    return runner_1.runSafe(() => {
+        const document = documents.get(params.textDocument.uri);
+        if (document) {
+            const pos = params.position;
+            if (pos.character > 0) {
+                const mode = languageModes.getModeAtPosition(document, languageModes_1.Position.create(pos.line, pos.character - 1));
+                if (mode && mode.doOnTypeRename) {
+                    return mode.doOnTypeRename(document, pos);
+                }
+            }
+        }
+        return null;
+    }, null, `Error while computing synced regions for ${params.textDocument.uri}`, token);
+});
+let semanticTokensProvider;
+function getSemanticTokenProvider() {
+    if (!semanticTokensProvider) {
+        semanticTokensProvider = semanticTokens_1.newSemanticTokenProvider(languageModes);
+    }
+    return semanticTokensProvider;
+}
+connection.onRequest(SemanticTokenRequest.type, (params, token) => {
+    return runner_1.runSafe(() => {
+        const document = documents.get(params.textDocument.uri);
+        if (document) {
+            return getSemanticTokenProvider().getSemanticTokens(document, params.ranges);
+        }
+        return null;
+    }, null, `Error while computing semantic tokens for ${params.textDocument.uri}`, token);
+});
+connection.onRequest(SemanticTokenLegendRequest.type, (_params, token) => {
+    return runner_1.runSafe(() => {
+        return getSemanticTokenProvider().legend;
+    }, null, `Error while computing semantic tokens legend`, token);
 });
 connection.listen();

@@ -2,18 +2,17 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 require("mocha");
 const assert = require("assert");
-const vscode_languageserver_1 = require("vscode-languageserver");
 const htmlFolding_1 = require("../modes/htmlFolding");
 const languageModes_1 = require("../modes/languageModes");
 const vscode_css_languageservice_1 = require("vscode-css-languageservice");
 function assertRanges(lines, expected, message, nRanges) {
-    let document = vscode_languageserver_1.TextDocument.create('test://foo/bar.json', 'json', 1, lines.join('\n'));
-    let workspace = {
+    const document = languageModes_1.TextDocument.create('test://foo/bar.html', 'html', 1, lines.join('\n'));
+    const workspace = {
         settings: {},
         folders: [{ name: 'foo', uri: 'test://foo' }]
     };
-    let languageModes = languageModes_1.getLanguageModes({ css: true, javascript: true }, workspace, vscode_css_languageservice_1.ClientCapabilities.LATEST);
-    let actual = htmlFolding_1.getFoldingRanges(languageModes, document, nRanges, null);
+    const languageModes = languageModes_1.getLanguageModes({ css: true, javascript: true }, workspace, vscode_css_languageservice_1.ClientCapabilities.LATEST);
+    const actual = htmlFolding_1.getFoldingRanges(languageModes, document, nRanges, null);
     let actualRanges = [];
     for (let i = 0; i < actual.length; i++) {
         actualRanges[i] = r(actual[i].startLine, actual[i].endLine, actual[i].kind);
@@ -26,7 +25,7 @@ function r(startLine, endLine, kind) {
 }
 suite('HTML Folding', () => {
     test('Embedded JavaScript', () => {
-        let input = [
+        const input = [
             '<html>',
             '<head>',
             '<script>',
@@ -39,7 +38,7 @@ suite('HTML Folding', () => {
         assertRanges(input, [r(0, 6), r(1, 5), r(2, 4), r(3, 4)]);
     });
     test('Embedded JavaScript - multiple areas', () => {
-        let input = [
+        const input = [
             '<html>',
             '<head>',
             '<script>',
@@ -59,7 +58,7 @@ suite('HTML Folding', () => {
         assertRanges(input, [r(0, 13), r(1, 12), r(2, 6), r(3, 6), r(8, 11), r(9, 11)]);
     });
     test('Embedded JavaScript - incomplete', () => {
-        let input = [
+        const input = [
             '<html>',
             '<head>',
             '<script>',
@@ -74,7 +73,7 @@ suite('HTML Folding', () => {
         assertRanges(input, [r(0, 8), r(1, 7), r(2, 3), r(5, 6)]);
     });
     test('Embedded JavaScript - regions', () => {
-        let input = [
+        const input = [
             '<html>',
             '<head>',
             '<script>',
@@ -90,7 +89,7 @@ suite('HTML Folding', () => {
         assertRanges(input, [r(0, 9), r(1, 8), r(2, 7), r(3, 7, 'region'), r(4, 6, 'region')]);
     });
     test('Embedded CSS', () => {
-        let input = [
+        const input = [
             '<html>',
             '<head>',
             '<style>',
@@ -105,7 +104,7 @@ suite('HTML Folding', () => {
         assertRanges(input, [r(0, 8), r(1, 7), r(2, 6), r(3, 5)]);
     });
     test('Embedded CSS - multiple areas', () => {
-        let input = [
+        const input = [
             '<html>',
             '<head style="color:red">',
             '<style>',
@@ -125,7 +124,7 @@ suite('HTML Folding', () => {
         assertRanges(input, [r(0, 13), r(1, 12), r(2, 6), r(3, 6, 'comment'), r(8, 11), r(9, 10)]);
     });
     test('Embedded CSS - regions', () => {
-        let input = [
+        const input = [
             '<html>',
             '<head>',
             '<style>',
@@ -141,7 +140,7 @@ suite('HTML Folding', () => {
         assertRanges(input, [r(0, 9), r(1, 8), r(2, 7), r(3, 7, 'region'), r(4, 6, 'region')]);
     });
     test('Test limit', () => {
-        let input = [
+        const input = [
             '<div>',
             ' <span>',
             '  <b>',

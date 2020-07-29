@@ -5,16 +5,14 @@ const path = require("path");
 const fs = require("fs");
 const assert = require("assert");
 const languageModes_1 = require("../modes/languageModes");
-const vscode_languageserver_types_1 = require("vscode-languageserver-types");
 const formatting_1 = require("../modes/formatting");
-const vscode_html_languageservice_1 = require("vscode-html-languageservice");
 suite('HTML Embedded Formatting', () => {
     function assertFormat(value, expected, options, formatOptions, message) {
         let workspace = {
             settings: options,
             folders: [{ name: 'foo', uri: 'test://foo' }]
         };
-        var languageModes = languageModes_1.getLanguageModes({ css: true, javascript: true }, workspace, vscode_html_languageservice_1.ClientCapabilities.LATEST);
+        let languageModes = languageModes_1.getLanguageModes({ css: true, javascript: true }, workspace, languageModes_1.ClientCapabilities.LATEST);
         let rangeStartOffset = value.indexOf('|');
         let rangeEndOffset;
         if (rangeStartOffset !== -1) {
@@ -26,18 +24,18 @@ suite('HTML Embedded Formatting', () => {
             rangeStartOffset = 0;
             rangeEndOffset = value.length;
         }
-        let document = vscode_languageserver_types_1.TextDocument.create('test://test/test.html', 'html', 0, value);
-        let range = vscode_languageserver_types_1.Range.create(document.positionAt(rangeStartOffset), document.positionAt(rangeEndOffset));
+        let document = languageModes_1.TextDocument.create('test://test/test.html', 'html', 0, value);
+        let range = languageModes_1.Range.create(document.positionAt(rangeStartOffset), document.positionAt(rangeEndOffset));
         if (!formatOptions) {
-            formatOptions = vscode_languageserver_types_1.FormattingOptions.create(2, true);
+            formatOptions = languageModes_1.FormattingOptions.create(2, true);
         }
         let result = formatting_1.format(languageModes, document, range, formatOptions, undefined, { css: true, javascript: true });
-        let actual = vscode_languageserver_types_1.TextDocument.applyEdits(document, result);
+        let actual = languageModes_1.TextDocument.applyEdits(document, result);
         assert.equal(actual, expected, message);
     }
     function assertFormatWithFixture(fixtureName, expectedPath, options, formatOptions) {
-        let input = fs.readFileSync(path.join(__dirname, 'fixtures', 'inputs', fixtureName)).toString().replace(/\r\n/mg, '\n');
-        let expected = fs.readFileSync(path.join(__dirname, 'fixtures', 'expected', expectedPath)).toString().replace(/\r\n/mg, '\n');
+        let input = fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'test', 'fixtures', 'inputs', fixtureName)).toString().replace(/\r\n/mg, '\n');
+        let expected = fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'test', 'fixtures', 'expected', expectedPath)).toString().replace(/\r\n/mg, '\n');
         assertFormat(input, expected, options, formatOptions, expectedPath);
     }
     test('HTML only', function () {
@@ -55,8 +53,8 @@ suite('HTML Embedded Formatting', () => {
     });
     test('HTLM & Scripts - Fixtures', function () {
         assertFormatWithFixture('19813.html', '19813.html');
-        assertFormatWithFixture('19813.html', '19813-4spaces.html', undefined, vscode_languageserver_types_1.FormattingOptions.create(4, true));
-        assertFormatWithFixture('19813.html', '19813-tab.html', undefined, vscode_languageserver_types_1.FormattingOptions.create(1, false));
+        assertFormatWithFixture('19813.html', '19813-4spaces.html', undefined, languageModes_1.FormattingOptions.create(4, true));
+        assertFormatWithFixture('19813.html', '19813-tab.html', undefined, languageModes_1.FormattingOptions.create(1, false));
         assertFormatWithFixture('21634.html', '21634.html');
     });
     test('Script end tag', function () {
@@ -144,7 +142,7 @@ suite('HTML Embedded Formatting', () => {
                 }
             }
         };
-        var content = [
+        const content = [
             '<html>',
             '',
             '<body>',
@@ -154,7 +152,7 @@ suite('HTML Embedded Formatting', () => {
             '',
             '</html>',
         ].join('\n');
-        var expected = [
+        const expected = [
             '<html>',
             '',
             '<body>',

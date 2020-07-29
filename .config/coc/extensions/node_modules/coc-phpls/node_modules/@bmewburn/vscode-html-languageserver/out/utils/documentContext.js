@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getDocumentContext = void 0;
 const strings_1 = require("../utils/strings");
 const url = require("url");
 function getDocumentContext(documentUri, workspaceFolders) {

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getDataProviders = void 0;
 const vscode_html_languageservice_1 = require("vscode-html-languageservice");
 const fs = require("fs");
 function getDataProviders(dataPaths) {

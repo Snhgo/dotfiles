@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.isNewlineCharacter = exports.isEOL = exports.isWhitespaceOnly = exports.repeat = exports.endsWith = exports.startsWith = exports.getWordAtText = void 0;
 function getWordAtText(text, offset, wordDefinition) {
     let lineStart = offset;
     while (lineStart > 0 && !isNewlineCharacter(text.charCodeAt(lineStart - 1))) {

@@ -51,10 +51,10 @@ nnoremap <S-f> :call <SID>format_file()<CR>
 " neovim言語設定
 " -------------------------------------------------------------------------------
 " python2
-let g:python_host_prog = $PYENV_ROOT.'/versions/neovim2/bin/python'
+let g:python_host_prog = $PYENV_ROOT.'/versions/2.7.15/bin/python'
 
 " python3
-let g:python3_host_prog = $PYENV_ROOT.'/versions/neovim3/bin/python'
+let g:python3_host_prog = $PYENV_ROOT.'/versions/3.8.0/bin/python'
 " let g:python3_host_prog = $PYENV_ROOT.'/shims/python3'
 " let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
 
@@ -73,7 +73,7 @@ let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 " dein.vim がなければ github から落としてくる
 if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    execute '!git clone https://github.com/Shougo/dein.vim' . s:dein_repo_dir
   endif
   execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
@@ -105,6 +105,8 @@ endif
 
 " プラグインの追加・削除やtomlファイルの設定を変更した後は
 " 適宜 call dein#update() や call dein#clear_state()
+" markdown-previewがうまく動作しない場合はiamcco/markdown-preview.nvim/app
+" に移動して yarn install を実行する
 
 " もし、未インストールものものがあったらインストール
 if dein#check_install()
