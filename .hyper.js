@@ -48,7 +48,7 @@ module.exports = {
     backgroundColor: '#000',
 
     // terminal selection color
-    selectionColor: 'rgba(248,28,229,0.3)',
+    selectionColor: 'rgba(248,28,229,0.4)',
 
     // border color (window, tabs)
     borderColor: '#333',
@@ -143,6 +143,8 @@ module.exports = {
     hyperMarkdownPreview: {
         stylesheet: 'github' // github | none
     },
+    
+    opacity: 0.79,
   },
 
   // a list of plugins to fetch and install from npm
@@ -158,8 +160,7 @@ module.exports = {
     "hyper-opacity",
     "hyper-pane",
     "hyper-tab-icons-plus",
-    "hypercwd",
-    "hyper-markdown-preview"
+    "hypercwd"
   ],
 
   // in development, you can create a directory under
