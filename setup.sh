@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=( .config/nvim .config/coc .config/efm-langserver .hyper.js )
+DOT_FILES=( .config/nvim .config/coc .config/efm-langserver .hyper.js .gitconfig )
 
 for file in ${DOT_FILES[@]}
 do
@@ -8,6 +8,10 @@ do
 done
 
 sh ./brew.sh
+sh ./anyenv.sh
+
+# pyenv-virtualenvのインストール
+git clone https://github.com/pyenv/pyenv-virtualenv.git $PYENV_ROOT/plugins/pyenv-virtualenv
 
 # fishの設定
 echo "export LANG=ja_JP.UTF-8" >> ~/.config/fish/config.fish
@@ -28,13 +32,13 @@ fisher add oh-my-fish/theme-bobthefish
 pyenv install 2.7.15
 pyenv virtualenv 2.7.15 neovim2
 pyenv activate neovim2
-pip2 install neovim
+pip2 install pynvim
 pyenv which python
 
-pyenv install 3.7.3
-pyenv virtualenv 3.7.3 neovim3
+pyenv install 3.8.0
+pyenv virtualenv 3.8.0 neovim3
 pyenv activate neovim3
-pip install neovim
+pip install pynvim
 pip install jedi
 pyenv which python
 

@@ -51,18 +51,18 @@ nnoremap <S-f> :call <SID>format_file()<CR>
 " neovim言語設定
 " -------------------------------------------------------------------------------
 " python2
-let g:python_host_prog = $PYENV_ROOT.'/versions/2.7.15/bin/python'
+" let g:python_host_prog = $PYENV_ROOT.'/versions/2.7.15/bin/python'
+let g:python_host_prog = $PYENV_ROOT.'/versions/neovim2/bin/python'
 
 " python3
-let g:python3_host_prog = $PYENV_ROOT.'/versions/3.8.0/bin/python'
-" let g:python3_host_prog = $PYENV_ROOT.'/shims/python3'
-" let g:python3_host_prog = expand('~/.pyenv/versions/neovim3/bin/python')
+let g:python3_host_prog = $PYENV_ROOT.'/versions/neovim3/bin/python'
+" let g:python3_host_prog = $PYENV_ROOT.'/versions/3.8.0/bin/python'
 
 " ruby
 let g:ruby_host_prog = $RBENV_ROOT.'/versions/2.5.1/bin/neovim-ruby-host'
 
 " node
-let g:node_host_prog = $NODENV_ROOT.'/versions/10.15.3/bin/neovim-node-host'
+let g:node_host_prog = $NODENV_ROOT.'/versions/13.1.0/bin/neovim-node-host'
 
 " プラグインがインストールされるディレクトリ
 let s:dein_dir = expand('~/.cache/dein')
@@ -73,7 +73,7 @@ let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 " dein.vim がなければ github から落としてくる
 if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' . s:dein_repo_dir
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
   endif
   execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
